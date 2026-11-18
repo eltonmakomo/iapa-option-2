@@ -1,30 +1,21 @@
 import { Link, useParams } from "@tanstack/react-router";
-import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, Plus, Globe, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import logoEn from "@/assets/iapa-logo.jpg.asset.json";
-import logoFr from "@/assets/iapa-logo-fr.png.asset.json";
+import logoWhite from "@/assets/iapa-logo-white.png.asset.json";
 import trainingImg from "@/assets/training-tree.jpg";
 import { NAV } from "@/lib/nav";
 import { t, type Lang } from "@/lib/i18n";
 
-function LangSwitch({ lang }: { lang: Lang }) {
+function LangSwitch({ lang, dark }: { lang: Lang; dark?: boolean }) {
   const params = useParams({ strict: false }) as { _splat?: string };
   const splat = params._splat;
-  return (
-    <div className="flex items-center rounded-full border border-border text-sm font-semibold" aria-label="Language">
-      {(["en", "fr"] as const).map((l) =>
-        splat ? (
-          <Link key={l} to="/$lang/$" params={{ lang: l, _splat: splat }} hrefLang={l}
-            className={`rounded-full px-3 py-1 ${l === lang ? "bg-primary text-primary-foreground" : "text-foreground hover:text-primary"}`}
-            aria-current={l === lang ? "true" : undefined}>{l.toUpperCase()}</Link>
-        ) : (
-          <Link key={l} to="/$lang" params={{ lang: l }} hrefLang={l}
-            className={`rounded-full px-3 py-1 ${l === lang ? "bg-primary text-primary-foreground" : "text-foreground hover:text-primary"}`}
-            aria-current={l === lang ? "true" : undefined}>{l.toUpperCase()}</Link>
-        ),
-      )}
-    </div>
-  );
+  const other: Lang = lang === "en" ? "fr" : "en";
+  const label = other === "fr" ? "Français" : "English";
+  const cls = `flex items-center gap-1.5 text-[0.95rem] font-bold ${dark ? "text-foreground hover:text-primary" : "hover:text-sun"}`;
+  const inner = <><Globe className="h-4 w-4" aria-hidden />{label}</>;
+  return splat
+    ? <Link to="/$lang/$" params={{ lang: other, _splat: splat }} hrefLang={other} className={cls}>{inner}</Link>
+    : <Link to="/$lang" params={{ lang: other }} hrefLang={other} className={cls}>{inner}</Link>;
 }
 
 export function SiteHeader({ lang }: { lang: Lang }) {
@@ -45,46 +36,45 @@ export function SiteHeader({ lang }: { lang: Lang }) {
 
   const enter = (i: number) => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpen(i); };
   const leave = () => { closeTimer.current = setTimeout(() => setOpen(null), 150); };
-  const logo = lang === "fr" ? logoFr : logoEn;
-
+  
   return (
-    <header className={`sticky top-0 z-50 border-b border-border bg-card transition-shadow ${compact ? "shadow-md" : ""}`}>
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 lg:px-6 lg:pt-4">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:rounded focus:bg-primary focus:px-3 focus:py-2 focus:text-primary-foreground">{d.skip}</a>
-      <div className={`mx-auto flex max-w-7xl items-center gap-6 px-4 transition-all lg:px-6 ${compact ? "h-16" : "h-24"}`}>
+      <div className={`mx-auto flex max-w-7xl items-center gap-4 rounded-full border border-forest-foreground/25 pl-4 pr-2 text-forest-foreground backdrop-blur-md transition-all lg:pl-6 ${compact ? "h-16 bg-forest-deep/90 shadow-lg" : "h-20 bg-forest-deep/55"}`}>
         <Link to="/$lang" params={{ lang }} className="shrink-0" onClick={() => setOpen(null)}>
-          <img src={logo.url} alt="IAPA — International Agribusiness Practitioners Association" width={1270} height={354}
-            className={`w-auto transition-all ${compact ? "h-9" : "h-12"}`} />
+          <img src={logoWhite.url} alt="IAPA — International Agribusiness Practitioners Association" width={1270} height={354}
+            className={`w-auto transition-all ${compact ? "h-9" : "h-11"}`} />
         </Link>
 
-        <nav className="hidden flex-1 justify-center lg:flex" aria-label="Main">
-          <ul className="flex items-stretch">
+        <nav className="ml-auto hidden lg:flex" aria-label="Main">
+          <ul className="flex items-center">
             {NAV.map((g, i) => (
               <li key={g.slug} onMouseEnter={() => enter(i)} onMouseLeave={leave}>
                 <button type="button" aria-expanded={open === i} onClick={() => setOpen(open === i ? null : i)}
-                  className={`flex items-center gap-1 px-3 py-2 text-[0.95rem] font-semibold transition-colors ${open === i ? "text-primary" : "text-foreground hover:text-primary"}`}>
+                  className={`flex items-center gap-1 px-3 py-2 text-[0.95rem] font-medium transition-colors ${open === i ? "text-sun" : "hover:text-sun"}`}>
                   {g.label[lang]}
-                  <ChevronDown className={`h-4 w-4 transition-transform ${open === i ? "rotate-180" : ""}`} aria-hidden />
+                  <Plus className={`h-4 w-4 transition-transform ${open === i ? "rotate-45" : ""}`} aria-hidden />
                 </button>
               </li>
             ))}
           </ul>
         </nav>
 
-        <div className="ml-auto hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <LangSwitch lang={lang} />
-          <Link to="/$lang/$" params={{ lang, _splat: "work-with-us" }}
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-accent-foreground transition hover:brightness-105">
-            {d.workWithUs}
+          <Link to="/$lang/$" params={{ lang, _splat: "knowledge-hub" }} aria-label="Search"
+            className={`grid place-items-center rounded-full bg-primary text-primary-foreground transition hover:brightness-110 ${compact ? "h-12 w-12" : "h-14 w-14"}`}>
+            <Search className="h-5 w-5" />
           </Link>
         </div>
 
-        <button type="button" className="ml-auto rounded-md p-2 lg:hidden" aria-label={d.menu} aria-expanded={mobile} onClick={() => setMobile(true)}>
+        <button type="button" className="ml-auto rounded-full p-2 lg:hidden" aria-label={d.menu} aria-expanded={mobile} onClick={() => setMobile(true)}>
           <Menu className="h-6 w-6" />
         </button>
       </div>
 
       {open !== null && (
-        <div className="absolute inset-x-0 top-full hidden border-t border-border bg-card shadow-xl lg:block"
+        <div className="absolute inset-x-3 top-full mt-2 hidden overflow-hidden rounded-3xl border border-border bg-card text-foreground shadow-xl lg:inset-x-6 lg:block"
           onMouseEnter={() => enter(open)} onMouseLeave={leave}>
           <div className="mx-auto grid max-w-7xl grid-cols-12 gap-8 px-6 py-10">
             <div className="col-span-3 border-r border-border pr-8">
@@ -124,7 +114,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
           <div className="absolute inset-0 bg-foreground/50" onClick={() => setMobile(false)} />
           <div className="absolute right-0 top-0 flex h-full w-[88%] max-w-sm flex-col overflow-y-auto bg-card p-5 animate-in slide-in-from-right">
             <div className="flex items-center justify-between">
-              <LangSwitch lang={lang} />
+              <LangSwitch lang={lang} dark />
               <button type="button" aria-label={d.close} className="rounded-md p-2" onClick={() => setMobile(false)}><X className="h-6 w-6" /></button>
             </div>
             <ul className="mt-6 divide-y divide-border">

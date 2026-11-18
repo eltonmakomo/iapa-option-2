@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Megaphone, Users } from "lucide-react";
+import { ArrowRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Globe, Map as MapIcon, Megaphone, Users } from "lucide-react";
 import hero from "@/assets/hero-farmer.jpg";
 import coop from "@/assets/cooperative.jpg";
 import proc from "@/assets/processor.jpg";
@@ -32,10 +33,19 @@ const whatTones = [
   { card: "bg-leaf-8 text-cream", tile: "bg-cream/15 text-cream" },
 ];
 
+const glanceIcons = [MapIcon, Globe, GraduationCap, Users, Award];
+
 function Home() {
   const lang = Route.useParams().lang as Lang;
   const d = t(lang);
   const newsImgs = [coop, train, proc];
+  const [activeStat, setActiveStat] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setActiveStat((i) => (i + 1) % d.glance.length), 3200);
+    return () => clearInterval(id);
+  }, [d.glance.length]);
+
   return (
     <>
       <section className="relative isolate min-h-[620px] overflow-hidden">
@@ -87,12 +97,55 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-primary py-20 text-primary-foreground">
+      <section className="bg-forest-deep py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <p className="eyebrow text-sun">{d.glanceEyebrow}</p>
-          <h2 className="mt-3 text-3xl md:text-4xl">{d.glanceTitle}</h2>
-          <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-5">
-            {d.glance.map(([n, l]) => (<div key={l}><p className="text-5xl font-extrabold text-sun">{n}</p><p className="mt-2 text-sm opacity-90">{l}</p></div>))}
+          <div className="rounded-3xl bg-cream p-6 md:p-10 lg:p-14">
+            <h2 className="max-w-4xl text-4xl font-extrabold tracking-tight text-foreground md:text-6xl lg:text-7xl">{d.glanceTitle}</h2>
+            <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,240px)_minmax(0,1fr)] lg:gap-12">
+              <div>
+                <span className="inline-block rounded-full bg-leaf-3 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-forest-deep">{d.glanceEyebrow}</span>
+                <p className="mt-4 text-lg font-bold text-foreground">{d.glanceSub}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{d.glanceBody}</p>
+              </div>
+              <div>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                  {d.glance.map(([n, l], i) => {
+                    const Icon = glanceIcons[i]!;
+                    const active = i === activeStat;
+                    const name = d.glanceNames[i] ?? l;
+                    return (
+                      <button
+                        key={l}
+                        type="button"
+                        onMouseEnter={() => setActiveStat(i)}
+                        onFocus={() => setActiveStat(i)}
+                        onClick={() => setActiveStat(i)}
+                        aria-current={active}
+                        className={`stat-notch flex min-h-[200px] flex-col p-4 text-left transition-colors duration-500 ${active ? "bg-leaf-7 text-cream" : "bg-leaf-1 text-forest-deep"}`}
+                      >
+                        <p className="text-4xl font-extrabold tracking-tight md:text-5xl">{n}</p>
+                        <span className={`mt-auto grid h-9 w-9 place-items-center rounded-lg ${active ? "bg-cream/15 text-cream" : "bg-forest-deep/10 text-forest-deep"}`}>
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <p className="mt-3 text-sm font-bold">{name}</p>
+                        <p className="mt-1 text-xs leading-snug opacity-80">{l}</p>
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="mt-4 flex gap-1.5">
+                  {d.glance.map(([n, l], i) => (
+                    <button
+                      key={l}
+                      type="button"
+                      onClick={() => setActiveStat(i)}
+                      aria-label={d.glanceNames[i] ?? l}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${i === activeStat ? "w-8 bg-leaf-7" : "w-3 bg-forest-deep/20 hover:bg-forest-deep/40"}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

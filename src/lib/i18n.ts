@@ -45,6 +45,9 @@ const en = {
     ["63", "Registered founding members"],
     ["10+", "Years of ABF-GIZ experience behind our approaches"],
   ],
+  glanceNames: ["Countries", "Regions", "Master Trainers", "Founding members", "Years of experience"],
+  glanceSub: "A network that is already delivering.",
+  glanceBody: "These figures are the network today. They grow as more countries, trainers and members join IAPA.",
   approachesEyebrow: "Our approaches",
   approachesTitle: "Certified, practical, adult-centred training",
   approaches: [
@@ -143,6 +146,9 @@ const fr: Dict = {
     ["63", "Membres fondateurs enregistrés"],
     ["10+", "Années d'expérience ABF-GIZ derrière nos approches"],
   ],
+  glanceNames: ["Pays", "Régions", "Master Trainers", "Membres fondateurs", "Années d'expérience"],
+  glanceSub: "Un réseau qui agit déjà.",
+  glanceBody: "Ces chiffres reflètent le réseau aujourd'hui. Ils grandissent à mesure que de nouveaux pays, formateurs et membres rejoignent l'AIPA.",
   approachesEyebrow: "Nos approches",
   approachesTitle: "Des formations certifiées, pratiques et centrées sur l'adulte",
   approaches: [

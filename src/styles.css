@@ -38,6 +38,14 @@
   --color-cream: var(--cream);
   --color-savanna: var(--savanna);
   --color-forest-deep: var(--forest-deep);
+  --color-leaf-1: oklch(0.8343 0.076 114.56);
+  --color-leaf-2: oklch(0.7787 0.1054 117.04);
+  --color-leaf-3: oklch(0.7206 0.1299 119.08);
+  --color-leaf-4: oklch(0.5517 0.1442 136.18);
+  --color-leaf-5: oklch(0.5233 0.1431 138.17);
+  --color-leaf-6: oklch(0.4535 0.1203 138.09);
+  --color-leaf-7: oklch(0.3613 0.0905 137.95);
+  --color-leaf-8: oklch(0.3067 0.0754 138.33);
 }
 
 :root {

@@ -22,14 +22,14 @@ const regionColors = ["bg-primary", "bg-savanna", "bg-accent", "bg-sun", "bg-for
 const whatIcons = [Compass, BookOpen, GraduationCap, CalendarDays, Award, Users, Megaphone, Briefcase];
 
 const whatTones = [
-  { card: "bg-card text-foreground", tile: "bg-primary/10 text-primary" },
-  { card: "bg-sunrise text-foreground", tile: "bg-primary/10 text-primary" },
-  { card: "bg-savanna/50 text-foreground", tile: "bg-primary/10 text-primary" },
-  { card: "bg-savanna text-foreground", tile: "bg-primary/10 text-primary" },
-  { card: "bg-accent text-accent-foreground", tile: "bg-primary-foreground/20 text-current" },
-  { card: "bg-primary text-primary-foreground", tile: "bg-primary-foreground/15 text-current" },
-  { card: "bg-forest text-forest-foreground", tile: "bg-primary-foreground/15 text-current" },
-  { card: "bg-forest-deep text-forest-foreground", tile: "bg-primary-foreground/15 text-current" },
+  { card: "bg-leaf-1 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
+  { card: "bg-leaf-2 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
+  { card: "bg-leaf-3 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
+  { card: "bg-leaf-4 text-cream", tile: "bg-cream/15 text-cream" },
+  { card: "bg-leaf-5 text-cream", tile: "bg-cream/15 text-cream" },
+  { card: "bg-leaf-6 text-cream", tile: "bg-cream/15 text-cream" },
+  { card: "bg-leaf-7 text-cream", tile: "bg-cream/15 text-cream" },
+  { card: "bg-leaf-8 text-cream", tile: "bg-cream/15 text-cream" },
 ];
 
 function Home() {

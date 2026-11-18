@@ -88,15 +88,15 @@ export function SiteHeader({ lang }: { lang: Lang }) {
           onMouseEnter={() => enter(open)} onMouseLeave={leave}>
           <div className="mx-auto grid max-w-7xl grid-cols-12 gap-8 px-6 py-10">
             <div className="col-span-3 border-r border-border pr-8">
-              <p className="eyebrow text-savanna">{NAV[open].label[lang]}</p>
-              <p className="mt-3 text-lg font-semibold leading-snug text-foreground">{NAV[open].blurb[lang]}</p>
-              <Link to="/$lang/$" params={{ lang, _splat: NAV[open].slug }} onClick={() => setOpen(null)}
+              <p className="eyebrow text-savanna">{NAV[open]!.label[lang]}</p>
+              <p className="mt-3 text-lg font-semibold leading-snug text-foreground">{NAV[open]!.blurb[lang]}</p>
+              <Link to="/$lang/$" params={{ lang, _splat: NAV[open]!.slug }} onClick={() => setOpen(null)}
                 className="mt-5 inline-flex items-center gap-2 font-bold text-primary hover:gap-3 transition-all">
                 {d.learnMore} <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             <div className="col-span-6 grid grid-cols-2 gap-8">
-              {NAV[open].columns.map((c) => (
+              {NAV[open]!.columns.map((c) => (
                 <div key={c.title.en}>
                   <p className="eyebrow mb-3 text-muted-foreground">{c.title[lang]}</p>
                   <ul className="space-y-1">

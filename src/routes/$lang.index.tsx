@@ -141,16 +141,18 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-20 lg:px-6">
-        <p className="eyebrow text-savanna">{d.approachesEyebrow}</p>
-        <h2 className="mt-3 text-3xl text-primary md:text-4xl">{d.approachesTitle}</h2>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {d.approaches.map(([code, name]) => (
-            <Link key={code} to="/$lang/$" params={{ lang, _splat: `training/${(code ?? "").toLowerCase()}` }} className="group flex items-center gap-4 rounded-xl border border-border bg-card p-5 hover:border-primary">
-              <span className="icon-tile grid h-14 w-14 shrink-0 place-items-center bg-sunrise font-extrabold text-foreground">{code}</span>
-              <span className="font-semibold group-hover:text-primary">{name}</span>
-            </Link>
-          ))}
+      <section className="bg-primary py-20">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+          <p className="eyebrow text-sun">{d.approachesEyebrow}</p>
+          <h2 className="mt-3 text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {d.approaches.map(([code, name]) => (
+              <Link key={code} to="/$lang/$" params={{ lang, _splat: `training/${(code ?? "").toLowerCase()}` }} className="group flex items-center gap-4 rounded-xl bg-cream p-5 transition-colors hover:bg-leaf-1">
+                <span className="icon-tile grid h-14 w-14 shrink-0 place-items-center bg-sunrise font-extrabold text-forest-deep">{code}</span>
+                <span className="font-semibold text-forest-deep">{name}</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

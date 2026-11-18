@@ -145,26 +145,28 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-center text-sun">{d.approachesEyebrow}</p>
           <h2 className="mt-3 text-center text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
-          <div className="mx-auto mt-12 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
-            {d.approaches.map(([code, name]) => {
-              const full = (name ?? "").split(" (")[0]!;
+          <div className="approach-grid mx-auto mt-12 w-full">
+            {d.approaches.map(([code, name, short]) => {
+              const full = short || (name ?? "").split(" (")[0]!;
               return (
                 <Link
                   key={code}
                   to="/$lang/$"
                   params={{ lang, _splat: `training/${(code ?? "").toLowerCase()}` }}
-                  className="group relative flex h-14 w-full items-center overflow-hidden rounded-full bg-cream pl-5 pr-2 text-forest-deep md:h-16"
+                  className="group relative flex h-14 w-full items-center overflow-hidden rounded-full bg-cream pl-3.5 pr-1.5 text-forest-deep md:h-16"
                 >
                   <span className="approach-sweep" />
-                  <span className="relative z-10 text-base font-extrabold tracking-tight">{code}</span>
-                  <span className="relative z-10 ml-0 min-w-0 max-w-0 overflow-hidden whitespace-normal text-xs leading-tight font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:ml-3 group-hover:max-w-[26rem] group-hover:opacity-100 group-hover:delay-100 group-focus-visible:ml-3 group-focus-visible:max-w-[26rem] group-focus-visible:opacity-100 lg:text-sm">
+                  <span className="relative z-10 max-w-12 shrink-0 overflow-hidden whitespace-nowrap text-base font-extrabold tracking-tight transition-all duration-300 ease-in-out group-hover:max-w-0 group-hover:opacity-0 group-focus-visible:max-w-0 group-focus-visible:opacity-0">
+                    {code}
+                  </span>
+                  <span className="approach-name relative z-10 min-w-0 max-w-0 overflow-hidden whitespace-nowrap font-semibold leading-tight opacity-0 transition-all duration-500 ease-in-out group-hover:max-w-[26rem] group-hover:opacity-100 group-focus-visible:max-w-[26rem] group-focus-visible:opacity-100">
                     {full}
                   </span>
-                  <span className="relative z-10 ml-auto flex h-9 shrink-0 items-center justify-end pr-2.5 md:h-11 md:pr-3">
-                    <svg viewBox="0 0 96 24" className="h-5 w-20 md:h-6 md:w-24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="round" aria-hidden="true">
-                      <line x1="2" y1="12" x2="70" y2="12" strokeDasharray="6 5" className="approach-dash" />
-                      <line x1="70" y1="12" x2="92" y2="12" />
-                      <polyline points="82,3 92,12 82,21" strokeLinecap="round" />
+                  <span className="relative z-10 ml-auto flex h-9 shrink-0 items-center justify-end pr-1.5 md:h-11">
+                    <svg viewBox="0 0 72 24" className="h-[18px] w-[54px] lg:h-5 lg:w-[60px]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="round" aria-hidden="true">
+                      <line x1="2" y1="12" x2="46" y2="12" strokeDasharray="6 5" className="approach-dash" />
+                      <line x1="46" y1="12" x2="68" y2="12" />
+                      <polyline points="58,3 68,12 58,21" strokeLinecap="round" />
                     </svg>
                   </span>
                 </Link>

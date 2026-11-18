@@ -154,7 +154,7 @@ const fr: Dict = {
   approaches: [
     ["FBS", "École d'entrepreneuriat agricole (Farmer Business School)"],
     ["CBS", "École d'entrepreneuriat coopératif (Cooperative Business School)"],
-    ["PBS", "École d'entrepreneuriat des transformateurs (Processor Business School)"],
+    ["PBS", "École d'entrepreneuriat des transformateurs (Processor Business School)", "École des transformateurs"],
     ["ABS", "École d'entrepreneuriat aquacole (Aquaculture Business School)"],
     ["CF", "Agriculture contractuelle inclusive"],
     ["GAP", "Bonnes pratiques agricoles"],

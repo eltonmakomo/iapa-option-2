@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Globe, Map as MapIcon, Megaphone, Users } from "lucide-react";
+import { ArrowRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Megaphone, Users } from "lucide-react";
 import hero from "@/assets/hero-farmer.jpg";
 import coop from "@/assets/cooperative.jpg";
 import proc from "@/assets/processor.jpg";
@@ -33,18 +33,22 @@ const whatTones = [
   { card: "bg-leaf-8 text-cream", tile: "bg-cream/15 text-cream" },
 ];
 
-const glanceIcons = [MapIcon, Globe, GraduationCap, Users, Award];
 
 function Home() {
   const lang = Route.useParams().lang as Lang;
   const d = t(lang);
   const newsImgs = [coop, train, proc];
-  const [activeStat, setActiveStat] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [animate, setAnimate] = useState(true);
 
   useEffect(() => {
-    const id = setInterval(() => setActiveStat((i) => (i + 1) % d.glance.length), 3200);
+    if (!animate) {
+      const r = requestAnimationFrame(() => requestAnimationFrame(() => setAnimate(true)));
+      return () => cancelAnimationFrame(r);
+    }
+    const id = setInterval(() => setOffset((o) => o + 1), 3500);
     return () => clearInterval(id);
-  }, [d.glance.length]);
+  }, [animate]);
 
   return (
     <>
@@ -99,52 +103,39 @@ function Home() {
 
       <section className="bg-forest-deep py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <div className="rounded-3xl bg-cream p-6 md:p-10 lg:p-14">
-            <h2 className="max-w-4xl text-4xl font-extrabold tracking-tight text-foreground md:text-6xl lg:text-7xl">{d.glanceTitle}</h2>
-            <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,240px)_minmax(0,1fr)] lg:gap-12">
-              <div>
-                <span className="inline-block rounded-full bg-leaf-3 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-forest-deep">{d.glanceEyebrow}</span>
-                <p className="mt-4 text-lg font-bold text-foreground">{d.glanceSub}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{d.glanceBody}</p>
+          <div className="rounded-3xl bg-cream p-6 md:p-10">
+            <p className="text-lg text-forest-deep">{d.glanceTitle}</p>
+            <div className="mt-16 overflow-hidden md:mt-24">
+              <div
+                className={`flex gap-3 [--per:2] sm:[--per:4] ${animate ? "transition-transform duration-[1400ms] ease-in-out" : ""}`}
+                style={{ transform: `translateX(calc(-${offset} * (100% + 0.75rem) / var(--per)))` }}
+                onTransitionEnd={() => {
+                  if (offset >= d.glance.length) { setAnimate(false); setOffset(0); }
+                }}
+              >
+                {[...d.glance, ...d.glance.slice(0, 4)].map(([n, l], i) => (
+                  <div
+                    key={i}
+                    className="stat-notch flex min-h-[260px] shrink-0 basis-[calc((100%-(var(--per)-1)*0.75rem)/var(--per))] flex-col bg-leaf-1 p-5 text-forest-deep md:min-h-[320px]"
+                  >
+                    <p className="text-xs font-semibold uppercase leading-snug tracking-wide">{d.glanceNames[i % d.glance.length] ?? l}</p>
+                    <p className="mt-1 text-xs uppercase leading-snug opacity-70">{l}</p>
+                    <p className="mt-auto text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">{n}</p>
+                  </div>
+                ))}
               </div>
-              <div>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-                  {d.glance.map(([n, l], i) => {
-                    const Icon = glanceIcons[i]!;
-                    const active = i === activeStat;
-                    const name = d.glanceNames[i] ?? l;
-                    return (
-                      <button
-                        key={l}
-                        type="button"
-                        onMouseEnter={() => setActiveStat(i)}
-                        onFocus={() => setActiveStat(i)}
-                        onClick={() => setActiveStat(i)}
-                        aria-current={active}
-                        className={`stat-notch flex min-h-[200px] flex-col p-4 text-left transition-colors duration-500 ${active ? "bg-leaf-7 text-cream" : "bg-leaf-1 text-forest-deep"}`}
-                      >
-                        <p className="text-4xl font-extrabold tracking-tight md:text-5xl">{n}</p>
-                        <span className={`mt-auto grid h-9 w-9 place-items-center rounded-lg ${active ? "bg-cream/15 text-cream" : "bg-forest-deep/10 text-forest-deep"}`}>
-                          <Icon className="h-4 w-4" />
-                        </span>
-                        <p className="mt-3 text-sm font-bold">{name}</p>
-                        <p className="mt-1 text-xs leading-snug opacity-80">{l}</p>
-                      </button>
-                    );
-                  })}
-                </div>
-                <div className="mt-4 flex gap-1.5">
-                  {d.glance.map(([n, l], i) => (
-                    <button
-                      key={l}
-                      type="button"
-                      onClick={() => setActiveStat(i)}
-                      aria-label={d.glanceNames[i] ?? l}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${i === activeStat ? "w-8 bg-leaf-7" : "w-3 bg-forest-deep/20 hover:bg-forest-deep/40"}`}
-                    />
-                  ))}
-                </div>
-              </div>
+            </div>
+            <div className="mt-6 flex gap-1.5">
+              {d.glance.map(([, l], i) => (
+                <button
+                  key={l}
+                  type="button"
+                  onClick={() => { setAnimate(true); setOffset(i); }}
+                  aria-label={d.glanceNames[i] ?? l}
+                  aria-current={offset % d.glance.length === i}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${offset % d.glance.length === i ? "w-8 bg-leaf-7" : "w-3 bg-forest-deep/20 hover:bg-forest-deep/40"}`}
+                />
+              ))}
             </div>
           </div>
         </div>

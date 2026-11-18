@@ -142,7 +142,7 @@ function Home() {
       </section>
 
       <section className="bg-primary py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        <div className="mx-auto max-w-7xl px-5">
           <p className="eyebrow text-center text-sun">{d.approachesEyebrow}</p>
           <h2 className="mt-3 text-center text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
           <div className="approach-grid mx-auto mt-12 w-full">
@@ -153,17 +153,17 @@ function Home() {
                   key={code}
                   to="/$lang/$"
                   params={{ lang, _splat: `training/${(code ?? "").toLowerCase()}` }}
-                  className="group relative flex h-14 w-full items-center overflow-hidden rounded-full bg-cream pl-3.5 pr-1.5 text-forest-deep md:h-16"
+                  className="group relative flex h-16 w-full items-center overflow-hidden rounded-full bg-cream px-5 text-forest-deep md:h-20"
                 >
                   <span className="approach-sweep" />
-                  <span className="relative z-10 max-w-12 shrink-0 overflow-hidden whitespace-nowrap text-base font-extrabold tracking-tight transition-all duration-300 ease-in-out group-hover:max-w-0 group-hover:opacity-0 group-focus-visible:max-w-0 group-focus-visible:opacity-0">
+                  <span className="relative z-10 max-w-12 shrink-0 overflow-hidden whitespace-nowrap text-base font-extrabold tracking-tight transition-all duration-300 ease-in-out md:text-lg lg:text-xl group-hover:max-w-0 group-hover:opacity-0 group-focus-visible:max-w-0 group-focus-visible:opacity-0">
                     {code}
                   </span>
-                  <span className="approach-name relative z-10 min-w-0 max-w-0 overflow-hidden whitespace-nowrap font-semibold leading-tight opacity-0 transition-all duration-500 ease-in-out group-hover:max-w-[26rem] group-hover:opacity-100 group-focus-visible:max-w-[26rem] group-focus-visible:opacity-100">
+                  <span className="approach-name relative z-10 mr-5 min-w-0 max-w-0 overflow-hidden whitespace-nowrap font-semibold leading-tight opacity-0 transition-all duration-500 ease-in-out group-hover:max-w-[26rem] group-hover:opacity-100 group-focus-visible:max-w-[26rem] group-focus-visible:opacity-100">
                     {full}
                   </span>
-                  <span className="relative z-10 ml-auto flex h-9 shrink-0 items-center justify-end pr-1.5 md:h-11">
-                    <svg viewBox="0 0 72 24" className="h-[18px] w-[54px] lg:h-5 lg:w-[60px]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="round" aria-hidden="true">
+                  <span className="relative z-10 ml-auto flex h-9 shrink-0 items-center justify-end md:h-11">
+                    <svg viewBox="0 0 72 24" className="h-5 w-12 lg:h-6 lg:w-14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="round" aria-hidden="true">
                       <line x1="2" y1="12" x2="46" y2="12" strokeDasharray="6 5" className="approach-dash" />
                       <line x1="46" y1="12" x2="68" y2="12" />
                       <polyline points="58,3 68,12 58,21" strokeLinecap="round" />

@@ -101,7 +101,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-forest-deep py-14 md:py-20">
+      <section className="py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="rounded-3xl bg-cream p-6 md:p-10">
             <p className="text-lg text-forest-deep">{d.glanceTitle}</p>
@@ -116,7 +116,7 @@ function Home() {
                 {[...d.glance, ...d.glance.slice(0, 4)].map(([n, l], i) => (
                   <div
                     key={i}
-                    className="stat-notch flex min-h-[260px] shrink-0 basis-[calc((100%-(var(--per)-1)*0.75rem)/var(--per))] flex-col bg-leaf-1 p-5 text-forest-deep md:min-h-[320px]"
+                    className="stat-notch flex min-h-[300px] shrink-0 basis-[calc((100%-(var(--per)-1)*0.75rem)/var(--per))] flex-col bg-leaf-1 p-5 text-forest-deep md:min-h-[370px]"
                   >
                     <p className="text-xs font-semibold uppercase leading-snug tracking-wide">{d.glanceNames[i % d.glance.length] ?? l}</p>
                     <p className="mt-1 text-xs uppercase leading-snug opacity-70">{l}</p>

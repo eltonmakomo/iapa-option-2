@@ -132,7 +132,7 @@
 .group:hover .approach-sweep,
 .group:focus-visible .approach-sweep { width: 100%; }
 @media (min-width: 48rem) { .approach-sweep { width: 4rem; } }
-.approach-dash { clip-path: inset(0 0 0 100%); transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1); }
+.approach-dash { clip-path: inset(0 0 0 70%); transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1); }
 .group:hover .approach-dash,
 .group:focus-visible .approach-dash { clip-path: inset(0 0 0 0); }
 

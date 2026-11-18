@@ -161,10 +161,10 @@ function Home() {
                     {full}
                   </span>
                   <span className="relative z-10 ml-auto flex h-9 shrink-0 items-center justify-end pr-2.5 md:h-11 md:pr-3">
-                    <svg viewBox="0 0 64 16" className="h-4 w-16 md:h-5 md:w-20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <line x1="2" y1="8" x2="50" y2="8" strokeDasharray="4 4" className="approach-dash" />
-                      <line x1="52" y1="8" x2="62" y2="8" />
-                      <polyline points="56,2 62,8 56,14" />
+                    <svg viewBox="0 0 96 24" className="h-5 w-20 md:h-6 md:w-24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="round" aria-hidden="true">
+                      <line x1="2" y1="12" x2="70" y2="12" strokeDasharray="6 5" className="approach-dash" />
+                      <line x1="70" y1="12" x2="92" y2="12" />
+                      <polyline points="82,3 92,12 82,21" strokeLinecap="round" />
                     </svg>
                   </span>
                 </Link>

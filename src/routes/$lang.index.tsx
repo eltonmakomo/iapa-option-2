@@ -89,7 +89,7 @@ function Home() {
         <h2 className="mt-3 text-3xl text-primary md:text-4xl">{d.approachesTitle}</h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {d.approaches.map(([code, name]) => (
-            <Link key={code} to="/$lang/$" params={{ lang, _splat: `training/${code.toLowerCase()}` }} className="group flex items-center gap-4 rounded-xl border border-border bg-card p-5 hover:border-primary">
+            <Link key={code} to="/$lang/$" params={{ lang, _splat: `training/${(code ?? "").toLowerCase()}` }} className="group flex items-center gap-4 rounded-xl border border-border bg-card p-5 hover:border-primary">
               <span className="icon-tile grid h-14 w-14 shrink-0 place-items-center bg-sunrise font-extrabold text-foreground">{code}</span>
               <span className="font-semibold group-hover:text-primary">{name}</span>
             </Link>

@@ -29,7 +29,7 @@ function Home() {
         <img src={hero} alt="" width={1920} height={1088} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 photo-scrim" />
         <div className="mx-auto flex min-h-[620px] max-w-7xl flex-col justify-center px-4 py-20 text-forest-foreground lg:px-6">
-          <h1 className="max-w-3xl text-4xl md:text-6xl">{d.heroTitle}</h1>
+          <h1 className="max-w-none text-4xl md:text-[2.75rem] lg:text-[3.25rem] xl:text-6xl">{d.heroTitle}</h1>
           <p className="mt-6 max-w-2xl text-lg font-light opacity-95">{d.heroSub}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link to="/$lang/$" params={{ lang, _splat: "work-with-us" }} className="rounded-full bg-accent px-7 py-3.5 font-bold text-accent-foreground">{d.workWithUs}</Link>

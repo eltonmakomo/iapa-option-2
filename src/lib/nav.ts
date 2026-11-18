@@ -42,10 +42,10 @@ export const NAV: NavGroup[] = [
     blurb: l("Certified, practical, adult-centred approaches delivered by Master Trainers.", "Des approches certifiées, pratiques et centrées sur l'adulte, dispensées par des Master Trainers."),
     columns: [
       { title: l("Our approaches", "Nos approches"), links: [
-        { label: l("Farmer Business School", "Farmer Business School"), slug: "training/fbs" },
-        { label: l("Cooperative Business School", "Cooperative Business School"), slug: "training/cbs" },
-        { label: l("Processor Business School", "Processor Business School"), slug: "training/pbs" },
-        { label: l("Aquaculture Business School", "Aquaculture Business School"), slug: "training/abs" },
+        { label: l("Farmer Business School", "École d'entrepreneuriat agricole"), slug: "training/fbs" },
+        { label: l("Cooperative Business School", "École d'entrepreneuriat coopératif"), slug: "training/cbs" },
+        { label: l("Processor Business School", "École d'entrepreneuriat des transformateurs"), slug: "training/pbs" },
+        { label: l("Aquaculture Business School", "École d'entrepreneuriat aquacole"), slug: "training/abs" },
         { label: l("Inclusive Contract Farming", "Agriculture contractuelle inclusive"), slug: "training/cf" },
         { label: l("Good Agricultural Practices", "Bonnes pratiques agricoles"), slug: "training/gap" },
       ]},

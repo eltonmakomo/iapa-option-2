@@ -145,7 +145,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-center text-sun">{d.approachesEyebrow}</p>
           <h2 className="mt-3 text-center text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
-          <div className="mx-auto mt-12 flex w-full max-w-lg flex-col items-center gap-3">
+          <div className="mx-auto mt-12 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
             {d.approaches.map(([code, name]) => {
               const full = (name ?? "").split(" (")[0]!;
               return (
@@ -157,10 +157,10 @@ function Home() {
                 >
                   <span className="approach-sweep" />
                   <span className="relative z-10 text-base font-extrabold tracking-tight">{code}</span>
-                  <span className="relative z-10 ml-0 min-w-0 max-w-0 truncate text-sm font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:ml-3 group-hover:max-w-[26rem] group-hover:opacity-100 group-hover:delay-100 group-focus-visible:ml-3 group-focus-visible:max-w-[26rem] group-focus-visible:opacity-100 md:text-base">
+                  <span className="relative z-10 ml-0 min-w-0 max-w-0 overflow-hidden whitespace-normal text-xs leading-tight font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:ml-3 group-hover:max-w-[26rem] group-hover:opacity-100 group-hover:delay-100 group-focus-visible:ml-3 group-focus-visible:max-w-[26rem] group-focus-visible:opacity-100 lg:text-sm">
                     {full}
                   </span>
-                  <span className="relative z-10 ml-auto grid h-10 w-10 shrink-0 place-items-center md:h-11 md:w-11">
+                  <span className="relative z-10 ml-auto grid h-9 w-9 shrink-0 place-items-center md:h-11 md:w-11">
                     <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-in-out group-hover:translate-x-0.5 md:h-5 md:w-5" />
                   </span>
                 </Link>

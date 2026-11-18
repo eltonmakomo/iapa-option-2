@@ -11,7 +11,7 @@ const en = {
   menu: "Menu",
   close: "Close",
   skip: "Skip to content",
-  heroTitle: "Africa's professional network for certified agribusiness training and advisory",
+  heroTitle: "Certified expertise growing Africa’s agribusiness sector.",
   heroSub:
     "Through a strong community of agribusiness professionals, we improve the livelihoods of agricultural value chain actors and strengthen their climate resilience.",
   motto: "Synergy · Inclusion · Solidarity",
@@ -109,7 +109,7 @@ const fr: Dict = {
   menu: "Menu",
   close: "Fermer",
   skip: "Aller au contenu",
-  heroTitle: "Le réseau professionnel africain de formation et de conseil certifiés en agribusiness",
+  heroTitle: "Une expertise certifiée qui fait grandir le secteur agribusiness africain.",
   heroSub:
     "Grâce à une solide communauté de professionnels de l'agribusiness, nous améliorons les moyens de subsistance des acteurs des chaînes de valeur agricoles et renforçons leur résilience climatique.",
   motto: "Synergie · Inclusion · Solidarité",

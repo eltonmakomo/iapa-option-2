@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Megaphone, Users } from "lucide-react";
 import hero from "@/assets/hero-farmer.jpg";
 import coop from "@/assets/cooperative.jpg";
 import proc from "@/assets/processor.jpg";
@@ -18,6 +18,19 @@ export const Route = createFileRoute("/$lang/")({
 });
 
 const regionColors = ["bg-primary", "bg-savanna", "bg-accent", "bg-sun", "bg-forest-deep"];
+
+const whatIcons = [Compass, BookOpen, GraduationCap, CalendarDays, Award, Users, Megaphone, Briefcase];
+
+const whatTones = [
+  { card: "bg-card text-foreground", tile: "bg-primary/10 text-primary" },
+  { card: "bg-sunrise text-foreground", tile: "bg-primary/10 text-primary" },
+  { card: "bg-savanna/50 text-foreground", tile: "bg-primary/10 text-primary" },
+  { card: "bg-savanna text-foreground", tile: "bg-primary/10 text-primary" },
+  { card: "bg-accent text-accent-foreground", tile: "bg-primary-foreground/20 text-current" },
+  { card: "bg-primary text-primary-foreground", tile: "bg-primary-foreground/15 text-current" },
+  { card: "bg-forest text-forest-foreground", tile: "bg-primary-foreground/15 text-current" },
+  { card: "bg-forest-deep text-forest-foreground", tile: "bg-primary-foreground/15 text-current" },
+];
 
 function Home() {
   const lang = Route.useParams().lang as Lang;
@@ -53,21 +66,22 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-savanna">{d.whatEyebrow}</p>
           <h2 className="mt-3 text-3xl text-primary md:text-4xl">{d.whatTitle}</h2>
-          <div className="mt-10 grid gap-10 lg:grid-cols-2">
-            {([[d.forPartners, d.partnerItems], [d.forMembers, d.memberItems]] as const).map(([title, items]) => (
-              <div key={title}>
-                <h3 className="text-xl text-foreground">{title}</h3>
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  {items.map(([h, b]) => (
-                    <div key={h} className="rounded-xl bg-card p-5 shadow-sm">
-                      <span className="icon-tile grid h-10 w-10 place-items-center bg-savanna text-foreground"><Check className="h-5 w-5" /></span>
-                      <p className="mt-3 font-bold">{h}</p>
-                      <p className="mt-1 text-sm text-muted-foreground">{b}</p>
-                    </div>
-                  ))}
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[...d.partnerItems.map((item) => [d.forPartners, item] as const), ...d.memberItems.map((item) => [d.forMembers, item] as const)].map(([tag, [h, b]], i) => {
+              const Icon = whatIcons[i]!;
+              const tone = whatTones[i]!;
+              return (
+                <div key={h} className={`flex min-h-[300px] flex-col rounded-2xl p-5 ${tone.card}`}>
+                  <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
+                  <p className="mt-4 font-bold leading-snug">{h}</p>
+                  <div className="mt-2 flex gap-1.5">
+                    <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide opacity-80">{tag}</span>
+                    <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold opacity-60">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <p className="mt-3 text-sm opacity-80">{b}</p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <p className="mt-8 text-sm italic text-muted-foreground">{d.inclusionNote}</p>
         </div>

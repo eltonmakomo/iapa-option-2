@@ -143,15 +143,29 @@ function Home() {
 
       <section className="bg-primary py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <p className="eyebrow text-sun">{d.approachesEyebrow}</p>
-          <h2 className="mt-3 text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {d.approaches.map(([code, name]) => (
-              <Link key={code} to="/$lang/$" params={{ lang, _splat: `training/${(code ?? "").toLowerCase()}` }} className="group flex items-center gap-4 rounded-xl bg-cream p-5 transition-colors hover:bg-leaf-1">
-                <span className="icon-tile grid h-14 w-14 shrink-0 place-items-center bg-sunrise font-extrabold text-forest-deep">{code}</span>
-                <span className="font-semibold text-forest-deep">{name}</span>
-              </Link>
-            ))}
+          <p className="eyebrow text-center text-sun">{d.approachesEyebrow}</p>
+          <h2 className="mt-3 text-center text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
+          <div className="mx-auto mt-12 flex w-full max-w-lg flex-col items-center gap-3">
+            {d.approaches.map(([code, name]) => {
+              const full = (name ?? "").split(" (")[0]!;
+              return (
+                <Link
+                  key={code}
+                  to="/$lang/$"
+                  params={{ lang, _splat: `training/${(code ?? "").toLowerCase()}` }}
+                  className="group relative flex h-14 w-[11rem] items-center overflow-hidden rounded-full bg-cream pl-5 pr-2 text-forest-deep transition-[width] duration-500 ease-in-out hover:w-full focus-visible:w-full md:h-16"
+                >
+                  <span className="approach-sweep" />
+                  <span className="relative z-10 text-base font-extrabold tracking-tight">{code}</span>
+                  <span className="relative z-10 ml-0 min-w-0 max-w-0 truncate text-sm font-semibold opacity-0 transition-all duration-500 ease-in-out group-hover:ml-3 group-hover:max-w-[26rem] group-hover:opacity-100 group-hover:delay-100 group-focus-visible:ml-3 group-focus-visible:max-w-[26rem] group-focus-visible:opacity-100 md:text-base">
+                    {full}
+                  </span>
+                  <span className="relative z-10 ml-auto grid h-10 w-10 shrink-0 place-items-center md:h-11 md:w-11">
+                    <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-in-out group-hover:translate-x-0.5 md:h-5 md:w-5" />
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

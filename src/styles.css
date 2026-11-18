@@ -117,4 +117,23 @@
 @utility stat-notch {
   clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Approach cards: the accent circle grows leftward to fill the pill on hover. */
+.approach-sweep {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 3.5rem;
+  border-radius: 9999px;
+  background-color: var(--sun);
+  transition: width 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.group:hover .approach-sweep,
+.group:focus-visible .approach-sweep { width: 100%; }
+@media (min-width: 48rem) { .approach-sweep { width: 4rem; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .approach-sweep { transition: none; }
+}

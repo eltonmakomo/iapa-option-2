@@ -90,7 +90,7 @@ function Home() {
               </span>
             ))}
           </h2>
-          <p className="mt-4 max-w-3xl text-lg font-semibold text-forest-deep">{d.inclusionNote}</p>
+          <p className="mt-4 max-w-2xl text-lg font-light text-forest-deep">{d.inclusionNote}</p>
           <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[...d.partnerItems.map((item) => [d.forPartners, item] as const), ...d.memberItems.map((item) => [d.forMembers, item] as const)].map(([tag, [h, b]], i) => [tag, h, b, i] as const).filter(([, , , i]) => Math.floor(i / 4) === group).map(([tag, h, b, i]) => {
               const Icon = whatIcons[i]!;

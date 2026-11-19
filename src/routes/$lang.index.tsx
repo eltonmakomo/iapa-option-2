@@ -101,10 +101,9 @@ function Home() {
         </div>
       </section>
 
-      <section className="py-14 md:py-20">
+      <section className="bg-cream py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <div className="rounded-3xl bg-cream p-6 md:p-10">
-            <p className="text-lg text-forest-deep">{d.glanceTitle}</p>
+            <h2 className="text-3xl text-primary md:text-4xl">{d.glanceTitle}</h2>
             <div className="mt-16 overflow-hidden md:mt-24">
               <div
                 className={`flex gap-3 [--per:2] sm:[--per:4] ${animate ? "transition-transform duration-[1400ms] ease-in-out" : ""}`}
@@ -137,7 +136,6 @@ function Home() {
                 />
               ))}
             </div>
-          </div>
         </div>
       </section>
 

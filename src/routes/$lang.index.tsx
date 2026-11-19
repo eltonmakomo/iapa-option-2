@@ -97,7 +97,7 @@ function Home() {
               return (
                 <div key={h} className={`relative flex min-h-[300px] flex-col rounded-2xl p-5 animate-in fade-in duration-500 ${tone.card}`}>
                   <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
-                  <div className="mt-auto pt-4">
+                  <div className="mt-20">
                     <p className="font-bold leading-snug">{h}</p>
                     <p className="mt-3 text-sm opacity-80">{b}</p>
                   </div>

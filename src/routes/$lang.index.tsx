@@ -115,7 +115,7 @@ function Home() {
                 className={`h-1.5 rounded-full transition-all duration-300 ${group === gi ? "w-8 bg-leaf-7" : "w-3 bg-forest-deep/20 hover:bg-forest-deep/40"}`} />
             ))}
           </div>
-          <p className="mt-8 text-sm italic text-muted-foreground">{d.inclusionNote}</p>
+          <p className="mt-8 max-w-3xl text-lg font-semibold text-forest-deep">{d.inclusionNote}</p>
         </div>
       </section>
 

@@ -63,12 +63,12 @@ function Home() {
             <Link to="/$lang/$" params={{ lang, _splat: "work-with-us" }} className="wwu group relative inline-flex items-center rounded-full border border-sun">
               <span className="wwu-fill" aria-hidden="true" />
               <span className="relative z-10 px-7 py-3.5 font-bold text-forest-deep">{d.workWithUs}</span>
-              <span className="wwu-arrow relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowUpRight className="h-5 w-5" strokeWidth={2} /></span>
+              <span className="wwu-arrow relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowUpRight className="h-[23px] w-[23px]" strokeWidth={2} /></span>
             </Link>
             <Link to="/$lang/$" params={{ lang, _splat: "join" }} className="wwu wwu-ghost relative inline-flex items-center rounded-full border border-forest-foreground">
               <span className="wwu-fill" aria-hidden="true" />
               <span className="wwu-label relative z-10 px-7 py-3.5 font-bold text-forest-foreground">{d.becomeMember}</span>
-              <span className="wwu-arrow wwu-reveal relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowRight className="h-5 w-5" strokeWidth={2} /></span>
+              <span className="wwu-arrow wwu-reveal relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowRight className="h-[23px] w-[23px]" strokeWidth={2} /></span>
             </Link>
           </div>
         </div>

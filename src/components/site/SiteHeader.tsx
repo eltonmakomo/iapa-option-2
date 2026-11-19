@@ -140,7 +140,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
               className="wwu group relative mt-6 flex items-center justify-between rounded-full border border-sun">
               <span className="wwu-fill" aria-hidden="true" />
               <span className="relative z-10 px-6 py-3 font-bold text-forest-deep">{d.workWithUs}</span>
-              <span className="wwu-arrow relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowUpRight className="h-5 w-5" strokeWidth={2} /></span>
+              <span className="wwu-arrow relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowUpRight className="h-[23px] w-[23px]" strokeWidth={2} /></span>
             </Link>
           </div>
         </div>

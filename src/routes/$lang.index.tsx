@@ -90,6 +90,7 @@ function Home() {
               </span>
             ))}
           </h2>
+          <p className="mt-4 max-w-3xl text-lg font-semibold text-forest-deep">{d.inclusionNote}</p>
           <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[...d.partnerItems.map((item) => [d.forPartners, item] as const), ...d.memberItems.map((item) => [d.forMembers, item] as const)].map(([tag, [h, b]], i) => [tag, h, b, i] as const).filter(([, , , i]) => Math.floor(i / 4) === group).map(([tag, h, b, i]) => {
               const Icon = whatIcons[i]!;
@@ -115,7 +116,6 @@ function Home() {
                 className={`h-1.5 rounded-full transition-all duration-300 ${group === gi ? "w-8 bg-leaf-7" : "w-3 bg-forest-deep/20 hover:bg-forest-deep/40"}`} />
             ))}
           </div>
-          <p className="mt-8 max-w-3xl text-lg font-semibold text-forest-deep">{d.inclusionNote}</p>
         </div>
       </section>
 

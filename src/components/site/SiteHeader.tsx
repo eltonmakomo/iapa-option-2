@@ -1,5 +1,5 @@
 import { Link, useParams } from "@tanstack/react-router";
-import { ChevronDown, Menu, X, ArrowRight, Plus, Globe, Search } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, ArrowUpRight, Plus, Globe, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import logoWhite from "@/assets/iapa-logo-white.png.asset.json";
 import trainingImg from "@/assets/training-tree.jpg";
@@ -137,7 +137,11 @@ export function SiteHeader({ lang }: { lang: Lang }) {
               ))}
             </ul>
             <Link to="/$lang/$" params={{ lang, _splat: "work-with-us" }} onClick={() => setMobile(false)}
-              className="mt-6 rounded-full bg-accent px-5 py-3 text-center font-bold text-accent-foreground">{d.workWithUs}</Link>
+              className="wwu group relative mt-6 flex items-center justify-between rounded-full border border-sun">
+              <span className="wwu-fill" aria-hidden="true" />
+              <span className="relative z-10 px-6 py-3 font-bold text-forest-deep">{d.workWithUs}</span>
+              <span className="wwu-arrow relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowUpRight className="h-5 w-5" strokeWidth={2} /></span>
+            </Link>
           </div>
         </div>
       )}

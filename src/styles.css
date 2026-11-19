@@ -154,7 +154,27 @@
 .group:hover .approach-dash,
 .group:focus-visible .approach-dash { clip-path: inset(0 0 0 0); }
 
+/* "Work with us" CTA: a yellow pill inside a thin ring. On hover the fill retreats to the
+   left, leaving the arrow sitting outside it on the background (reference states A → B). */
+.wwu { --wwu-gap: 6px; --wwu-slot: 44px; }
+.wwu-fill {
+  position: absolute;
+  top: var(--wwu-gap);
+  bottom: var(--wwu-gap);
+  left: var(--wwu-gap);
+  right: var(--wwu-gap);
+  border-radius: 9999px;
+  background-color: var(--sun);
+  transition: right 450ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.wwu:hover .wwu-fill,
+.wwu:focus-visible .wwu-fill { right: calc(var(--wwu-gap) + var(--wwu-slot)); }
+.wwu-arrow { color: var(--forest-deep); transition: color 250ms ease; }
+.wwu:hover .wwu-arrow,
+.wwu:focus-visible .wwu-arrow { color: var(--sun); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .approach-sweep, .approach-dash { transition: none; }
+  .wwu-fill, .wwu-arrow { transition: none; }
 }

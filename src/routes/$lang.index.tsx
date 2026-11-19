@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Megaphone, Users } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Megaphone, Users } from "lucide-react";
 import hero from "@/assets/hero-farmer.jpg";
 import coop from "@/assets/cooperative.jpg";
 import proc from "@/assets/processor.jpg";
@@ -60,7 +60,11 @@ function Home() {
           <h1 className="max-w-none text-4xl md:text-[2.75rem] lg:text-[3.25rem] xl:text-6xl">{d.heroTitle}</h1>
           <p className="mt-8 max-w-2xl text-lg font-light opacity-95">{d.heroSub}</p>
           <div className="mt-[2.6667rem] flex flex-wrap gap-3 md:mt-16">
-            <Link to="/$lang/$" params={{ lang, _splat: "work-with-us" }} className="rounded-full bg-accent px-7 py-3.5 font-bold text-accent-foreground">{d.workWithUs}</Link>
+            <Link to="/$lang/$" params={{ lang, _splat: "work-with-us" }} className="wwu group relative inline-flex items-center rounded-full border border-sun">
+              <span className="wwu-fill" aria-hidden="true" />
+              <span className="relative z-10 px-7 py-3.5 font-bold text-forest-deep">{d.workWithUs}</span>
+              <span className="wwu-arrow relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowUpRight className="h-5 w-5" strokeWidth={2} /></span>
+            </Link>
             <Link to="/$lang/$" params={{ lang, _splat: "join" }} className="rounded-full border-2 border-forest-foreground px-7 py-3 font-bold hover:bg-forest-foreground hover:text-forest">{d.becomeMember}</Link>
           </div>
         </div>

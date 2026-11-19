@@ -170,8 +170,8 @@
 .wwu:hover .wwu-fill,
 .wwu:focus-visible .wwu-fill { right: calc(var(--wwu-gap) + var(--wwu-slot)); }
 .wwu-arrow { color: var(--forest-deep); transition: color 250ms ease; }
-.wwu:hover .wwu-arrow,
-.wwu:focus-visible .wwu-arrow { color: var(--sun); }
+.wwu:not(.wwu-ghost):hover .wwu-arrow,
+.wwu:not(.wwu-ghost):focus-visible .wwu-arrow { color: var(--sun); }
 
 /* Outline twin of the "Work with us" pill: same ring and stroke, but no fill at rest —
    the cream fill sweeps in from the left on hover and the label turns dark green. */
@@ -181,6 +181,11 @@
 .wwu-label { transition: color 200ms ease; }
 .wwu-ghost:hover .wwu-label,
 .wwu-ghost:focus-visible .wwu-label { color: var(--forest-deep); transition-delay: 180ms; }
+
+/* The member button's arrow stays hidden until the cream fill sweeps in to it. */
+.wwu-reveal { opacity: 0; transform: translateX(-8px); transition: opacity 200ms ease, transform 240ms ease, color 250ms ease; }
+.wwu-ghost:hover .wwu-reveal,
+.wwu-ghost:focus-visible .wwu-reveal { opacity: 1; transform: none; transition-delay: 240ms; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

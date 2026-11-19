@@ -97,9 +97,9 @@ function Home() {
               return (
                 <div key={h} className={`relative flex min-h-[300px] flex-col rounded-2xl p-5 animate-in fade-in duration-500 ${tone.card}`}>
                   <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
-                  <div className="mt-20">
+                  <div className="mt-[90px]">
                     <p className="font-bold leading-snug">{h}</p>
-                    <p className="mt-3 text-sm opacity-80">{b}</p>
+                    <p className="mt-[22px] text-sm opacity-80">{b}</p>
                   </div>
                   <div className="absolute right-5 top-5 flex gap-1.5">
                     <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide opacity-80">{tag}</span>

@@ -66,9 +66,9 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-16 lg:px-6">
         <div>
-          <p className="eyebrow text-savanna">{d.aboutEyebrow}</p>
+          <p className="eyebrow text-forest-deep">{d.aboutEyebrow}</p>
           <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.aboutTitle}</h2>
         </div>
         <div className="section-content max-w-3xl">
@@ -77,9 +77,9 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-cream py-10">
+      <section className="bg-cream py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <p className="eyebrow text-savanna">{d.whatEyebrow}</p>
+          <p className="eyebrow text-forest-deep">{d.whatEyebrow}</p>
           <h2 className={`section-heading mt-3 ${lang === "en" ? "what-heading" : "text-3xl md:text-4xl"}`}>
             {d.whatTitle.split(", ").map((part, gi) => (
               <span key={gi}>
@@ -119,7 +119,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-cream py-10">
+      <section className="bg-cream py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
             <h2 className="section-heading text-3xl text-primary md:text-4xl">{lang === "en" ? <>A growing<br />continental network</> : d.glanceTitle}</h2>
             <div className="section-content overflow-hidden">
@@ -157,7 +157,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-primary py-10">
+      <section className="bg-primary py-16">
         <div className="mx-auto max-w-7xl px-5">
           <p className="eyebrow text-center text-sun">{d.approachesEyebrow}</p>
           <h2 className="section-heading mx-auto mt-3 text-center text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
@@ -192,10 +192,10 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-cream py-10">
+      <section className="bg-cream py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div>
-            <p className="eyebrow text-savanna">{d.whereEyebrow}</p>
+            <p className="eyebrow text-forest-deep">{d.whereEyebrow}</p>
             <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.whereTitle}</h2>
           </div>
           <div className="section-content grid gap-10 lg:grid-cols-2">
@@ -212,7 +212,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden py-10 text-forest-foreground">
+      <section className="relative isolate overflow-hidden py-16 text-forest-foreground">
         <img src={coop} alt="" loading="lazy" width={1280} height={960} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-forest-deep/85" />
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
@@ -224,29 +224,29 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
-        <p className="eyebrow text-savanna">{d.newsEyebrow}</p>
+      <section className="mx-auto max-w-7xl px-4 py-16 lg:px-6">
+        <p className="eyebrow text-forest-deep">{d.newsEyebrow}</p>
         <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.newsTitle}</h2>
         <div className="section-content grid gap-6 md:grid-cols-3">
           {d.news.map(([cat, date, title, body], i) => (
             <article key={title} className="overflow-hidden rounded-xl bg-card shadow-sm">
               <img src={newsImgs[i]} alt="" loading="lazy" width={1280} height={960} className="aspect-[4/3] w-full object-cover" />
-              <div className="p-5"><p className="eyebrow text-accent">{cat} · {date}</p><h3 className="mt-2 text-lg">{title}</h3><p className="mt-2 text-sm text-muted-foreground">{body}</p></div>
+              <div className="p-5"><p className="eyebrow text-forest-deep">{cat} · {date}</p><h3 className="mt-2 text-lg">{title}</h3><p className="mt-2 text-sm text-muted-foreground">{body}</p></div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="border-y border-border py-10">
+      <section className="border-y border-border py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <p className="eyebrow text-center text-foreground/70">{d.partnersEyebrow}</p>
+          <p className="eyebrow text-center text-forest-deep">{d.partnersEyebrow}</p>
           <ul className="section-content grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-7">
             {d.partners.map((p) => (<li key={p} className="grid h-20 place-items-center rounded-lg bg-muted px-2 text-center text-sm font-semibold text-muted-foreground">{p}</li>))}
           </ul>
         </div>
       </section>
 
-      <section className="bg-sunrise py-10">
+      <section className="bg-sunrise py-16">
         <div className="mx-auto max-w-3xl px-4 text-center text-foreground">
           <h2 className="section-heading mx-auto text-3xl md:text-4xl">{d.nlTitle}</h2>
           <div className="section-content">

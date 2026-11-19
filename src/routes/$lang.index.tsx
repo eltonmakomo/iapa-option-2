@@ -40,6 +40,7 @@ function Home() {
   const newsImgs = [coop, train, proc];
   const [offset, setOffset] = useState(0);
   const [animate, setAnimate] = useState(true);
+  const [group, setGroup] = useState(0);
 
   useEffect(() => {
     if (!animate) {
@@ -79,16 +80,25 @@ function Home() {
       <section className="bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-savanna">{d.whatEyebrow}</p>
-          <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.whatTitle}</h2>
+          <h2 className="section-heading mt-3 text-3xl md:text-4xl">
+            {d.whatTitle.split(", ").map((part, gi) => (
+              <span key={gi}>
+                {gi > 0 && <span className={group === 0 ? "text-primary" : "text-muted-foreground/50"}>, </span>}
+                <button type="button" onClick={() => setGroup(gi)} className={`text-left transition-colors duration-300 ${group === gi ? "text-primary" : "text-muted-foreground/50 hover:text-muted-foreground"}`}>
+                  {gi > 0 ? part.charAt(0).toUpperCase() + part.slice(1) : part}
+                </button>
+              </span>
+            ))}
+          </h2>
           <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[...d.partnerItems.map((item) => [d.forPartners, item] as const), ...d.memberItems.map((item) => [d.forMembers, item] as const)].map(([tag, [h, b]], i) => {
+            {[...d.partnerItems.map((item) => [d.forPartners, item] as const), ...d.memberItems.map((item) => [d.forMembers, item] as const)].map(([tag, [h, b]], i) => [tag, h, b, i] as const).filter(([, , , i]) => Math.floor(i / 4) === group).map(([tag, h, b, i]) => {
               const Icon = whatIcons[i]!;
               const tone = whatTones[i]!;
               return (
-                <div key={h} className={`flex min-h-[300px] flex-col rounded-2xl p-5 ${tone.card}`}>
+                <div key={h} className={`relative flex min-h-[300px] flex-col rounded-2xl p-5 animate-in fade-in duration-500 ${tone.card}`}>
                   <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
                   <p className="mt-4 font-bold leading-snug">{h}</p>
-                  <div className="mt-2 flex gap-1.5">
+                  <div className="absolute right-5 top-5 flex gap-1.5">
                     <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide opacity-80">{tag}</span>
                     <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold opacity-60">{String(i + 1).padStart(2, "0")}</span>
                   </div>
@@ -96,6 +106,12 @@ function Home() {
                 </div>
               );
             })}
+          </div>
+          <div className="mt-6 flex gap-1.5">
+            {[d.forPartners, d.forMembers].map((label, gi) => (
+              <button key={label} type="button" onClick={() => setGroup(gi)} aria-label={label} aria-current={group === gi}
+                className={`h-1.5 rounded-full transition-all duration-300 ${group === gi ? "w-8 bg-leaf-7" : "w-3 bg-forest-deep/20 hover:bg-forest-deep/40"}`} />
+            ))}
           </div>
           <p className="mt-8 text-sm italic text-muted-foreground">{d.inclusionNote}</p>
         </div>

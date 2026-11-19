@@ -58,7 +58,7 @@ function Home() {
         <div className="absolute inset-0 -z-10 photo-scrim" />
         <div className="mx-auto flex min-h-[620px] max-w-7xl flex-col justify-center px-4 py-20 text-forest-foreground lg:px-6">
           <h1 className="max-w-none text-4xl md:text-[2.75rem] lg:text-[3.25rem] xl:text-6xl">{d.heroTitle}</h1>
-          <p className="mt-[2.6667rem] max-w-2xl text-lg font-light opacity-95 md:mt-16">{d.heroSub}</p>
+          <p className="mt-8 max-w-2xl text-lg font-light opacity-95">{d.heroSub}</p>
           <div className="mt-[2.6667rem] flex flex-wrap gap-3 md:mt-16">
             <Link to="/$lang/$" params={{ lang, _splat: "work-with-us" }} className="rounded-full bg-accent px-7 py-3.5 font-bold text-accent-foreground">{d.workWithUs}</Link>
             <Link to="/$lang/$" params={{ lang, _splat: "join" }} className="rounded-full border-2 border-forest-foreground px-7 py-3 font-bold hover:bg-forest-foreground hover:text-forest">{d.becomeMember}</Link>

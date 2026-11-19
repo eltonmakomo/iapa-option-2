@@ -103,7 +103,7 @@ function Home() {
 
       <section className="bg-cream py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-            <h2 className="section-heading text-3xl text-primary md:text-4xl">{d.glanceTitle}</h2>
+            <h2 className="section-heading text-3xl text-primary md:text-4xl">{lang === "en" ? <>A growing<br />continental network</> : d.glanceTitle}</h2>
             <div className="section-content overflow-hidden">
               <div
                 className={`flex gap-3 [--per:2] sm:[--per:4] ${animate ? "transition-transform duration-[1400ms] ease-in-out" : ""}`}

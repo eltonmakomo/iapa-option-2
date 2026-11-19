@@ -122,6 +122,8 @@
 .section-content { margin-top: 4rem; }
 .section-heading { max-width: 28ch; text-wrap: balance; letter-spacing: 0; }
 [lang="fr"] .section-heading { max-width: 36ch; }
+/* "Services for partners, Growth for members" must stay on one line: shrink it just enough to fit. */
+.what-heading { max-width: none; white-space: nowrap; font-size: clamp(0.8rem, 4.675vw - 1.5px, 2.25rem); line-height: 1.2; }
 @media (min-width: 48rem) { .section-content { margin-top: 6rem; } }
 
 /* Approach cards: the accent circle grows leftward to fill the pill on hover. */

@@ -80,7 +80,7 @@ function Home() {
       <section className="bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-savanna">{d.whatEyebrow}</p>
-          <h2 className="section-heading mt-3 text-3xl md:text-4xl">
+          <h2 className={`section-heading mt-3 ${lang === "en" ? "what-heading" : "text-3xl md:text-4xl"}`}>
             {d.whatTitle.split(", ").map((part, gi) => (
               <span key={gi}>
                 {gi > 0 && <span className={group === 0 ? "text-primary" : "text-muted-foreground/50"}>, </span>}
@@ -97,12 +97,14 @@ function Home() {
               return (
                 <div key={h} className={`relative flex min-h-[300px] flex-col rounded-2xl p-5 animate-in fade-in duration-500 ${tone.card}`}>
                   <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
-                  <p className="mt-4 font-bold leading-snug">{h}</p>
+                  <div className="mt-auto pt-4">
+                    <p className="font-bold leading-snug">{h}</p>
+                    <p className="mt-3 text-sm opacity-80">{b}</p>
+                  </div>
                   <div className="absolute right-5 top-5 flex gap-1.5">
                     <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide opacity-80">{tag}</span>
                     <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold opacity-60">{String(i + 1).padStart(2, "0")}</span>
                   </div>
-                  <p className="mt-3 text-sm opacity-80">{b}</p>
                 </div>
               );
             })}

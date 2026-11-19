@@ -173,6 +173,15 @@
 .wwu:hover .wwu-arrow,
 .wwu:focus-visible .wwu-arrow { color: var(--sun); }
 
+/* Outline twin of the "Work with us" pill: same ring and stroke, but no fill at rest —
+   the cream fill sweeps in from the left on hover and the label turns dark green. */
+.wwu-ghost .wwu-fill { background-color: var(--forest-foreground); right: calc(100% - var(--wwu-gap)); }
+.wwu-ghost:hover .wwu-fill,
+.wwu-ghost:focus-visible .wwu-fill { right: var(--wwu-gap); }
+.wwu-label { transition: color 200ms ease; }
+.wwu-ghost:hover .wwu-label,
+.wwu-ghost:focus-visible .wwu-label { color: var(--forest-deep); transition-delay: 180ms; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .approach-sweep, .approach-dash { transition: none; }

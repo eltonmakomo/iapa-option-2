@@ -65,7 +65,10 @@ function Home() {
               <span className="relative z-10 px-7 py-3.5 font-bold text-forest-deep">{d.workWithUs}</span>
               <span className="wwu-arrow relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowUpRight className="h-5 w-5" strokeWidth={2} /></span>
             </Link>
-            <Link to="/$lang/$" params={{ lang, _splat: "join" }} className="rounded-full border-2 border-forest-foreground px-7 py-3 font-bold hover:bg-forest-foreground hover:text-forest">{d.becomeMember}</Link>
+            <Link to="/$lang/$" params={{ lang, _splat: "join" }} className="wwu wwu-ghost relative inline-flex items-center rounded-full border border-forest-foreground">
+              <span className="wwu-fill" aria-hidden="true" />
+              <span className="wwu-label relative z-10 px-7 py-3.5 font-bold text-forest-foreground">{d.becomeMember}</span>
+            </Link>
           </div>
         </div>
       </section>

@@ -118,6 +118,12 @@
   clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
 }
 
+/* Match the impact section's heading-to-content rhythm throughout the site. */
+.section-content { margin-top: 4rem; }
+.section-heading { max-width: 28ch; text-wrap: balance; letter-spacing: 0; }
+[lang="fr"] .section-heading { max-width: 36ch; }
+@media (min-width: 48rem) { .section-content { margin-top: 6rem; } }
+
 /* Approach cards: the accent circle grows leftward to fill the pill on hover. */
 .approach-sweep {
   position: absolute;

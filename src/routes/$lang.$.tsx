@@ -56,10 +56,10 @@ function ContentPage() {
         )}
         {p.sections.map((s) => (
           <section key={s.h.en}>
-            <h2 className="text-3xl text-primary">{s.h[lang]}</h2>
-            {s.p && <p className="mt-4 max-w-3xl text-lg">{s.p[lang]}</p>}
+            <h2 className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</h2>
+            {s.p && <p className="section-content max-w-3xl text-lg">{s.p[lang]}</p>}
             {s.items && (
-              <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className={`${s.p ? "mt-8" : "section-content"} grid gap-4 md:grid-cols-2 lg:grid-cols-3`}>
                 {s.items.map(([h, b]) => (
                   <div key={h.en} className="rounded-2xl border border-border bg-card p-6">
                     <h3 className="text-lg text-foreground">{h[lang]}</h3>

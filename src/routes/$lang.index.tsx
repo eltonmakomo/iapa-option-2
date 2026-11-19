@@ -65,12 +65,12 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 lg:grid-cols-2 lg:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-20 lg:px-6">
         <div>
           <p className="eyebrow text-savanna">{d.aboutEyebrow}</p>
-          <h2 className="mt-3 text-3xl text-primary md:text-4xl">{d.aboutTitle}</h2>
+          <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.aboutTitle}</h2>
         </div>
-        <div>
+        <div className="section-content max-w-3xl">
           <p className="text-muted-foreground">{d.aboutBody}</p>
           <Link to="/$lang/$" params={{ lang, _splat: "who-we-are" }} className="mt-5 inline-flex items-center gap-2 font-bold text-primary">{d.learnMore} <ArrowRight className="h-4 w-4" /></Link>
         </div>
@@ -79,8 +79,8 @@ function Home() {
       <section className="bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-savanna">{d.whatEyebrow}</p>
-          <h2 className="mt-3 text-3xl text-primary md:text-4xl">{d.whatTitle}</h2>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.whatTitle}</h2>
+          <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[...d.partnerItems.map((item) => [d.forPartners, item] as const), ...d.memberItems.map((item) => [d.forMembers, item] as const)].map(([tag, [h, b]], i) => {
               const Icon = whatIcons[i]!;
               const tone = whatTones[i]!;
@@ -103,8 +103,8 @@ function Home() {
 
       <section className="bg-cream py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-            <h2 className="text-3xl text-primary md:text-4xl">{d.glanceTitle}</h2>
-            <div className="mt-16 overflow-hidden md:mt-24">
+            <h2 className="section-heading text-3xl text-primary md:text-4xl">{d.glanceTitle}</h2>
+            <div className="section-content overflow-hidden">
               <div
                 className={`flex gap-3 [--per:2] sm:[--per:4] ${animate ? "transition-transform duration-[1400ms] ease-in-out" : ""}`}
                 style={{ transform: `translateX(calc(-${offset} * (100% + 0.75rem) / var(--per)))` }}
@@ -142,8 +142,8 @@ function Home() {
       <section className="bg-primary py-20">
         <div className="mx-auto max-w-7xl px-5">
           <p className="eyebrow text-center text-sun">{d.approachesEyebrow}</p>
-          <h2 className="mt-3 text-center text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
-          <div className="approach-grid mx-auto mt-12 w-full">
+          <h2 className="section-heading mx-auto mt-3 text-center text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
+          <div className="section-content approach-grid mx-auto w-full">
             {d.approaches.map(([code, name, short]) => {
               const full = short || (name ?? "").split(" (")[0]!;
               return (
@@ -175,11 +175,14 @@ function Home() {
       </section>
 
       <section className="bg-cream py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-2 lg:px-6">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div>
             <p className="eyebrow text-savanna">{d.whereEyebrow}</p>
-            <h2 className="mt-3 text-3xl text-primary md:text-4xl">{d.whereTitle}</h2>
-            <p className="mt-4 text-muted-foreground">{d.whereBody}</p>
+            <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.whereTitle}</h2>
+          </div>
+          <div className="section-content grid gap-10 lg:grid-cols-2">
+          <div>
+            <p className="text-muted-foreground">{d.whereBody}</p>
             <Link to="/$lang/$" params={{ lang, _splat: "who-we-are/where-we-work" }} className="mt-5 inline-flex items-center gap-2 font-bold text-primary">{d.seeMap} <ArrowRight className="h-4 w-4" /></Link>
           </div>
           <ul className="space-y-3">
@@ -187,6 +190,7 @@ function Home() {
               <li key={r} className="flex gap-4 rounded-xl bg-card p-4"><span className={`mt-1 h-4 w-4 shrink-0 rounded ${regionColors[i]}`} /><div><p className="font-bold">{r}</p><p className="text-sm text-muted-foreground">{c}</p></div></li>
             ))}
           </ul>
+          </div>
         </div>
       </section>
 
@@ -195,8 +199,8 @@ function Home() {
         <div className="absolute inset-0 -z-10 bg-forest-deep/85" />
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-sun">{d.ambitionEyebrow}</p>
-          <h2 className="mt-3 max-w-3xl text-3xl md:text-4xl">{d.ambitionTitle}</h2>
-          <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-6">
+          <h2 className="section-heading mt-3 text-3xl md:text-4xl">{d.ambitionTitle}</h2>
+          <div className="section-content grid grid-cols-2 gap-8 md:grid-cols-6">
             {d.ambition.map(([n, l]) => (<div key={l}><p className="text-4xl font-extrabold text-sun">{n}</p><p className="mt-2 text-sm opacity-90">{l}</p></div>))}
           </div>
         </div>
@@ -204,8 +208,8 @@ function Home() {
 
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-6">
         <p className="eyebrow text-savanna">{d.newsEyebrow}</p>
-        <h2 className="mt-3 text-3xl text-primary md:text-4xl">{d.newsTitle}</h2>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.newsTitle}</h2>
+        <div className="section-content grid gap-6 md:grid-cols-3">
           {d.news.map(([cat, date, title, body], i) => (
             <article key={title} className="overflow-hidden rounded-xl bg-card shadow-sm">
               <img src={newsImgs[i]} alt="" loading="lazy" width={1280} height={960} className="aspect-[4/3] w-full object-cover" />
@@ -218,7 +222,7 @@ function Home() {
       <section className="border-y border-border py-12">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-center text-muted-foreground">{d.partnersEyebrow}</p>
-          <ul className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-7">
+          <ul className="section-content grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-7">
             {d.partners.map((p) => (<li key={p} className="grid h-20 place-items-center rounded-lg bg-muted px-2 text-center text-sm font-semibold text-muted-foreground">{p}</li>))}
           </ul>
         </div>
@@ -226,9 +230,11 @@ function Home() {
 
       <section className="bg-sunrise py-16">
         <div className="mx-auto max-w-3xl px-4 text-center text-foreground">
-          <h2 className="text-3xl">{d.nlTitle}</h2>
-          <p className="mt-3">{d.nlBody}</p>
+          <h2 className="section-heading mx-auto text-3xl md:text-4xl">{d.nlTitle}</h2>
+          <div className="section-content">
+          <p>{d.nlBody}</p>
           <div className="mx-auto mt-4 max-w-lg"><NewsletterForm lang={lang} /></div>
+          </div>
         </div>
       </section>
     </>

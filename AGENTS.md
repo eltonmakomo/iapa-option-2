@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+Use shared section-heading and section-content classes for content-section titles and their first content block so spacing remains consistent across language and content routes.

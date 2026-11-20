@@ -165,7 +165,7 @@ function Home() {
       <section className="bg-clay py-16">
         <div className="mx-auto max-w-7xl px-5">
           <p className="eyebrow text-center text-forest-deep">{d.approachesEyebrow}</p>
-          <h2 className="section-heading mx-auto mt-3 text-center text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
+          <h2 className="section-heading approach-heading mx-auto mt-3 text-center text-cream">{d.approachesTitle}</h2>
           <div className="section-content approach-grid mx-auto w-full">
             {d.approaches.map(([code, name, short]) => {
               const full = short || (name ?? "").split(" (")[0]!;

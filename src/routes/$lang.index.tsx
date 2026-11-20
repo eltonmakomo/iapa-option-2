@@ -162,9 +162,9 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-primary py-16">
+      <section className="bg-clay py-16">
         <div className="mx-auto max-w-7xl px-5">
-          <p className="eyebrow text-center text-sun">{d.approachesEyebrow}</p>
+          <p className="eyebrow text-center text-forest-deep">{d.approachesEyebrow}</p>
           <h2 className="section-heading mx-auto mt-3 text-center text-3xl text-cream md:text-4xl">{d.approachesTitle}</h2>
           <div className="section-content approach-grid mx-auto w-full">
             {d.approaches.map(([code, name, short]) => {
@@ -174,8 +174,9 @@ function Home() {
                   key={code}
                   to="/$lang/$"
                   params={{ lang, _splat: `training/${(code ?? "").toLowerCase()}` }}
-                  className="group relative flex h-16 w-full items-center overflow-hidden rounded-full bg-cream px-5 text-forest-deep md:h-20"
+                  className="group relative flex h-16 w-full items-center overflow-hidden rounded-full border border-cream px-5 text-forest-deep transition-colors duration-300 hover:text-cream focus-visible:text-cream md:h-20"
                 >
+                  <span className="approach-fill" />
                   <span className="approach-sweep" />
                   <span className="relative z-10 max-w-12 shrink-0 overflow-hidden whitespace-nowrap text-base font-extrabold tracking-tight transition-all duration-300 ease-in-out md:text-lg lg:text-xl group-hover:max-w-0 group-hover:opacity-0 group-focus-visible:max-w-0 group-focus-visible:opacity-0">
                     {code}

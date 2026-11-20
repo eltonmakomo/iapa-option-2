@@ -126,19 +126,26 @@
 .what-heading { max-width: none; white-space: nowrap; font-size: clamp(0.8rem, 4.675vw - 1.5px, 2.25rem); line-height: 1.2; }
 @media (min-width: 48rem) { .section-content { margin-top: 4rem; } }
 
-/* Approach cards: the accent circle grows leftward to fill the pill on hover. */
+/* Approach pills: a cream fill inside a thin ring (like the hero CTAs); the green
+   circle grows leftward to fill the pill on hover. */
+.approach-fill {
+  position: absolute;
+  inset: 6px;
+  border-radius: 9999px;
+  background-color: var(--cream);
+}
 .approach-sweep {
   position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
+  top: 6px;
+  bottom: 6px;
+  right: 6px;
   width: 3.5rem;
   border-radius: 9999px;
-  background-color: var(--sun);
+  background-color: var(--forest);
   transition: width 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .group:hover .approach-sweep,
-.group:focus-visible .approach-sweep { width: 100%; }
+.group:focus-visible .approach-sweep { width: calc(100% - 12px); }
 @media (min-width: 48rem) { .approach-sweep { width: 4rem; } }
 /* Pill grid: one across on phones, two from 768px, three from 1100px. 20px gutters. */
 .approach-grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.25rem; }

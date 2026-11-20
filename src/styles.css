@@ -218,3 +218,10 @@
   .approach-sweep, .approach-dash { transition: none; }
   .wwu-fill, .wwu-arrow { transition: none; }
 }
+
+/* Ambition stats: thin scrollbar, faded until hover. */
+.ambition-scroll { scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / 0.15) transparent; transition: scrollbar-color 300ms; }
+.ambition-scroll:hover { scrollbar-color: rgb(255 255 255 / 0.6) transparent; }
+.ambition-scroll::-webkit-scrollbar { width: 6px; }
+.ambition-scroll::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 0.15); border-radius: 9999px; }
+.ambition-scroll:hover::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 0.6); }

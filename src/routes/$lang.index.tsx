@@ -8,6 +8,7 @@ import train from "@/assets/training-tree.jpg";
 import { t, type Lang } from "@/lib/i18n";
 import { NewsletterForm } from "@/components/site/NewsletterForm";
 import { ReadMoreLink } from "@/components/site/ReadMoreLink";
+import { AmbitionStats } from "@/components/site/AmbitionStats";
 import { RegionCard, RegionMapTile } from "@/components/site/RegionCard";
 
 export const Route = createFileRoute("/$lang/")({
@@ -230,9 +231,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-sun">{d.ambitionEyebrow}</p>
           <h2 className="section-heading mt-3 text-3xl md:text-4xl">{d.ambitionTitle}</h2>
-          <div className="section-content grid grid-cols-2 gap-8 md:grid-cols-6">
-            {d.ambition.map(([n, l]) => (<div key={l}><p className="text-4xl font-extrabold text-sun">{n}</p><p className="mt-2 text-sm opacity-90">{l}</p></div>))}
-          </div>
+          <div className="section-content"><AmbitionStats items={d.ambition} /></div>
         </div>
       </section>
 

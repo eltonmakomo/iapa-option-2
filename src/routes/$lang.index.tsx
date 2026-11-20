@@ -184,7 +184,7 @@ function Home() {
                   <span className="approach-name relative z-10 mr-5 min-w-0 max-w-0 overflow-hidden whitespace-nowrap font-semibold leading-tight opacity-0 transition-all duration-500 ease-in-out group-hover:max-w-[26rem] group-hover:opacity-100 group-focus-visible:max-w-[26rem] group-focus-visible:opacity-100">
                     {full}
                   </span>
-                  <span className="relative z-10 ml-auto flex h-9 shrink-0 items-center justify-end md:h-11">
+                  <span className="relative z-10 ml-auto flex h-9 shrink-0 items-center justify-end text-cream md:h-11">
                     <svg viewBox="0 0 72 24" className="h-5 w-12 lg:h-6 lg:w-14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="round" aria-hidden="true">
                       <line x1="2" y1="12" x2="46" y2="12" strokeDasharray="6 5" className="approach-dash" />
                       <line x1="46" y1="12" x2="68" y2="12" />

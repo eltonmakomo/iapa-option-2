@@ -81,7 +81,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
             <div className="col-span-3 border-r border-border pr-8">
               <p className="eyebrow text-savanna">{NAV[open]!.label[lang]}</p>
               <p className="mt-3 text-lg font-semibold leading-snug text-foreground">{NAV[open]!.blurb[lang]}</p>
-              <ReadMoreLink lang={lang} to={NAV[open]!.slug} onClick={() => setOpen(null)} className="mt-5">
+              <ReadMoreLink lang={lang} to={NAV[open]!.slug} onClick={() => setOpen(null)} className="mt-10">
                 {d.learnMore}
               </ReadMoreLink>
             </div>

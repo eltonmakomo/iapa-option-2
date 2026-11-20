@@ -80,7 +80,7 @@ function Home() {
           </div>
           <div>
             <p className="text-muted-foreground">{d.aboutBody}</p>
-            <ReadMoreLink lang={lang} to="who-we-are" className="mt-5">{d.learnMore}</ReadMoreLink>
+            <ReadMoreLink lang={lang} to="who-we-are" className="mt-10">{d.learnMore}</ReadMoreLink>
           </div>
         </div>
       </section>
@@ -210,7 +210,7 @@ function Home() {
           <div className="section-content grid gap-10 lg:grid-cols-2">
           <div>
             <p className="text-muted-foreground">{d.whereBody}</p>
-            <ReadMoreLink lang={lang} to="who-we-are/where-we-work" className="mt-5">{d.seeMap}</ReadMoreLink>
+            <ReadMoreLink lang={lang} to="who-we-are/where-we-work" className="mt-10">{d.seeMap}</ReadMoreLink>
           </div>
           <ul className="space-y-3">
             {d.regions.map(([r, c], i) => (

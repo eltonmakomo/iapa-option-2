@@ -28,24 +28,33 @@ export function AmbitionStats({ items }: { items: readonly (readonly string[])[]
       const next = el.scrollTop + row > max + 2 ? 0 : Math.round(el.scrollTop / row) * row + row;
       slide(Math.min(next, max));
     }, 3500);
-    // Only the scrollbar and the auto-scroll may move the list: block wheel,
-    // touch drag and keyboard scrolling (scrollbar drag is native UI, unaffected).
-    const block = (e: Event) => e.preventDefault();
-    el.addEventListener("wheel", block, { passive: false });
-    el.addEventListener("touchmove", block, { passive: false });
-    // Scroll keys scroll the element under the cursor even without focus, so
-    // block them at document level only while the pointer is over the list.
-    const keys = new Set(["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "]);
-    const blockKeys = (e: KeyboardEvent) => {
-      if (hover.current && keys.has(e.key)) e.preventDefault();
+    // The list itself is moved only by the scrollbar drag and the auto-scroll.
+    // Wheel and touch gestures over the list are redirected to the page so the
+    // section never traps scrolling; keyboard scrolling never targets the list
+    // because it cannot take focus, so keys scroll the page as usual.
+    const wheel = (e: WheelEvent) => {
+      e.preventDefault();
+      window.scrollBy(0, e.deltaY);
     };
-    document.addEventListener("keydown", blockKeys);
+    let touchY = 0;
+    const touchStart = (e: TouchEvent) => {
+      touchY = e.touches[0]?.clientY ?? 0;
+    };
+    const touchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      const y = e.touches[0]?.clientY ?? touchY;
+      window.scrollBy(0, touchY - y);
+      touchY = y;
+    };
+    el.addEventListener("wheel", wheel, { passive: false });
+    el.addEventListener("touchstart", touchStart, { passive: true });
+    el.addEventListener("touchmove", touchMove, { passive: false });
     return () => {
       clearInterval(id);
       cancelAnimationFrame(raf);
-      el.removeEventListener("wheel", block);
-      el.removeEventListener("touchmove", block);
-      document.removeEventListener("keydown", blockKeys);
+      el.removeEventListener("wheel", wheel);
+      el.removeEventListener("touchstart", touchStart);
+      el.removeEventListener("touchmove", touchMove);
     };
   }, []);
 

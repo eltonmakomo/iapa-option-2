@@ -72,13 +72,15 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 lg:px-6">
-        <div>
-          <p className="eyebrow text-forest-deep">{d.aboutEyebrow}</p>
-          <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.aboutTitle}</h2>
-        </div>
-        <div className="section-content max-w-3xl">
-          <p className="text-muted-foreground">{d.aboutBody}</p>
-          <Link to="/$lang/$" params={{ lang, _splat: "who-we-are" }} className="mt-5 inline-flex items-center gap-2 font-bold text-primary">{d.learnMore} <ArrowRight className="h-4 w-4" /></Link>
+        <div className="grid gap-6 md:grid-cols-2 md:gap-10">
+          <div>
+            <p className="eyebrow text-forest-deep">{d.aboutEyebrow}</p>
+            <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.aboutTitle}</h2>
+          </div>
+          <div>
+            <p className="text-muted-foreground">{d.aboutBody}</p>
+            <Link to="/$lang/$" params={{ lang, _splat: "who-we-are" }} className="mt-5 inline-flex items-center gap-2 font-bold text-primary">{d.learnMore} <ArrowRight className="h-4 w-4" /></Link>
+          </div>
         </div>
       </section>
 

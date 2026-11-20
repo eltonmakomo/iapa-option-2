@@ -244,7 +244,7 @@ function Home() {
         <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.newsTitle}</h2>
         <div className="section-content grid gap-6 md:grid-cols-3">
           {d.news.map(([cat, date, title, body], i) => (
-            <article key={title} className="overflow-hidden rounded-xl bg-ink text-cream shadow-sm">
+            <article key={title} className="overflow-hidden bg-ink text-cream shadow-sm">
               <img src={newsImgs[i]} alt="" loading="lazy" width={1280} height={960} className="aspect-[4/3] w-full object-cover" />
               <div className="p-5"><p className="eyebrow text-clay">{cat} · {date}</p><h3 className="mt-2 text-lg leading-snug">{title}</h3><p className="mt-4 text-sm text-cream/70">{body}</p></div>
             </article>

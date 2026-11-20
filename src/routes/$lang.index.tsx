@@ -22,15 +22,12 @@ const regionColors = ["bg-primary", "bg-savanna", "bg-accent", "bg-sun", "bg-for
 
 const whatIcons = [Compass, BookOpen, GraduationCap, CalendarDays, Award, Users, Megaphone, Briefcase];
 
+// Each visible group of four fades from white to the soft green.
 const whatTones = [
+  { card: "bg-card text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
   { card: "bg-leaf-1 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
   { card: "bg-leaf-2 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
   { card: "bg-leaf-3 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
-  { card: "bg-leaf-4 text-cream", tile: "bg-cream/15 text-cream" },
-  { card: "bg-leaf-5 text-cream", tile: "bg-cream/15 text-cream" },
-  { card: "bg-leaf-6 text-cream", tile: "bg-cream/15 text-cream" },
-  { card: "bg-leaf-7 text-cream", tile: "bg-cream/15 text-cream" },
-  { card: "bg-leaf-8 text-cream", tile: "bg-cream/15 text-cream" },
 ];
 
 
@@ -102,9 +99,9 @@ function Home() {
           <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[...d.partnerItems.map((item) => [d.forPartners, item] as const), ...d.memberItems.map((item) => [d.forMembers, item] as const)].map(([tag, [h, b]], i) => [tag, h, b, i] as const).filter(([, , , i]) => Math.floor(i / 4) === group).map(([tag, h, b, i]) => {
               const Icon = whatIcons[i]!;
-              const tone = whatTones[i]!;
+              const tone = whatTones[i % 4]!;
               return (
-                <div key={h} className={`relative flex min-h-[300px] flex-col rounded-2xl p-5 animate-in fade-in duration-500 ${tone.card}`}>
+                <div key={h} className={`relative flex min-h-[300px] flex-col rounded-2xl p-5 shadow-[0_12px_32px_-12px_oklch(0.36_0.09_138/0.25)] animate-in fade-in duration-500 ${tone.card}`}>
                   <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
                   <div className="mt-[90px]">
                     <p className="font-bold leading-snug">{h}</p>

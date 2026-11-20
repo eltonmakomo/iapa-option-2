@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
-import logoWhiteFr from "@/assets/iapa-logo-white.png.asset.json";
-import logoEn from "@/assets/iapa-logo.jpg.asset.json";
+import logoWhite from "@/assets/iapa-logo-white.png.asset.json";
 import { NAV } from "@/lib/nav";
 import { CONTACT, t, type Lang } from "@/lib/i18n";
 import { NewsletterForm } from "./NewsletterForm";
@@ -27,13 +26,7 @@ export function SiteFooter({ lang }: { lang: Lang }) {
 
         <div className="grid gap-10 px-2 pt-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            {lang === "fr" ? (
-              <img src={logoWhiteFr.url} alt="AIPA" width={1920} height={543} loading="lazy" className="h-12 w-auto" />
-            ) : (
-              <span className="inline-block rounded-xl bg-card p-2.5">
-                <img src={logoEn.url} alt="IAPA" width={1270} height={354} loading="lazy" className="h-9 w-auto" />
-              </span>
-            )}
+            <img src={logoWhite.url} alt={lang === "fr" ? "AIPA" : "IAPA"} width={1920} height={543} loading="lazy" className="h-12 w-auto" />
             <p className="mt-5 max-w-sm text-sm text-cream/75">{d.footerTagline}</p>
             <div className="mt-5 flex gap-4">
               {[Linkedin, Facebook, Twitter, Youtube].map((I, i) => (

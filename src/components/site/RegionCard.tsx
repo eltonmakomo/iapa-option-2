@@ -40,9 +40,9 @@ export function RegionCard({ lang, title, countries, index }: RegionCardProps) {
       <div className="relative z-10 flex h-full flex-col p-5">
         <h3 className="max-w-[62%] text-lg leading-snug sm:max-w-[52%]">{title}</h3>
         <p className="mt-2 max-w-[60%] text-sm leading-relaxed text-ink/70 sm:max-w-[50%]">{countries}</p>
-        <span className="mt-auto flex items-center gap-2">
-          <ArrowRight className="h-5 w-5 shrink-0 text-clay-deep transition-transform duration-300 group-hover:translate-x-1" />
-          <span className="text-sm font-semibold">{t(lang).viewRegion}</span>
+        <span className="mt-auto inline-flex items-center gap-2 self-start rounded-full border border-clay-deep/40 px-4 py-1.5 text-sm font-semibold text-clay-deep transition-colors duration-300 group-hover:border-clay-deep/70">
+          <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
+          {t(lang).viewRegion}
         </span>
       </div>
     </Link>

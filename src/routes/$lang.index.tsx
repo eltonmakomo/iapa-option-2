@@ -8,7 +8,7 @@ import train from "@/assets/training-tree.jpg";
 import { t, type Lang } from "@/lib/i18n";
 import { NewsletterForm } from "@/components/site/NewsletterForm";
 import { ReadMoreLink } from "@/components/site/ReadMoreLink";
-import { RegionCard } from "@/components/site/RegionCard";
+import { RegionCard, RegionMapTile } from "@/components/site/RegionCard";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -210,14 +210,16 @@ function Home() {
           </div>
           <div className="section-content">
             <p className="text-muted-foreground">{d.whereBody}</p>
-            <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <ul className="mt-8 grid gap-px overflow-hidden rounded-xl border border-forest-deep/20 bg-forest-deep/12 sm:grid-cols-2 lg:grid-cols-3">
               {d.regions.map(([r, c], i) => (
-                <li key={r} className="min-w-0">
+                <li key={r} className="flex min-w-0">
                   <RegionCard lang={lang} title={r ?? ""} countries={c ?? ""} index={i} />
                 </li>
               ))}
+              <li className="flex min-w-0">
+                <RegionMapTile lang={lang} label={d.seeMap} />
+              </li>
             </ul>
-            <ReadMoreLink lang={lang} to="who-we-are/where-we-work" className="mt-10">{d.seeMap}</ReadMoreLink>
           </div>
         </div>
       </section>

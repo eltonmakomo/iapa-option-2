@@ -129,7 +129,7 @@
 /* Match the impact section's heading-to-content rhythm throughout the site. */
 .section-content { margin-top: 2.6667rem; }
 .section-heading { max-width: 28ch; text-wrap: balance; letter-spacing: 0; }
-.region-card { aspect-ratio: 3 / 5; }
+.region-card { aspect-ratio: auto; }
 .region-map { min-height: 0; transition: transform 500ms ease; }
 .region-card:hover .region-map { transform: scale(1.035); }
 .region-country { fill: var(--cream); stroke: var(--forest-deep); stroke-opacity: 0.2; stroke-width: 0.8; }

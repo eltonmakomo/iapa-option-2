@@ -6,7 +6,6 @@ import coop from "@/assets/cooperative.jpg";
 import proc from "@/assets/processor.jpg";
 import train from "@/assets/training-tree.jpg";
 import { t, type Lang } from "@/lib/i18n";
-import { NewsletterForm } from "@/components/site/NewsletterForm";
 import { ReadMoreLink } from "@/components/site/ReadMoreLink";
 import { AmbitionStats } from "@/components/site/AmbitionStats";
 import { RegionCard, RegionMapTile } from "@/components/site/RegionCard";
@@ -99,7 +98,7 @@ function Home() {
               </span>
             ))}
           </h2>
-          <p className="mt-4 whitespace-nowrap text-[clamp(0.625rem,1.55vw,1.125rem)] font-light leading-snug text-forest-deep">{d.inclusionNote}</p>
+          <p className="inclusion-note mt-4 font-light leading-snug text-forest-deep">{d.inclusionNote}</p>
           <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[...d.partnerItems.map((item) => [d.forPartners, item] as const), ...d.memberItems.map((item) => [d.forMembers, item] as const)].map(([tag, [h, b]], i) => [tag, h, b, i] as const).filter(([, , , i]) => Math.floor(i / 4) === group).map(([tag, h, b, i]) => {
               const Icon = whatIcons[i]!;
@@ -263,16 +262,6 @@ function Home() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      <section className="bg-sunrise py-16">
-        <div className="mx-auto max-w-3xl px-4 text-center text-foreground">
-          <h2 className="section-heading mx-auto text-3xl md:text-4xl">{d.nlTitle}</h2>
-          <div className="section-content">
-          <p>{d.nlBody}</p>
-          <div className="mx-auto mt-4 max-w-lg"><NewsletterForm lang={lang} /></div>
-          </div>
         </div>
       </section>
     </>

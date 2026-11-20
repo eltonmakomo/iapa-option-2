@@ -10,6 +10,7 @@ import { NewsletterForm } from "@/components/site/NewsletterForm";
 import { ReadMoreLink } from "@/components/site/ReadMoreLink";
 import { AmbitionStats } from "@/components/site/AmbitionStats";
 import { RegionCard, RegionMapTile } from "@/components/site/RegionCard";
+import { PARTNER_LOGOS } from "@/lib/partner-logos";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -255,8 +256,12 @@ function Home() {
       <section className="border-y border-border py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-center text-forest-deep">{d.partnersEyebrow}</p>
-          <ul className="section-content grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-7">
-            {d.partners.map((p) => (<li key={p} className="grid h-20 place-items-center rounded-lg bg-muted px-2 text-center text-sm font-semibold text-muted-foreground">{p}</li>))}
+          <ul className="section-content grid grid-cols-2 items-center gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-7">
+            {PARTNER_LOGOS.map((p) => (
+              <li key={p.key} className="flex min-w-0 items-center justify-center">
+                <img src={p.url} alt={p.name[lang]} loading="lazy" className="h-12 w-auto max-w-full object-contain" />
+              </li>
+            ))}
           </ul>
         </div>
       </section>

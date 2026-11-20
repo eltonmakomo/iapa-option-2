@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { t, isLang, type Lang } from "@/lib/i18n";
 import { PAGES, type Img } from "@/lib/pages";
+import { logoOf } from "@/lib/partner-logos";
 import hero from "@/assets/hero-farmer.jpg";
 import coop from "@/assets/cooperative.jpg";
 import processor from "@/assets/processor.jpg";
@@ -60,8 +61,16 @@ function ContentPage() {
             {s.p && <p className="section-content max-w-3xl text-lg">{s.p[lang]}</p>}
             {s.items && (
               <div className={`${s.p ? "mt-8" : "section-content"} grid gap-4 md:grid-cols-2 lg:grid-cols-3`}>
-                {s.items.map(([h, b]) => (
+                {s.items.map(([h, b, keys]) => (
                   <div key={h.en} className="rounded-2xl border border-border bg-card p-6">
+                    {keys && keys.length > 0 && (
+                      <div className="mb-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+                        {keys.map((k) => {
+                          const p = logoOf(k);
+                          return <img key={k} src={p.url} alt={p.name[lang]} loading="lazy" className="h-9 w-auto max-w-[190px] object-contain" />;
+                        })}
+                      </div>
+                    )}
                     <h3 className="text-lg text-foreground">{h[lang]}</h3>
                     <p className="mt-2 text-muted-foreground">{b[lang]}</p>
                   </div>

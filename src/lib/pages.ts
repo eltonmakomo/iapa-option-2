@@ -2,7 +2,7 @@ import type { Lang } from "./i18n";
 type L = Record<Lang, string>;
 const l = (en: string, fr: string): L => ({ en, fr });
 export type Img = "hero" | "coop" | "processor" | "training";
-export type Section = { h: L; p?: L; items?: [L, L][] };
+export type Section = { h: L; p?: L; items?: [L, L, string[]?][] };
 export type Page = { eyebrow: L; title: L; intro: L; img: Img; sections: Section[]; stats?: [string, L][]; cta?: { label: L; slug: string } };
 
 const join = { label: l("Become a member", "Devenir membre"), slug: "join" };
@@ -51,13 +51,12 @@ export const PAGES: Record<string, Page> = {
   "who-we-are/partners": { eyebrow: l("Partners & funders", "Partenaires et bailleurs"), title: l("Working with those who invest in Africa's farmers", "Aux côtés de ceux qui investissent dans les agriculteurs africains"), img: "processor",
     intro: l("Our approaches were developed over 10+ years with ABF-GIZ. Today we partner with development agencies, governments and the private sector.", "Nos approches ont été développées pendant plus de 10 ans avec l'ABF-GIZ. Aujourd'hui, nous collaborons avec des agences de développement, des gouvernements et le secteur privé."),
     sections: [{ h: l("Our partners", "Nos partenaires"), items: [
-      [l("ABF-GIZ", "ABF-GIZ"), l("Agri-Business Facility for Africa, where IAPA was initiated.", "Agri-Business Facility for Africa, où l'AIPA a été initiée.")],
-      [l("GIZ / BMZ", "GIZ / BMZ"), l("German development cooperation.", "Coopération allemande au développement.")],
-      [l("European Union & OACPS", "Union européenne et OEACP"), l("Co-funders of agribusiness programmes.", "Cofinanceurs de programmes d'agribusiness.")],
-      [l("ACBF", "ACBF"), l("Support on institutional strategy and resource mobilisation.", "Appui à la stratégie institutionnelle et à la mobilisation des ressources.")],
-      [l("MOVE / ComCashew & Africa Agribusiness Academy", "MOVE / ComCashew et Africa Agribusiness Academy"), l("Programme and training partners.", "Partenaires de programmes et de formation.")],
-    ]}], cta: contact },
-  "who-we-are/where-we-work": { eyebrow: l("Where we work", "Où nous travaillons"), title: l("Five regions, one network", "Cinq régions, un réseau"), img: "hero",
+      [l("ABF-GIZ", "ABF-GIZ"), l("Agri-Business Facility for Africa, where IAPA was initiated.", "Agri-Business Facility for Africa, où l'AIPA a été initiée."), ["abf"]],
+      [l("GIZ / BMZ", "GIZ / BMZ"), l("German development cooperation.", "Coopération allemande au développement."), ["giz"]],
+      [l("European Union & OACPS", "Union européenne et OEACP"), l("Co-funders of agribusiness programmes.", "Cofinanceurs de programmes d'agribusiness."), ["european-union", "oacps"]],
+      [l("ACBF", "ACBF"), l("Support on institutional strategy and resource mobilisation.", "Appui à la stratégie institutionnelle et à la mobilisation des ressources."), ["acbf"]],
+      [l("MOVE / ComCashew & Africa Agribusiness Academy", "MOVE / ComCashew et Africa Agribusiness Academy"), l("Programme and training partners.", "Partenaires de programmes et de formation."), ["comcashew", "africa-agribusiness-academy"]],
+    ]}], cta: contact },  "who-we-are/where-we-work": { eyebrow: l("Where we work", "Où nous travaillons"), title: l("Five regions, one network", "Cinq régions, un réseau"), img: "hero",
     intro: l("Every region has a Regional Focal Point and every country a National Focal Point.", "Chaque région a un Point focal régional et chaque pays un Point focal national."),
     sections: [{ h: l("Our regions", "Nos régions"), items: [
       [l("North Africa", "Afrique du Nord"), l("Tunisia, Algeria", "Tunisie, Algérie")],

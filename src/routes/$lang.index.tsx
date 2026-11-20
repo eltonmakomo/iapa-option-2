@@ -85,7 +85,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-cream py-16">
+      <section className="bg-card py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-forest-deep">{d.whatEyebrow}</p>
           <h2 className={`section-heading mt-3 ${lang === "en" ? "what-heading" : "text-3xl md:text-4xl"}`}>

@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { REGION_MAPS } from "@/lib/region-maps";
 import { t, type Lang } from "@/lib/i18n";
+import { ReadMoreLink } from "@/components/site/ReadMoreLink";
 
 type RegionCardProps = { lang: Lang; title: string; countries: string; index: number };
 
@@ -51,7 +52,7 @@ export function RegionCard({ lang, title, countries, index }: RegionCardProps) {
 export function RegionMapTile({ lang, label }: { lang: Lang; label: string }) {
   const patternId = `region-tile-hatch-${useId().replace(/:/g, "")}`;
   return (
-    <Link to="/$lang/$" params={{ lang, _splat: "who-we-are/where-we-work" }} className={cellBase}>
+    <div className={cellBase}>
       <svg className="absolute inset-0 h-full w-full" fill="none" aria-hidden="true">
         <defs>
           <pattern id={patternId} width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
@@ -61,13 +62,10 @@ export function RegionMapTile({ lang, label }: { lang: Lang; label: string }) {
         <rect width="100%" height="100%" fill={`url(#${patternId})`} opacity="0.18" />
       </svg>
       <div className="relative z-10 flex h-full flex-col p-5">
-        <span className="mt-auto flex items-center">
-          <span className="relative z-10 shrink-0">
-            <ArrowRight className="h-5 w-5 text-clay-deep transition-transform duration-300 group-hover:translate-x-1" />
-          </span>
-          <h3 className="-ml-2.5 max-w-[80%] text-lg leading-snug">{label}</h3>
-        </span>
+        <ReadMoreLink lang={lang} to="who-we-are/where-we-work" className="mt-auto self-start">
+          {label}
+        </ReadMoreLink>
       </div>
-    </Link>
+    </div>
   );
 }

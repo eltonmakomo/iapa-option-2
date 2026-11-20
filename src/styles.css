@@ -127,6 +127,14 @@
 /* Match the impact section's heading-to-content rhythm throughout the site. */
 .section-content { margin-top: 2.6667rem; }
 .section-heading { max-width: 28ch; text-wrap: balance; letter-spacing: 0; }
+.region-card { aspect-ratio: 3 / 5; }
+.region-map { min-height: 0; transition: transform 500ms ease; }
+.region-card:hover .region-map { transform: scale(1.035); }
+.region-country { fill: var(--cream); stroke: var(--forest-deep); stroke-opacity: 0.2; stroke-width: 0.8; }
+.region-country-active { fill: var(--color-leaf-fade-2); stroke: var(--forest-deep); stroke-width: 1.4; }
+.region-hatch { stroke: var(--forest); stroke-width: 1; stroke-opacity: 0.65; }
+.region-island { fill: var(--clay); stroke: var(--forest-deep); stroke-width: 1; }
+@media (prefers-reduced-motion: reduce) { .region-map, .region-card svg:last-child { transition: none; } }
 [lang="fr"] .section-heading { max-width: 36ch; }
 /* "Services for partners, Growth for members" must stay on one line: shrink it just enough to fit. */
 .what-heading { max-width: none; white-space: nowrap; font-size: clamp(0.8rem, 4.675vw - 1.5px, 2.25rem); line-height: 1.2; }

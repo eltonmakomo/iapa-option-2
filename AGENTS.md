@@ -30,3 +30,5 @@ use the editor.
 <!-- LOVABLE:END -->
 
 Use shared section-heading and section-content classes for content-section titles and their first content block so spacing remains consistent across language and content routes.
+
+Render regional illustrations in the shared RegionCard using simplified public-domain Natural Earth boundary paths; accurate map crops stay scalable and theme-aware without a live map service.

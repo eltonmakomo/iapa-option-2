@@ -8,6 +8,7 @@ import train from "@/assets/training-tree.jpg";
 import { t, type Lang } from "@/lib/i18n";
 import { NewsletterForm } from "@/components/site/NewsletterForm";
 import { ReadMoreLink } from "@/components/site/ReadMoreLink";
+import { RegionCard } from "@/components/site/RegionCard";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -18,8 +19,6 @@ export const Route = createFileRoute("/$lang/")({
   },
   component: Home,
 });
-
-const regionColors = ["bg-primary", "bg-savanna", "bg-accent", "bg-sun", "bg-forest-deep"];
 
 const whatIcons = [Compass, BookOpen, GraduationCap, CalendarDays, Award, Users, Megaphone, Briefcase];
 
@@ -209,16 +208,16 @@ function Home() {
             <p className="eyebrow text-forest-deep">{d.whereEyebrow}</p>
             <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.whereTitle}</h2>
           </div>
-          <div className="section-content grid gap-10 lg:grid-cols-2">
-          <div>
+          <div className="section-content">
             <p className="text-muted-foreground">{d.whereBody}</p>
+            <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {d.regions.map(([r, c], i) => (
+                <li key={r} className="min-w-0">
+                  <RegionCard lang={lang} title={r ?? ""} countries={c ?? ""} index={i} />
+                </li>
+              ))}
+            </ul>
             <ReadMoreLink lang={lang} to="who-we-are/where-we-work" className="mt-10">{d.seeMap}</ReadMoreLink>
-          </div>
-          <ul className="space-y-3">
-            {d.regions.map(([r, c], i) => (
-              <li key={r} className="flex gap-4 rounded-xl bg-card p-4"><span className={`mt-1 h-4 w-4 shrink-0 rounded ${regionColors[i]}`} /><div><p className="font-bold">{r}</p><p className="text-sm text-muted-foreground">{c}</p></div></li>
-            ))}
-          </ul>
           </div>
         </div>
       </section>

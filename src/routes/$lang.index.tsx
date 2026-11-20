@@ -230,7 +230,11 @@ function Home() {
         <div className="absolute inset-0 -z-10 bg-black/85" />
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-sun">{d.ambitionEyebrow}</p>
-          <h2 className="section-heading mt-3 text-3xl md:text-4xl">{d.ambitionTitle}</h2>
+          <h2 className="section-heading ambition-heading mt-3 text-3xl md:text-4xl">
+            {d.ambitionTitle.split("\n").map((line, i, all) => (
+              <span key={i} className="md:block">{line}{i < all.length - 1 ? " " : ""}</span>
+            ))}
+          </h2>
           <div className="section-content"><AmbitionStats items={d.ambition} /></div>
         </div>
       </section>

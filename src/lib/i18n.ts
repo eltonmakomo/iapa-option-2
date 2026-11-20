@@ -70,7 +70,7 @@ const en = {
   ],
   seeMap: "Explore the map",
   ambitionEyebrow: "Our 2030 ambition",
-  ambitionTitle: "Scaling inclusive agribusiness across 40 African countries",
+  ambitionTitle: "Scaling inclusive agribusiness across\n40 African countries",
   ambition: [
     ["200", "Partners adopting IAPA solutions"],
     ["860", "New trainers trained"],
@@ -171,7 +171,7 @@ const fr: Dict = {
   ],
   seeMap: "Explorer la carte",
   ambitionEyebrow: "Notre ambition 2030",
-  ambitionTitle: "Déployer un agribusiness inclusif dans 40 pays africains",
+  ambitionTitle: "Déployer un agribusiness inclusif dans\n40 pays africains",
   ambition: [
     ["200", "Partenaires utilisant les solutions de l'AIPA"],
     ["860", "Nouveaux formateurs formés"],

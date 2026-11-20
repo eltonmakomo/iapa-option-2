@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Megaphone, Users } from "lucide-react";
-import hero from "@/assets/hero-farmer.jpg";
+import hero from "@/assets/hero-corn-field.jpg.asset.json";
 import coop from "@/assets/cooperative.jpg";
 import proc from "@/assets/processor.jpg";
 import train from "@/assets/training-tree.jpg";
@@ -53,7 +53,7 @@ function Home() {
   return (
     <>
       <section className="relative isolate aspect-[16/9] min-h-[580px] w-full overflow-hidden min-[800px]:min-h-[440px]">
-        <img src={hero} alt="" width={1920} height={1080} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={hero.url} alt="" width={1804} height={1015} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 photo-scrim" />
         <div className="mx-auto flex h-full max-w-7xl flex-col justify-center px-4 pt-36 pb-12 text-forest-foreground min-[800px]:pt-28 min-[800px]:pb-12 lg:px-6">
           <h1 className="max-w-none text-4xl md:text-[2.75rem] lg:text-[3.25rem] xl:text-6xl">{d.heroTitle}</h1>

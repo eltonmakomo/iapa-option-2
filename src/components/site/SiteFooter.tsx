@@ -3,7 +3,6 @@ import { Facebook, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from "lucid
 import logoWhite from "@/assets/iapa-logo-white.png.asset.json";
 import { NAV } from "@/lib/nav";
 import { CONTACT, t, type Lang } from "@/lib/i18n";
-import { NewsletterForm } from "./NewsletterForm";
 
 const legalSlugs = ["brand-guidelines", "privacy", "legal-notice", "faq"];
 const colSlugs = ["who-we-are", "training", "join"];
@@ -13,18 +12,8 @@ export function SiteFooter({ lang }: { lang: Lang }) {
   const cols = colSlugs.map((s) => NAV.find((g) => g.slug === s)!).filter(Boolean);
   return (
     <footer className="bg-background px-3 pb-3 pt-10 md:px-6 md:pb-6">
-      <div className="mx-auto max-w-7xl rounded-3xl bg-ink px-4 pb-8 pt-4 text-cream md:px-8 md:pt-8">
-        <div className="grid gap-8 rounded-2xl bg-clay px-6 py-10 text-ink md:grid-cols-2 md:items-center md:px-10 md:py-14">
-          <div>
-            <h2 className="text-3xl md:text-4xl">{d.nlTitle}</h2>
-            <p className="mt-4 max-w-md text-sm">{d.nlBody}</p>
-          </div>
-          <div className="[&_button]:bg-ink [&_button]:text-cream [&_input]:border-transparent [&_input]:bg-cream/60">
-            <NewsletterForm lang={lang} tone="dark" />
-          </div>
-        </div>
-
-        <div className="grid gap-10 px-2 pt-12 lg:grid-cols-12">
+      <div className="mx-auto max-w-7xl rounded-3xl bg-ink px-4 pb-8 pt-8 text-cream md:px-8 md:pt-10">
+        <div className="grid gap-10 px-2 pt-6 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <img src={logoWhite.url} alt={lang === "fr" ? "AIPA" : "IAPA"} width={1920} height={543} loading="lazy" className="h-12 w-auto" />
             <p className="mt-5 max-w-sm text-sm text-cream/75">{d.footerTagline}</p>

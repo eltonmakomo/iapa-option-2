@@ -104,15 +104,17 @@ function Home() {
               const Icon = whatIcons[i]!;
               const tone = whatTones[i % 4]!;
               return (
-                <div key={h} className={`stat-notch relative flex min-h-[300px] flex-col p-5 [filter:drop-shadow(0_0_8px_rgb(33_54_24/0.24))] animate-in fade-in duration-500 ${tone.card}`}>
-                  <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
-                  <div className="mt-[90px]">
-                    <p className="font-bold leading-snug">{h}</p>
-                    <p className="mt-[22px] text-sm opacity-80">{b}</p>
-                  </div>
-                  <div className="absolute right-5 top-5 flex gap-1.5">
-                    <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide opacity-80">{tag}</span>
-                    <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold opacity-60">{String(i + 1).padStart(2, "0")}</span>
+                <div key={h} className="[filter:drop-shadow(0_14px_24px_rgb(33_54_24/0.16))_drop-shadow(0_2px_6px_rgb(33_54_24/0.12))] animate-in fade-in duration-500">
+                  <div className={`stat-notch relative flex h-full min-h-[300px] flex-col p-5 ${tone.card}`}>
+                    <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
+                    <div className="mt-[90px]">
+                      <p className="font-bold leading-snug">{h}</p>
+                      <p className="mt-[22px] text-sm opacity-80">{b}</p>
+                    </div>
+                    <div className="absolute right-5 top-5 flex gap-1.5">
+                      <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide opacity-80">{tag}</span>
+                      <span className="rounded-full border border-current/30 px-2.5 py-0.5 text-[11px] font-semibold opacity-60">{String(i + 1).padStart(2, "0")}</span>
+                    </div>
                   </div>
                 </div>
               );

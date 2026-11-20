@@ -78,7 +78,7 @@ function Home() {
             <p className="eyebrow text-forest-deep">{d.aboutEyebrow}</p>
             <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.aboutTitle}</h2>
           </div>
-          <div>
+          <div className="md:pt-7">
             <p className="text-xl font-medium text-muted-foreground">{d.aboutBody}</p>
             <ReadMoreLink lang={lang} to="who-we-are" className="mt-10">{d.learnMore}</ReadMoreLink>
           </div>

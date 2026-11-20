@@ -46,7 +46,7 @@ export const NAV: NavGroup[] = [
         { label: l("Cooperative Business School", "École d'entrepreneuriat coopératif"), slug: "training/cbs" },
         { label: l("Processor Business School", "École d'entrepreneuriat des transformateurs"), slug: "training/pbs" },
         { label: l("Aquaculture Business School", "École d'entrepreneuriat aquacole"), slug: "training/abs" },
-        { label: l("Inclusive Contract Farming", "Agriculture contractuelle inclusive"), slug: "training/cf" },
+        { label: l("Inclusive Contract Farming", "Agriculture contractuelle inclusive"), slug: "training/icf" },
         { label: l("Good Agricultural Practices", "Bonnes pratiques agricoles"), slug: "training/gap" },
       ]},
       { title: l("Formats", "Formats"), links: [

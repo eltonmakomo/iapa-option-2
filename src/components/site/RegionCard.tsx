@@ -60,9 +60,11 @@ export function RegionMapTile({ lang, label }: { lang: Lang; label: string }) {
         <rect width="100%" height="100%" fill={`url(#${patternId})`} opacity="0.18" />
       </svg>
       <div className="relative z-10 flex h-full flex-col p-5">
-        <h3 className="max-w-[70%] text-lg leading-snug">{label}</h3>
         <span className="mt-auto flex items-center">
-          <ArrowRight className="h-5 w-5 text-clay-deep transition-transform duration-300 group-hover:translate-x-1" />
+          <span className="relative z-10 shrink-0">
+            <ArrowRight className="h-5 w-5 text-clay-deep transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
+          <h3 className="-ml-2.5 max-w-[80%] text-lg leading-snug">{label}</h3>
         </span>
       </div>
     </Link>

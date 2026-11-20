@@ -7,6 +7,7 @@ import proc from "@/assets/processor.jpg";
 import train from "@/assets/training-tree.jpg";
 import { t, type Lang } from "@/lib/i18n";
 import { NewsletterForm } from "@/components/site/NewsletterForm";
+import { ReadMoreLink } from "@/components/site/ReadMoreLink";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -79,7 +80,7 @@ function Home() {
           </div>
           <div>
             <p className="text-muted-foreground">{d.aboutBody}</p>
-            <Link to="/$lang/$" params={{ lang, _splat: "who-we-are" }} className="mt-5 inline-flex items-center gap-2 font-bold text-primary">{d.learnMore} <ArrowRight className="h-4 w-4" /></Link>
+            <ReadMoreLink lang={lang} to="who-we-are" className="mt-5">{d.learnMore}</ReadMoreLink>
           </div>
         </div>
       </section>
@@ -209,7 +210,7 @@ function Home() {
           <div className="section-content grid gap-10 lg:grid-cols-2">
           <div>
             <p className="text-muted-foreground">{d.whereBody}</p>
-            <Link to="/$lang/$" params={{ lang, _splat: "who-we-are/where-we-work" }} className="mt-5 inline-flex items-center gap-2 font-bold text-primary">{d.seeMap} <ArrowRight className="h-4 w-4" /></Link>
+            <ReadMoreLink lang={lang} to="who-we-are/where-we-work" className="mt-5">{d.seeMap}</ReadMoreLink>
           </div>
           <ul className="space-y-3">
             {d.regions.map(([r, c], i) => (

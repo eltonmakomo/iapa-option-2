@@ -1,10 +1,11 @@
 import { Link, useParams } from "@tanstack/react-router";
-import { ChevronDown, Menu, X, ArrowRight, ArrowUpRight, Plus, Globe, Search } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowUpRight, Plus, Globe, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import logoWhite from "@/assets/iapa-logo-white.png.asset.json";
 import trainingImg from "@/assets/training-tree.jpg";
 import { NAV } from "@/lib/nav";
 import { t, type Lang } from "@/lib/i18n";
+import { ReadMoreLink } from "@/components/site/ReadMoreLink";
 
 function LangSwitch({ lang, dark }: { lang: Lang; dark?: boolean }) {
   const params = useParams({ strict: false }) as { _splat?: string };
@@ -80,10 +81,9 @@ export function SiteHeader({ lang }: { lang: Lang }) {
             <div className="col-span-3 border-r border-border pr-8">
               <p className="eyebrow text-savanna">{NAV[open]!.label[lang]}</p>
               <p className="mt-3 text-lg font-semibold leading-snug text-foreground">{NAV[open]!.blurb[lang]}</p>
-              <Link to="/$lang/$" params={{ lang, _splat: NAV[open]!.slug }} onClick={() => setOpen(null)}
-                className="mt-5 inline-flex items-center gap-2 font-bold text-primary hover:gap-3 transition-all">
-                {d.learnMore} <ArrowRight className="h-4 w-4" />
-              </Link>
+              <ReadMoreLink lang={lang} to={NAV[open]!.slug} onClick={() => setOpen(null)} className="mt-5">
+                {d.learnMore}
+              </ReadMoreLink>
             </div>
             <div className="col-span-6 grid grid-cols-2 gap-8">
               {NAV[open]!.columns.map((c) => (

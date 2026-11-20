@@ -39,6 +39,9 @@
   --color-savanna: var(--savanna);
   --color-forest-deep: var(--forest-deep);
   --color-leaf-1: oklch(0.8343 0.076 114.56);
+  /* White → leaf-1 fade for the What we do cards (steps 2 and 3 of 4). */
+  --color-leaf-fade-1: oklch(0.9448 0.0253 114.56);
+  --color-leaf-fade-2: oklch(0.8895 0.0507 114.56);
   --color-leaf-2: oklch(0.7787 0.1054 117.04);
   --color-leaf-3: oklch(0.7206 0.1299 119.08);
   --color-leaf-4: oklch(0.5517 0.1442 136.18);

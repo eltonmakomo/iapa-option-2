@@ -22,12 +22,12 @@ const regionColors = ["bg-primary", "bg-savanna", "bg-accent", "bg-sun", "bg-for
 
 const whatIcons = [Compass, BookOpen, GraduationCap, CalendarDays, Award, Users, Megaphone, Briefcase];
 
-// Each visible group of four fades from white to the soft green.
+// Each visible group of four fades from white to the soft green (leaf-1).
 const whatTones = [
   { card: "bg-card text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
+  { card: "bg-leaf-fade-1 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
+  { card: "bg-leaf-fade-2 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
   { card: "bg-leaf-1 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
-  { card: "bg-leaf-2 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
-  { card: "bg-leaf-3 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
 ];
 
 

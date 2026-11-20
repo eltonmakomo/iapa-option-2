@@ -125,7 +125,8 @@
 /* "Services for partners, Growth for members" must stay on one line: shrink it just enough to fit. */
 .what-heading { max-width: none; white-space: nowrap; font-size: clamp(0.8rem, 4.675vw - 1.5px, 2.25rem); line-height: 1.2; }
 /* The Our Approaches heading stays on one line too (French is the longest variant). */
-.approach-heading { max-width: none; white-space: nowrap; font-size: clamp(0.75rem, 3vw, 2.25rem); line-height: 1.2; }
+.approach-heading { max-width: none; white-space: nowrap; font-size: clamp(0.75rem, 5.4vw, 1.875rem); line-height: 1.2; }
+@media (min-width: 48rem) { .approach-heading { font-size: 2.25rem; } }
 @media (min-width: 48rem) { .section-content { margin-top: 4rem; } }
 
 /* Approach pills: a cream fill inside a thin ring (like the hero CTAs); the green

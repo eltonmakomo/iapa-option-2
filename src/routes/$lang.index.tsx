@@ -101,7 +101,7 @@ function Home() {
               const Icon = whatIcons[i]!;
               const tone = whatTones[i % 4]!;
               return (
-                <div key={h} className={`stat-notch relative flex min-h-[300px] flex-col p-5 [filter:drop-shadow(0_10px_14px_oklch(0.36_0.09_138/0.16))] animate-in fade-in duration-500 ${tone.card}`}>
+                <div key={h} className={`stat-notch relative flex min-h-[300px] flex-col p-5 [filter:drop-shadow(0_10px_12px_oklch(0.36_0.09_138/0.26))] animate-in fade-in duration-500 ${tone.card}`}>
                   <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
                   <div className="mt-[90px]">
                     <p className="font-bold leading-snug">{h}</p>

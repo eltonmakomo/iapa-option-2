@@ -69,6 +69,7 @@ const en = {
     ["Southern Africa", "Namibia, Mozambique, Zambia, Malawi"],
   ],
   seeMap: "Explore the map",
+  viewRegion: "View region",
   ambitionEyebrow: "Our 2030 ambition",
   ambitionTitle: "Scaling inclusive agribusiness across\n40 African countries",
   ambition: [
@@ -170,6 +171,7 @@ const fr: Dict = {
     ["Afrique australe", "Namibie, Mozambique, Zambie, Malawi"],
   ],
   seeMap: "Explorer la carte",
+  viewRegion: "Voir la région",
   ambitionEyebrow: "Notre ambition 2030",
   ambitionTitle: "Déployer un agribusiness inclusif dans\n40 pays africains",
   ambition: [

@@ -2,7 +2,7 @@ import { useId } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { REGION_MAPS } from "@/lib/region-maps";
-import type { Lang } from "@/lib/i18n";
+import { t, type Lang } from "@/lib/i18n";
 
 type RegionCardProps = { lang: Lang; title: string; countries: string; index: number };
 
@@ -40,7 +40,10 @@ export function RegionCard({ lang, title, countries, index }: RegionCardProps) {
         <h3 className="max-w-[62%] text-lg leading-snug sm:max-w-[52%]">{title}</h3>
         <p className="mt-2 max-w-[60%] text-sm leading-relaxed text-ink/70 sm:max-w-[50%]">{countries}</p>
         <span className="mt-auto flex items-center">
-          <ArrowRight className="h-5 w-5 text-clay-deep transition-transform duration-300 group-hover:translate-x-1" />
+          <span className="relative z-10 shrink-0">
+            <ArrowRight className="h-5 w-5 text-clay-deep transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
+          <span className="-ml-2.5 text-sm font-semibold">{t(lang).viewRegion}</span>
         </span>
       </div>
     </Link>

@@ -113,7 +113,7 @@ function Home() {
               if (!Icon || !tone) return null;
               return (
                 <div key={h} className="what-card-shadow">
-                  <div className={`stat-notch relative flex h-full min-h-[300px] flex-col p-5 ${tone.card}`}>
+                  <div className={`relative flex h-full min-h-[300px] flex-col rounded-lg p-5 ${tone.card}`}>
                     <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
                     <div className="mt-[90px]">
                       <p className="font-bold leading-snug">{h}</p>

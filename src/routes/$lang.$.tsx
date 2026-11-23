@@ -10,8 +10,9 @@ import hero from "@/assets/hero-farmer.jpg";
 import coop from "@/assets/cooperative.jpg";
 import processor from "@/assets/processor.jpg";
 import training from "@/assets/training-tree.jpg";
+import planting from "@/assets/hands-planting-lettuce.jpg.asset.json";
 
-const IMGS: Record<Img, string> = { hero, coop, processor, training };
+const IMGS: Record<Img, string> = { hero, coop, processor, training, planting: planting.url };
 
 export const Route = createFileRoute("/$lang/$")({
   head: ({ params }) => {

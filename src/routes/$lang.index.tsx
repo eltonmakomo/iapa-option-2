@@ -215,13 +215,10 @@ function Home() {
 
       <section className="bg-cream py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <div>
-            <p className="eyebrow text-forest-deep">{d.whereEyebrow}</p>
-            <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.whereTitle}</h2>
-          </div>
-          <div className="section-content">
-            <p className="text-muted-foreground">{d.whereBody}</p>
-            <ul className="mt-8 grid gap-px overflow-hidden rounded-xl border border-forest-deep/20 bg-forest-deep/12 sm:grid-cols-2 lg:grid-cols-3">
+          <p className="eyebrow text-forest-deep">{d.whereEyebrow}</p>
+          <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.whereTitle}</h2>
+          <p className="mt-4 text-muted-foreground">{d.whereBody}</p>
+          <ul className="section-content grid gap-px overflow-hidden rounded-xl border border-forest-deep/20 bg-forest-deep/12 sm:grid-cols-2 lg:grid-cols-3">
               {d.regions.map(([r, c], i) => (
                 <li key={r} className="flex min-w-0">
                   <RegionCard lang={lang} title={r ?? ""} countries={c ?? ""} index={i} />
@@ -230,8 +227,7 @@ function Home() {
               <li className="flex min-w-0">
                 <RegionMapTile lang={lang} label={d.seeMap} />
               </li>
-            </ul>
-          </div>
+          </ul>
         </div>
       </section>
 

@@ -20,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { contactSchema, AFRICAN_COUNTRIES, SUBJECTS } from "@/lib/contact-schema";
+import { contactSchema, AFRICAN_COUNTRIES, SUBJECTS, countryLabel } from "@/lib/contact-schema";
 import { getContactInfo, submitContact } from "@/lib/contact.functions";
 import { IMPACT_REGIONS } from "@/lib/impact-data";
 import type { Lang } from "@/lib/i18n";
@@ -89,7 +89,6 @@ export function ContactPage({ lang }: { lang: Lang }) {
     settings.hq_coordinates.trim() !== "" &&
     Number.isFinite(coords[0]) &&
     Number.isFinite(coords[1]) &&
-    Math.abs(coords[0] ?? 100) > 0 &&
     Math.abs(coords[0] ?? 100) <= 90 &&
     Math.abs(coords[1] ?? 200) <= 180;
   const lat = coords[0] ?? 0,
@@ -105,13 +104,13 @@ export function ContactPage({ lang }: { lang: Lang }) {
   ].filter((s) => /^https:\/\//.test(s.url));
   return (
     <article>
-      <header className="relative -mt-28 overflow-hidden bg-savanna/20 pb-20 pt-44">
+      <header className="relative -mt-28 overflow-hidden bg-savanna/20 pb-16 pt-36 md:pb-20 md:pt-44">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-forest-deep">IAPA · {l("Contact", "Contact")}</p>
           <h1 className="mt-4 text-4xl text-forest-deep md:text-5xl">
             {l("Contact us", "Contactez-nous")}
           </h1>
-          <p className="mt-8 max-w-3xl text-lg">
+          <p className="mt-8 max-w-3xl text-base md:text-lg">
             {l(
               "Whether you're a partner looking for agribusiness expertise, a practitioner interested in joining, or simply want to learn more about IAPA, we'd love to hear from you.",
               "Que vous soyez un partenaire à la recherche d’expertise en agribusiness, un praticien souhaitant nous rejoindre ou simplement curieux d’en savoir plus sur l’AIPA, nous serions ravis d’échanger avec vous.",
@@ -188,10 +187,12 @@ export function ContactPage({ lang }: { lang: Lang }) {
                   {l("Thank you", "Merci")}, {done}.
                 </h3>
                 <p className="mt-3">
-                  {l(
-                    "We'll get back to you within [X] working days.",
-                    "Nous vous répondrons sous [X] jours ouvrables.",
-                  )}
+                  {settings.show_placeholders
+                    ? l(
+                        "We'll get back to you within [X] working days.",
+                        "Nous vous répondrons sous [X] jours ouvrables.",
+                      )
+                    : l("Your message has been received.", "Votre message a bien été reçu.")}
                 </p>
               </div>
             ) : (
@@ -264,8 +265,8 @@ export function ContactPage({ lang }: { lang: Lang }) {
                     />
                     <datalist id="african-countries">
                       {AFRICAN_COUNTRIES.map((c) => (
-                        <option value={c} key={c}>
-                          {c === "Other" ? l("Other", "Autre") : c}
+                        <option value={countryLabel(c, lang)} key={c}>
+                          {countryLabel(c, lang)}
                         </option>
                       ))}
                     </datalist>
@@ -486,7 +487,9 @@ export function ContactPage({ lang }: { lang: Lang }) {
                   />
                 </svg>
                 <MapPin className="relative h-10 w-10 text-primary" />
-                <h3 className="relative mt-4 text-xl">IAPA Headquarters</h3>
+                <h3 className="relative mt-4 text-xl">
+                  {l("IAPA Headquarters", "Siège de l’AIPA")}
+                </h3>
                 <p className="relative mt-2">{address}</p>
                 <Button className="relative mt-6 rounded-full" onClick={() => setMap(true)}>
                   {l("View on map", "Voir la carte")}

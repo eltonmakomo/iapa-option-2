@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { Download, Mail, Check, X } from "lucide-react";
+import { Download, Mail, Check } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { SUBJECTS, csvCell } from "@/lib/contact-schema";
 import {
@@ -146,6 +147,7 @@ export function MessagesInbox() {
         <label className="text-sm font-semibold">
           Subject
           <select
+            aria-label="Subject"
             className="mt-2 h-10 w-full rounded-md border bg-card px-3"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
@@ -161,6 +163,7 @@ export function MessagesInbox() {
         <label className="text-sm font-semibold">
           Status
           <select
+            aria-label="Status"
             className="mt-2 h-10 w-full rounded-md border bg-card px-3"
             value={status}
             onChange={(e) => setStatus(e.target.value)}
@@ -219,26 +222,19 @@ export function MessagesInbox() {
         </ul>
       )}
       {selected && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Message details"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-night/60 p-4"
-          onKeyDown={(e) => {
-            if (e.key === "Escape") setSelected(null);
+        <Dialog
+          open
+          onOpenChange={(open) => {
+            if (!open) setSelected(null);
           }}
         >
-          <div className="max-h-[85vh] w-full max-w-2xl overflow-auto rounded-lg bg-card p-6">
+          <DialogContent
+            aria-describedby={undefined}
+            className="max-h-[85vh] w-[calc(100%-2rem)] max-w-2xl overflow-auto rounded-lg bg-card p-6"
+          >
+            <DialogTitle className="sr-only">Message details</DialogTitle>
             <div className="flex justify-between gap-4">
               <h3 className="text-xl">{selected.full_name}</h3>
-              <Button
-                size="icon"
-                variant="ghost"
-                aria-label="Close message"
-                onClick={() => setSelected(null)}
-              >
-                <X />
-              </Button>
             </div>
             <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
               {[
@@ -276,8 +272,8 @@ export function MessagesInbox() {
                 </a>
               </Button>
             </div>
-          </div>
-        </div>
+          </DialogContent>
+        </Dialog>
       )}
       {settings.data && (
         <section>

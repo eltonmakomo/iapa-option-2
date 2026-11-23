@@ -64,6 +64,44 @@ export const AFRICAN_COUNTRIES = [
   "Zimbabwe",
   "Other",
 ] as const;
+const COUNTRY_FR: Record<string, string> = {
+  Algeria: "Algérie",
+  Benin: "Bénin",
+  "Cabo Verde": "Cap-Vert",
+  Cameroon: "Cameroun",
+  "Central African Republic": "République centrafricaine",
+  Chad: "Tchad",
+  Comoros: "Comores",
+  "Democratic Republic of the Congo": "République démocratique du Congo",
+  Egypt: "Égypte",
+  "Equatorial Guinea": "Guinée équatoriale",
+  Eritrea: "Érythrée",
+  Ethiopia: "Éthiopie",
+  Gambia: "Gambie",
+  Guinea: "Guinée",
+  "Guinea-Bissau": "Guinée-Bissau",
+  Liberia: "Libéria",
+  Libya: "Libye",
+  Mauritania: "Mauritanie",
+  Mauritius: "Maurice",
+  Morocco: "Maroc",
+  Namibia: "Namibie",
+  Nigeria: "Nigéria",
+  "São Tomé and Príncipe": "Sao Tomé-et-Principe",
+  Senegal: "Sénégal",
+  Somalia: "Somalie",
+  "South Africa": "Afrique du Sud",
+  "South Sudan": "Soudan du Sud",
+  Sudan: "Soudan",
+  Tanzania: "Tanzanie",
+  Tunisia: "Tunisie",
+  Uganda: "Ouganda",
+  Zambia: "Zambie",
+  Other: "Autre",
+};
+export function countryLabel(country: string, lang: "en" | "fr") {
+  return lang === "fr" ? (COUNTRY_FR[country] ?? country) : country;
+}
 export const contactSchema = z.object({
   full_name: z.string().trim().min(1).max(100),
   email: z.string().trim().email().max(255),
@@ -72,18 +110,21 @@ export const contactSchema = z.object({
     .trim()
     .max(40)
     .refine((v) => !v || /^\+[\d\s().-]{6,39}$/.test(v)),
-  country: z.string().refine((v) => AFRICAN_COUNTRIES.some((c) => c === v)),
+  country: z
+    .string()
+    .transform((v) => AFRICAN_COUNTRIES.find((c) => c === v || countryLabel(c, "fr") === v) ?? v)
+    .refine((v) => AFRICAN_COUNTRIES.some((c) => c === v)),
   organisation: z.string().trim().max(200),
   subject: z.enum(SUBJECTS),
   message: z.string().trim().min(20).max(5000),
   preferred_language: z.enum(["en", "fr"]),
   consent: z.literal(true),
-  website: z.string().max(200),
+  website: z.string().max(0),
 });
 export const newsletterSchema = z.object({
   email: z.string().trim().email().max(255),
   language: z.enum(["en", "fr"]),
-  website: z.string().max(200),
+  website: z.string().max(0),
 });
 export function csvCell(value: unknown) {
   const text = String(value ?? "");

@@ -36,4 +36,11 @@ describe("Contact rules", () => {
   it("neutralises spreadsheet formulas", () => {
     expect(csvCell("=1+1")).toBe('"\'=1+1"');
   });
+  it("rejects a filled honeypot", () => {
+    expect(contactSchema.safeParse({ ...valid, website: "spam.example" }).success).toBe(false);
+    expect(contactSchema.safeParse(valid).success).toBe(true);
+  });
+  it("normalises French countries", () => {
+    expect(contactSchema.parse({ ...valid, country: "Cameroun" }).country).toBe("Cameroon");
+  });
 });

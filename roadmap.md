@@ -4,6 +4,6 @@
 - [x] Footer full width
 - [x] Soften What we do shadows, add move-in transitions and automatic group cycling
 - [x] Interactive dotted impact map with supplied regional data and bilingual country selection
-- [ ] Bilingual Contact page, navigation, saved enquiries and admin Messages inbox
+- [x] Bilingual Contact page, navigation, saved enquiries and admin Messages inbox
 - [ ] Contact owner emails (requires verified sender domain)
-- [ ] Contact request limiting (awaiting custom-limit choice)
+- [x] Contact spam protection — honeypot only, as confirmed

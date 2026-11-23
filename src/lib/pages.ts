@@ -153,10 +153,10 @@ PAGES["media/documents"] = news(l("Key documents", "Documents clés"), l("Our St
 
 /* ───────────── Placeholder content for client review ───────────── */
 const R = "";
-const FR = " [FR à valider]";
-/** Descriptive placeholder copy: FR gets the [FR à valider] tag. */
+const FR = "";
+/** Descriptive placeholder copy. */
 const r = (en: string, fr: string): L => ({ en: en + R, fr: fr + R + FR });
-/** Translated label/heading: FR flagged for validation. */
+/** Translated label/heading. */
 const f = (en: string, fr: string): L => ({ en, fr: fr + FR });
 const pulseEmpty = (en: string, fr: string): L => ({ en, fr: fr + FR });
 const requestTraining = { label: l("Request this training", "Demander cette formation"), slug: "work-with-us" };

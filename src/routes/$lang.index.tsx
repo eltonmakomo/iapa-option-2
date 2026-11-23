@@ -23,12 +23,13 @@ export const Route = createFileRoute("/$lang/")({
 
 const whatIcons = [Compass, BookOpen, GraduationCap, CalendarDays, Award, Users, Megaphone, Briefcase];
 
-// Each visible group of four fades from white to the soft green (leaf-1).
+// The four brand palette colours in order: Tropical Rainforest Green, Savanna Green,
+// Arid Orange, Semi-arid Yellow. Only the rainforest card needs white text.
 const whatTones = [
-  { card: "bg-card text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
-  { card: "bg-leaf-fade-1 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
-  { card: "bg-leaf-fade-2 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
-  { card: "bg-leaf-1 text-forest-deep", tile: "bg-forest-deep/10 text-forest-deep" },
+  { card: "bg-rainforest text-cream", tile: "bg-cream/20 text-cream" },
+  { card: "bg-savanna-green text-night", tile: "bg-cream/70 text-forest-deep" },
+  { card: "bg-arid-orange text-night", tile: "bg-cream/70 text-forest-deep" },
+  { card: "bg-semiarid-yellow text-night", tile: "bg-cream/70 text-forest-deep" },
 ];
 
 

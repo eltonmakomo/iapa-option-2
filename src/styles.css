@@ -45,6 +45,11 @@
   /* Arid Orange tints for the read-more pills. */
   --color-clay-soft: oklch(0.885 0.048 62);
   --color-clay-deep: oklch(0.47 0.11 58);
+  /* The four brand palette colours, in the palette's own order (What we do cards). */
+  --color-rainforest: #3a7c1e;
+  --color-savanna-green: #9cb04a;
+  --color-arid-orange: #d7883f;
+  --color-semiarid-yellow: #e5b946;
   /* Neutral near-black for text on the region map cards. */
   --color-ink: #2e2e2e;
   --color-night: #1a1a1a;

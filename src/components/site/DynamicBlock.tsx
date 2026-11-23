@@ -56,9 +56,7 @@ function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }
           <div className="mt-2">
             <h3 className="text-sm font-bold leading-snug tracking-normal text-ink"><Tagged text={s(r, "name")} /></h3>
             <p className="mt-1 text-xs leading-relaxed text-ink">{loc(r, "role", lang)}</p>
-            <p className="mt-1 text-xs text-muted-foreground"><Tagged text={s(r, "country")} /></p>
           </div>
-          <p className="mt-3 text-sm text-muted-foreground"><Tagged text={loc(r, "bio", lang)} /></p>
           <a href={s(r, "linkedin")} aria-label="LinkedIn" className="mt-3 inline-flex text-ink/70 hover:text-primary"><Linkedin className="h-4 w-4" /></a>
         </article>
       ))}

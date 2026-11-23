@@ -52,7 +52,7 @@ function ContentPage() {
           {p.draft && <p className="mb-6 inline-block rounded-full bg-sun px-4 py-1.5 text-sm font-bold text-ink">{lang === "fr" ? "Brouillon — à relire par l'AIPA avant publication." : "Draft — to be reviewed by IAPA before publication."}</p>}
           <p className="eyebrow text-sun">{p.eyebrow[lang]}</p>
           <h1 className={`mt-3 whitespace-pre-line text-4xl md:text-5xl ${p.narrowIntro ? "max-w-5xl" : "max-w-3xl"}`}>{p.title[lang]}</h1>
-          <p className={`mt-8 text-lg font-light opacity-95 ${p.narrowIntro ? "max-w-md" : "max-w-2xl"}`}>{p.intro[lang]}</p>
+          <p className={`mt-8 text-lg font-light opacity-95 ${p.narrowIntro ? "max-w-[75%]" : "max-w-2xl"}`}>{p.intro[lang]}</p>
         </div>
       </header>
       <div className="mx-auto max-w-7xl space-y-16 px-4 py-16 lg:px-6">

@@ -28,7 +28,7 @@ export function SiteFooter({ lang }: { lang: Lang }) {
             <h2 className="text-3xl md:text-4xl">{d.nlTitle}</h2>
             <p className="mt-4 max-w-md text-sm">{d.nlBody}</p>
           </div>
-          <div className="[&_button]:bg-night [&_button]:text-cream [&_input]:border-transparent [&_input]:bg-cream/60">
+          <div className="[&_button]:bg-night [&_button]:text-cream [&_input]:border-transparent [&_input]:bg-card">
             <NewsletterForm lang={lang} tone="dark" />
           </div>
         </div>

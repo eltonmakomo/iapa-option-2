@@ -15,6 +15,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as LangIndexRouteImport } from './routes/$lang.index'
 import { Route as LangSplatRouteImport } from './routes/$lang.$'
+import { Route as LangContactRouteImport } from './routes/$lang.contact'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
 const IndexRoute = IndexRouteImport.update({
@@ -46,6 +47,11 @@ const LangSplatRoute = LangSplatRouteImport.update({
   path: '/$',
   getParentRoute: () => LangRoute,
 } as any)
+const LangContactRoute = LangContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => LangRoute,
+} as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/$lang': typeof LangRouteWithChildren
   '/auth': typeof AuthRoute
   '/$lang/$': typeof LangSplatRoute
+  '/$lang/contact': typeof LangContactRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/$lang/': typeof LangIndexRoute
 }
@@ -64,6 +71,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/$lang/$': typeof LangSplatRoute
+  '/$lang/contact': typeof LangContactRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/$lang': typeof LangIndexRoute
 }
@@ -74,14 +82,22 @@ export interface FileRoutesById {
   '/$lang': typeof LangRouteWithChildren
   '/auth': typeof AuthRoute
   '/$lang/$': typeof LangSplatRoute
+  '/$lang/contact': typeof LangContactRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/$lang/': typeof LangIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$lang' | '/auth' | '/$lang/$' | '/admin' | '/$lang/'
+  fullPaths:
+    | '/'
+    | '/$lang'
+    | '/auth'
+    | '/$lang/$'
+    | '/$lang/contact'
+    | '/admin'
+    | '/$lang/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/$lang/$' | '/admin' | '/$lang'
+  to: '/' | '/auth' | '/$lang/$' | '/$lang/contact' | '/admin' | '/$lang'
   id:
     | '__root__'
     | '/'
@@ -89,6 +105,7 @@ export interface FileRouteTypes {
     | '/$lang'
     | '/auth'
     | '/$lang/$'
+    | '/$lang/contact'
     | '/_authenticated/admin'
     | '/$lang/'
   fileRoutesById: FileRoutesById
@@ -144,6 +161,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangSplatRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/contact': {
+      id: '/$lang/contact'
+      path: '/contact'
+      fullPath: '/$lang/contact'
+      preLoaderRoute: typeof LangContactRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
       path: '/admin'
@@ -167,11 +191,13 @@ const AuthenticatedRouteRouteWithChildren =
 
 interface LangRouteChildren {
   LangSplatRoute: typeof LangSplatRoute
+  LangContactRoute: typeof LangContactRoute
   LangIndexRoute: typeof LangIndexRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
   LangSplatRoute: LangSplatRoute,
+  LangContactRoute: LangContactRoute,
   LangIndexRoute: LangIndexRoute,
 }
 

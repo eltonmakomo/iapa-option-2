@@ -6,6 +6,7 @@ import trainingImg from "@/assets/training-tree.jpg";
 import { NAV } from "@/lib/nav";
 import { t, type Lang } from "@/lib/i18n";
 import { ReadMoreLink } from "@/components/site/ReadMoreLink";
+import { Button } from "@/components/ui/button";
 
 function LangSwitch({ lang, dark }: { lang: Lang; dark?: boolean }) {
   const params = useParams({ strict: false }) as { _splat?: string };
@@ -47,7 +48,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
             className={`w-auto transition-all ${compact ? "h-9" : "h-11"}`} />
         </Link>
 
-        <nav className="ml-auto hidden lg:flex" aria-label="Main">
+        <nav className="ml-auto hidden xl:flex" aria-label="Main">
           <ul className="flex items-center">
             {NAV.map((g, i) => (
               <li key={g.slug} onMouseEnter={() => enter(i)} onMouseLeave={leave}>
@@ -58,10 +59,11 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                 </button>
               </li>
             ))}
+            <li><Button asChild variant="ghost" className="px-3 text-[0.95rem] font-medium hover:bg-transparent hover:text-sun"><Link to="/$lang/contact" params={{ lang }} onClick={() => setOpen(null)}>{lang === "fr" ? "Contact" : "Contact"}</Link></Button></li>
           </ul>
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <LangSwitch lang={lang} />
           <Link to="/$lang/$" params={{ lang, _splat: "knowledge-hub" }} aria-label="Search"
             className={`grid place-items-center rounded-full bg-primary text-primary-foreground transition hover:brightness-110 ${compact ? "h-12 w-12" : "h-14 w-14"}`}>
@@ -69,13 +71,13 @@ export function SiteHeader({ lang }: { lang: Lang }) {
           </Link>
         </div>
 
-        <button type="button" className="ml-auto rounded-full p-2 lg:hidden" aria-label={d.menu} aria-expanded={mobile} onClick={() => setMobile(true)}>
+        <button type="button" className="ml-auto rounded-full p-2 xl:hidden" aria-label={d.menu} aria-expanded={mobile} onClick={() => setMobile(true)}>
           <Menu className="h-6 w-6" />
         </button>
       </div>
 
       {open !== null && (
-        <div className="absolute inset-x-3 top-full mt-2 hidden overflow-hidden rounded-3xl border border-border bg-card text-foreground shadow-xl lg:inset-x-6 lg:block"
+        <div className="absolute inset-x-3 top-full mt-2 hidden overflow-hidden rounded-3xl border border-border bg-card text-foreground shadow-xl xl:inset-x-6 xl:block"
           onMouseEnter={() => enter(open)} onMouseLeave={leave}>
           <div className="mx-auto grid max-w-7xl grid-cols-12 gap-8 px-6 py-10">
             <div className="col-span-3 border-r border-border pr-8">
@@ -110,7 +112,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
       )}
 
       {mobile && (
-        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label={d.menu}>
+        <div className="fixed inset-0 z-50 xl:hidden" role="dialog" aria-modal="true" aria-label={d.menu}>
           <div className="absolute inset-0 bg-foreground/50" onClick={() => setMobile(false)} />
           <div className="absolute right-0 top-0 flex h-full w-[88%] max-w-sm flex-col overflow-y-auto bg-card p-5 animate-in slide-in-from-right">
             <div className="flex items-center justify-between">
@@ -135,6 +137,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                   </details>
                 </li>
               ))}
+              <li className="py-3"><Button asChild variant="link" className="px-0 text-lg font-semibold"><Link to="/$lang/contact" params={{ lang }} onClick={() => setMobile(false)}>Contact</Link></Button></li>
             </ul>
             <Link to="/$lang/$" params={{ lang, _splat: "work-with-us" }} onClick={() => setMobile(false)}
               className="wwu group relative mt-6 flex items-center justify-between rounded-full border border-sun">

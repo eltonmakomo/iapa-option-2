@@ -4,6 +4,7 @@ import { getContent, type ContentTable, type Row } from "@/lib/content.functions
 import type { Block, BlockKind } from "@/lib/pages";
 import type { Lang } from "@/lib/i18n";
 import { PlaceholderImage } from "./PlaceholderImage";
+import { Link } from "@tanstack/react-router";
 
 const TABLE: Record<BlockKind, ContentTable> = {
   team: "team_members", testimonials: "testimonials", resources: "resources", events: "events",
@@ -38,11 +39,12 @@ export function DynamicBlock({ block, lang }: { block: Block; lang: Lang }) {
       {block.h && <h2 className="section-heading text-3xl text-primary md:text-4xl">{block.h[lang]}</h2>}
       <div className={block.h ? "section-content" : ""}>
         {rows.length === 0 ? (
-          <p className="rounded-2xl bg-secondary p-8 text-lg text-muted-foreground">{block.empty?.[lang] ?? "—"}</p>
+          <div className="rounded-2xl bg-secondary p-8 text-lg text-muted-foreground"><p>{block.empty?.[lang] ?? "—"}</p>{(block.kind === "vacancies" || block.kind === "scholarships") && <Link to="/$lang/contact" params={{ lang }} className="mt-4 inline-block font-semibold text-primary underline">{lang === "fr" ? "Contactez-nous" : "Contact us"}</Link>}</div>
         ) : (
           <Rows kind={block.kind} rows={rows} lang={lang} />
         )}
       </div>
+      {block.kind === "faqs" && <p className="mt-6 text-sm"><Link to="/$lang/contact" params={{ lang }} className="font-semibold text-primary underline">{lang === "fr" ? "Une autre question ? Contactez-nous." : "Still have a question? Get in touch."}</Link></p>}
     </section>
   );
 }

@@ -58,6 +58,7 @@ export function SiteFooter({ lang }: { lang: Lang }) {
           <div className="lg:col-span-2">
             <p className="eyebrow mb-4 text-clay">{d.contact}</p>
             <ul className="space-y-2 text-sm text-cream/85">
+              <li><Link to="/$lang/contact" params={{ lang }} className="hover:text-clay">{lang === "fr" ? "Contactez-nous" : "Contact us"}</Link></li>
               <li className="flex gap-2"><Mail className="mt-1 h-3.5 w-3.5 shrink-0" /><a href={`mailto:${CONTACT.email}`} className="break-all hover:text-clay">{CONTACT.email}</a></li>
               {CONTACT.phones.map((p) => <li key={p} className="flex gap-2"><Phone className="mt-1 h-3.5 w-3.5 shrink-0" />{p}</li>)}
               <li className="flex gap-2"><MapPin className="mt-1 h-3.5 w-3.5 shrink-0" />{CONTACT.address}</li>

@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { CONTENT_TABLES, type ContentTable } from "@/lib/content.functions";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
+import { MessagesInbox } from "@/components/site/MessagesInbox";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({ meta: [
@@ -24,7 +25,8 @@ function AdminPage() {
   const qc = useQueryClient();
   const admin = useQuery({ queryKey: ["is-admin"], queryFn: async () => {
     const { data: u } = await supabase.auth.getUser();
-    const { data } = await supabase.rpc("has_role", { _user_id: u.user!.id, _role: "admin" });
+    if (!u.user) return { ok: false, email: "" };
+    const { data } = await supabase.rpc("has_role", { _user_id: u.user.id, _role: "admin" });
     return { ok: !!data, email: u.user?.email ?? "" };
   } });
   const settings = useQuery({ queryKey: ["admin-settings"], enabled: !!admin.data?.ok, queryFn: async () => (await supabase.from("site_settings").select("*").eq("id", 1).single()).data });
@@ -66,6 +68,7 @@ function AdminPage() {
         <div><h1 className="text-3xl text-primary">IAPA admin</h1><p className="text-sm text-muted-foreground">{admin.data.email}</p></div>
         <Button variant="outline" onClick={signOut}>Sign out</Button>
       </header>
+      <MessagesInbox />
       <div className="grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl bg-sun/25 p-6"><p className="text-4xl font-extrabold text-ink">{left}</p><p className="font-semibold">placeholder items left to replace</p></div>
         <div className="rounded-2xl border border-border bg-card p-6">
@@ -81,7 +84,7 @@ function AdminPage() {
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             {(["linkedin_url", "facebook_url", "x_url", "youtube_url"] as const).map((k) => (
               <label key={k} className="text-sm font-semibold">{k.replace("_url", "")}
-                <input defaultValue={settings.data![k]} onBlur={(e) => e.target.value !== settings.data![k] && setSocial(k, e.target.value)} className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 font-normal" />
+                <input defaultValue={settings.data?.[k] ?? ""} onBlur={(e) => e.target.value !== settings.data?.[k] && setSocial(k, e.target.value)} className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 font-normal" />
               </label>
             ))}
           </div>

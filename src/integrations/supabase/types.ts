@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_messages: {
+        Row: {
+          consent: boolean
+          country: string
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          message: string
+          organisation: string
+          phone: string
+          preferred_language: string
+          status: string
+          subject: string
+        }
+        Insert: {
+          consent: boolean
+          country: string
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          message: string
+          organisation?: string
+          phone?: string
+          preferred_language: string
+          status?: string
+          subject: string
+        }
+        Update: {
+          consent?: boolean
+          country?: string
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          message?: string
+          organisation?: string
+          phone?: string
+          preferred_language?: string
+          status?: string
+          subject?: string
+        }
+        Relationships: []
+      }
       events: {
         Row: {
           date_label: string
@@ -128,6 +173,48 @@ export type Database = {
         }
         Relationships: []
       }
+      newsletter_subscriptions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          language: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          language?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          language?: string
+        }
+        Relationships: []
+      }
+      regional_contacts: {
+        Row: {
+          email: string
+          id: string
+          is_placeholder: boolean
+          name: string
+        }
+        Insert: {
+          email?: string
+          id: string
+          is_placeholder?: boolean
+          name?: string
+        }
+        Update: {
+          email?: string
+          id?: string
+          is_placeholder?: boolean
+          name?: string
+        }
+        Relationships: []
+      }
       resources: {
         Row: {
           id: string
@@ -193,26 +280,44 @@ export type Database = {
       }
       site_settings: {
         Row: {
+          contact_phones: string
           facebook_url: string
+          hq_address: string
+          hq_coordinates: string
           id: number
           linkedin_url: string
+          office_hours: string
+          secretariat_email: string
           show_placeholders: boolean
+          whatsapp: string
           x_url: string
           youtube_url: string
         }
         Insert: {
+          contact_phones?: string
           facebook_url?: string
+          hq_address?: string
+          hq_coordinates?: string
           id?: number
           linkedin_url?: string
+          office_hours?: string
+          secretariat_email?: string
           show_placeholders?: boolean
+          whatsapp?: string
           x_url?: string
           youtube_url?: string
         }
         Update: {
+          contact_phones?: string
           facebook_url?: string
+          hq_address?: string
+          hq_coordinates?: string
           id?: number
           linkedin_url?: string
+          office_hours?: string
+          secretariat_email?: string
           show_placeholders?: boolean
+          whatsapp?: string
           x_url?: string
           youtube_url?: string
         }

@@ -38,3 +38,6 @@ Render the interactive footprint using local Natural Earth geometry and shared, 
 ## Project rules
 - Editable content (team, news/press, events, resources, testimonials, vacancies, scholarships, FAQs, site settings) lives in Lovable Cloud tables with an `is_placeholder` flag; static page copy stays in src/lib/pages.ts and pages pull rows via `blocks`. Why: client replaces placeholders from /admin and a `show_placeholders` switch hides them at launch.
 - The first account created becomes admin (DB trigger); roles live in `user_roles`. Why: no other way for IAPA staff to bootstrap admin access.
+- Contact and newsletter submissions use validated public server functions with insert-only privileged writes; inbox reads and status updates use admin RLS. Why: visitors must never read private submissions.
+- Regional focal-point records reference the shared sourced region IDs without duplicating country membership. Why: Contact and map pages stay aligned.
+- Contact maps use configurable headquarters coordinates; without them, show an Accra city view without an invented headquarters pin. Why: precise office location is unverified.

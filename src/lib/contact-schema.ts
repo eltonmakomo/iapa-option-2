@@ -1,0 +1,91 @@
+import { z } from "zod";
+export const SUBJECTS = [
+  "general",
+  "partnership",
+  "membership",
+  "media",
+  "training",
+  "other",
+] as const;
+export const AFRICAN_COUNTRIES = [
+  "Algeria",
+  "Angola",
+  "Benin",
+  "Botswana",
+  "Burkina Faso",
+  "Burundi",
+  "Cabo Verde",
+  "Cameroon",
+  "Central African Republic",
+  "Chad",
+  "Comoros",
+  "Congo",
+  "Democratic Republic of the Congo",
+  "Djibouti",
+  "Egypt",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Eswatini",
+  "Ethiopia",
+  "Gabon",
+  "Gambia",
+  "Ghana",
+  "Guinea",
+  "Guinea-Bissau",
+  "Côte d’Ivoire",
+  "Kenya",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Madagascar",
+  "Malawi",
+  "Mali",
+  "Mauritania",
+  "Mauritius",
+  "Morocco",
+  "Mozambique",
+  "Namibia",
+  "Niger",
+  "Nigeria",
+  "Rwanda",
+  "São Tomé and Príncipe",
+  "Senegal",
+  "Seychelles",
+  "Sierra Leone",
+  "Somalia",
+  "South Africa",
+  "South Sudan",
+  "Sudan",
+  "Tanzania",
+  "Togo",
+  "Tunisia",
+  "Uganda",
+  "Zambia",
+  "Zimbabwe",
+  "Other",
+] as const;
+export const contactSchema = z.object({
+  full_name: z.string().trim().min(1).max(100),
+  email: z.string().trim().email().max(255),
+  phone: z
+    .string()
+    .trim()
+    .max(40)
+    .refine((v) => !v || /^\+[\d\s().-]{6,39}$/.test(v)),
+  country: z.string().refine((v) => AFRICAN_COUNTRIES.some((c) => c === v)),
+  organisation: z.string().trim().max(200),
+  subject: z.enum(SUBJECTS),
+  message: z.string().trim().min(20).max(5000),
+  preferred_language: z.enum(["en", "fr"]),
+  consent: z.literal(true),
+  website: z.string().max(200),
+});
+export const newsletterSchema = z.object({
+  email: z.string().trim().email().max(255),
+  language: z.enum(["en", "fr"]),
+  website: z.string().max(200),
+});
+export function csvCell(value: unknown) {
+  const text = String(value ?? "");
+  return '"' + (/^[=+@\-\t\r]/.test(text) ? "'" + text : text).replaceAll('"', '""') + '"';
+}

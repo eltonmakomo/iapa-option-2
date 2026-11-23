@@ -39,6 +39,13 @@ function Home() {
   const newsImgs = [coop, train, proc];
   const [offset, setOffset] = useState(0);
   const [animate, setAnimate] = useState(true);
+  const [per, setPer] = useState(4);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 640px)");
+    const upd = () => setPer(mq.matches ? 4 : 2);
+    upd(); mq.addEventListener("change", upd);
+    return () => mq.removeEventListener("change", upd);
+  }, []);
   const [group, setGroup] = useState(0);
   const [whatPaused, setWhatPaused] = useState(false);
 
@@ -152,11 +159,11 @@ function Home() {
                 {[...d.glance, ...d.glance.slice(0, 4)].map(([n, l], i) => (
                   <div
                     key={i}
-                    className="stat-notch flex min-h-[300px] shrink-0 basis-[calc((100%-(var(--per)-1)*0.75rem)/var(--per))] flex-col bg-leaf-1 p-5 text-forest-deep md:min-h-[370px]"
+                    className="stat-notch flex min-h-[300px] shrink-0 basis-[calc((100%-(var(--per)-1)*0.75rem)/var(--per))] flex-col bg-leaf-1 p-5 text-night md:min-h-[370px]"
                   >
                     <h3 className="text-lg font-bold uppercase leading-[1.1] tracking-normal">{d.glanceNames[i % d.glance.length] ?? l}</h3>
                     <p className="mt-1 text-xs leading-snug opacity-70">{l}</p>
-                    <p className="mt-auto text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">{n}</p>
+                    <p className="mt-auto text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl text-forest-deep"><CountUp value={n ?? ""} active={i >= offset && i < offset + per} instant={!animate} /></p>
                   </div>
                 ))}
               </div>
@@ -275,4 +282,28 @@ function Home() {
       </section>
     </>
   );
+}
+
+/** Counts a stat up from zero over the same 1400ms easing as the carousel slide, whenever its card comes into view. */
+function CountUp({ value, active, instant }: { value: string; active: boolean; instant: boolean }) {
+  const m = value.match(/^(\D*)(\d+)(.*)$/);
+  const target = m ? Number(m[2]) : 0;
+  const [cur, setCur] = useState(target);
+  useEffect(() => {
+    if (!m) return;
+    if (!active) { setCur(0); return; }
+    if (instant || window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setCur(target); return; }
+    let raf = 0; const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - start) / 1400);
+      const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      setCur(Math.round(target * e));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, target]);
+  if (!m) return <>{value}</>;
+  return <>{m[1]}{cur}{m[3]}</>;
 }

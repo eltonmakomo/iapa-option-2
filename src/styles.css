@@ -130,7 +130,7 @@
 }
 @utility icon-tile { border-radius: 28%; }
 @utility stat-notch {
-  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%);
 }
 
 /* Match the impact section's heading-to-content rhythm throughout the site. */

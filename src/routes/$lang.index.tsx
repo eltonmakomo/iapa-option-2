@@ -153,7 +153,7 @@ function Home() {
                     key={i}
                     className="stat-notch flex min-h-[300px] shrink-0 basis-[calc((100%-(var(--per)-1)*0.75rem)/var(--per))] flex-col bg-leaf-1 p-5 text-forest-deep md:min-h-[370px]"
                   >
-                    <h3 className="text-lg font-bold uppercase leading-tight tracking-normal">{d.glanceNames[i % d.glance.length] ?? l}</h3>
+                    <h3 className="text-lg font-bold uppercase leading-[1.1] tracking-normal">{d.glanceNames[i % d.glance.length] ?? l}</h3>
                     <p className="mt-1 text-xs leading-snug opacity-70">{l}</p>
                     <p className="mt-auto text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">{n}</p>
                   </div>

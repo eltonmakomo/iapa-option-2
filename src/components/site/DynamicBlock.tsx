@@ -4,6 +4,7 @@ import { getContent, type ContentTable, type Row } from "@/lib/content.functions
 import type { Block, BlockKind } from "@/lib/pages";
 import type { Lang } from "@/lib/i18n";
 import { PlaceholderImage } from "./PlaceholderImage";
+import { TestimonialCarousel } from "./TestimonialCarousel";
 import { Link } from "@tanstack/react-router";
 
 const TABLE: Record<BlockKind, ContentTable> = {
@@ -134,30 +135,7 @@ function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }
         ))}
       </div>
     );
-  if (kind === "testimonials")
-    return (
-      <div className="grid gap-4 md:grid-cols-3">
-        {rows.map((r) => (
-          <figure key={r.id} className="rounded-2xl bg-card p-6 shadow-sm">
-            <blockquote className="text-lg italic text-foreground">
-              “{loc(r, "quote", lang)}”
-            </blockquote>
-            <figcaption className="mt-6 flex items-center gap-3">
-              <PlaceholderImage round className="h-12 w-12 shrink-0" />
-              <span className="text-sm">
-                <em className="font-semibold not-italic text-foreground">
-                  <Tagged text={s(r, "name")} />
-                </em>
-                <br />
-                <span className="text-muted-foreground">
-                  <Tagged text={loc(r, "role", lang)} />
-                </span>
-              </span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    );
+  if (kind === "testimonials") return <TestimonialCarousel rows={rows} lang={lang} />;
   if (kind === "resources")
     return (
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

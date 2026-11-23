@@ -5,6 +5,7 @@ import { PAGES, type Img } from "@/lib/pages";
 import { DynamicBlock, blockQuery } from "@/components/site/DynamicBlock";
 import { logoOf } from "@/lib/partner-logos";
 import { ImpactMap } from "@/components/site/ImpactMap";
+import { CountUp } from "@/components/site/CountUp";
 import hero from "@/assets/hero-farmer.jpg";
 import coop from "@/assets/cooperative.jpg";
 import processor from "@/assets/processor.jpg";
@@ -59,7 +60,7 @@ function ContentPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {p.stats.map(([n, lbl]) => (
               <div key={n + lbl.en} className="rounded-2xl bg-card p-8 shadow-sm">
-                <p className="text-5xl font-extrabold text-primary">{n}</p>
+                <p className="text-5xl font-extrabold text-primary"><CountUp value={n} /></p>
                 <p className="mt-2 font-semibold text-muted-foreground">{lbl[lang]}</p>
               </div>
             ))}

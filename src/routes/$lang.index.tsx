@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Megaphone, Users } from "lucide-react";
 import hero from "@/assets/hero-corn-field.jpg.asset.json";
@@ -8,6 +8,7 @@ import train from "@/assets/training-tree.jpg";
 import { t, type Lang } from "@/lib/i18n";
 import { ReadMoreLink } from "@/components/site/ReadMoreLink";
 import { AmbitionStats } from "@/components/site/AmbitionStats";
+import { CountUp } from "@/components/site/CountUp";
 import { RegionCard, RegionMapTile } from "@/components/site/RegionCard";
 import { PARTNER_LOGOS } from "@/lib/partner-logos";
 
@@ -274,36 +275,3 @@ function Home() {
   );
 }
 
-/** Counts a stat up from zero over the same 1400ms easing as the carousel slide. A card counts up as soon as any part of it is visible and only resets to zero once it is completely out of view. */
-function CountUp({ value, root, instant }: { value: string; root: RefObject<HTMLDivElement | null>; instant: boolean }) {
-  const m = value.match(/^(\D*)(\d+)(.*)$/);
-  const target = m ? Number(m[2]) : 0;
-  const ref = useRef<HTMLSpanElement>(null);
-  const [active, setActive] = useState(false);
-  const [cur, setCur] = useState(target);
-  useEffect(() => {
-    const el = ref.current;
-    const rootEl = root.current;
-    if (!el || !rootEl) return;
-    const io = new IntersectionObserver(([e]) => setActive(!!e?.isIntersecting), { root: rootEl, threshold: 0 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [root]);
-  useEffect(() => {
-    if (!m) return;
-    if (!active) { setCur(0); return; }
-    if (instant || window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setCur(target); return; }
-    let raf = 0; const start = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min(1, (now - start) / 1400);
-      const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-      setCur(Math.round(target * e));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, target]);
-  if (!m) return <>{value}</>;
-  return <span ref={ref}>{m[1]}{cur}{m[3]}</span>;
-}

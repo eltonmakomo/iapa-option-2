@@ -113,14 +113,18 @@ function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {rows.map((r) => (
         <article key={r.id} className="overflow-hidden bg-night text-cream">
-          {s(r, "image_url") ? (
-            <img src={s(r, "image_url")} alt={loc(r, "title", lang)} loading="lazy" className="aspect-[16/10] w-full object-cover" />
-          ) : (
-            <PlaceholderImage caption={s(r, "image_caption")} className="aspect-[16/10] w-full bg-savanna/30 text-cream/80" />
-          )}
+          <div className="relative">
+            {s(r, "image_url") ? (
+              <img src={s(r, "image_url")} alt={loc(r, "title", lang)} loading="lazy" className="aspect-[16/10] w-full object-cover" />
+            ) : (
+              <PlaceholderImage caption={s(r, "image_caption")} className="aspect-[16/10] w-full bg-savanna/30 text-cream/80" />
+            )}
+            <div className="absolute inset-x-0 top-0 bg-gradient-to-b from-night/85 via-night/50 to-transparent p-4 pb-10">
+              <p className="eyebrow text-clay"><Tagged text={[s(r, "date_label"), s(r, "country"), s(r, "approach")].filter(Boolean).join(" · ")} /></p>
+            </div>
+          </div>
           <div className="p-5">
-            <p className="eyebrow text-clay"><Tagged text={[s(r, "date_label"), s(r, "country"), s(r, "approach")].filter(Boolean).join(" · ")} /></p>
-            <h3 className="mt-2 text-lg leading-snug">{loc(r, "title", lang)}</h3>
+            <h3 className="text-lg leading-snug">{loc(r, "title", lang)}</h3>
             <div className="mt-4 space-y-3 text-sm text-cream/70">{loc(r, "body", lang).split("\n\n").map((p, i) => <p key={i}>{p}</p>)}</div>
           </div>
         </article>

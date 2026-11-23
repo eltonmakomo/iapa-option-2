@@ -113,7 +113,11 @@ function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {rows.map((r) => (
         <article key={r.id} className="overflow-hidden bg-night text-cream">
-          <PlaceholderImage caption={s(r, "image_caption")} className="aspect-[16/10] w-full bg-savanna/30 text-cream/80" />
+          {s(r, "image_url") ? (
+            <img src={s(r, "image_url")} alt={loc(r, "title", lang)} loading="lazy" className="aspect-[16/10] w-full object-cover" />
+          ) : (
+            <PlaceholderImage caption={s(r, "image_caption")} className="aspect-[16/10] w-full bg-savanna/30 text-cream/80" />
+          )}
           <div className="p-5">
             <p className="eyebrow text-clay"><Tagged text={[s(r, "date_label"), s(r, "country"), s(r, "approach")].filter(Boolean).join(" · ")} /></p>
             <h3 className="mt-2 text-lg leading-snug">{loc(r, "title", lang)}</h3>

@@ -89,6 +89,7 @@ export type Database = {
           date_label: string
           id: string
           image_caption: string
+          image_url: string
           is_placeholder: boolean
           kind: string
           sort: number
@@ -103,6 +104,7 @@ export type Database = {
           date_label?: string
           id?: string
           image_caption?: string
+          image_url?: string
           is_placeholder?: boolean
           kind?: string
           sort?: number
@@ -117,6 +119,7 @@ export type Database = {
           date_label?: string
           id?: string
           image_caption?: string
+          image_url?: string
           is_placeholder?: boolean
           kind?: string
           sort?: number

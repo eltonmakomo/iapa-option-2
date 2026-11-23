@@ -5,7 +5,7 @@ export type Img = "hero" | "coop" | "processor" | "training";
 export type Section = { h: L; p?: L; items?: [L, L, string[]?][]; list?: L[]; tags?: string[]; steps?: [L, L][]; rows?: [L, string][]; note?: L; feature?: Img; icons?: boolean };
 export type BlockKind = "team" | "testimonials" | "resources" | "events" | "news" | "press" | "vacancies" | "scholarships" | "faqs";
 export type Block = { kind: BlockKind; h?: L; filter?: [string, string]; empty?: L };
-export type Page = { eyebrow: L; title: L; intro: L; img: Img; sections: Section[]; stats?: [string, L][]; cta?: { label: L; slug: string }; blocks?: Block[]; draft?: boolean };
+export type Page = { eyebrow: L; title: L; intro: L; img: Img; sections: Section[]; stats?: [string, L][]; cta?: { label: L; slug: string }; blocks?: Block[]; draft?: boolean; narrowIntro?: boolean };
 
 const join = { label: l("Become a member", "Devenir membre"), slug: "join" };
 const contact = { label: l("Work with us", "Travailler avec nous"), slug: "work-with-us" };
@@ -25,7 +25,7 @@ const approach = (name: string, frName: string, en: string, fr: string, who: L, 
 });
 
 export const PAGES: Record<string, Page> = {
-  "who-we-are": { eyebrow: l("Who we are", "Qui sommes-nous"), title: l("A pan-African body of agribusiness practitioners", "Un organisme panafricain de praticiens de l'agribusiness"), img: "hero",
+  "who-we-are": { eyebrow: l("Who we are", "Qui sommes-nous"), title: l("A pan-African body of agribusiness\npractitioners", "Un organisme panafricain de praticiens\nde l'agribusiness"), img: "hero", narrowIntro: true,
     intro: l("IAPA was founded in September 2023 in South Africa and is registered in Accra, Ghana. Initiated under the Agri-Business Facility for Africa (ABF), implemented by GIZ, it brings together Master Trainers and value chain experts from more than 20 countries.", "L'AIPA a été fondée en septembre 2023 en Afrique du Sud et est enregistrée à Accra, au Ghana. Initiée dans le cadre de l'Agri-Business Facility for Africa (ABF), mise en œuvre par la GIZ, elle réunit des Master Trainers et des experts des chaînes de valeur de plus de 20 pays."),
     sections: [
       { h: l("Our mission", "Notre mission"), feature: "coop", p: l("Through a strong community of agribusiness professionals, we improve the livelihoods of agricultural value chain actors and strengthen their climate resilience.", "Grâce à une communauté solide de professionnels de l'agribusiness, nous améliorons les moyens de subsistance des acteurs des chaînes de valeur agricoles et renforçons leur résilience climatique.") },

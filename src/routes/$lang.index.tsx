@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Megaphone, Users } from "lucide-react";
 import hero from "@/assets/hero-corn-field.jpg.asset.json";
@@ -38,14 +38,8 @@ function Home() {
   const d = t(lang);
   const newsImgs = [coop, train, proc];
   const [offset, setOffset] = useState(0);
+  const glanceTrackRef = useRef<HTMLDivElement>(null);
   const [animate, setAnimate] = useState(true);
-  const [per, setPer] = useState(4);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 640px)");
-    const upd = () => setPer(mq.matches ? 4 : 2);
-    upd(); mq.addEventListener("change", upd);
-    return () => mq.removeEventListener("change", upd);
-  }, []);
   const [group, setGroup] = useState(0);
   const [whatPaused, setWhatPaused] = useState(false);
 
@@ -148,7 +142,7 @@ function Home() {
       <section className="bg-cream py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
             <h2 className="section-heading text-3xl text-primary md:text-4xl">{lang === "en" ? <>A growing<br />continental network</> : d.glanceTitle}</h2>
-            <div className="section-content overflow-hidden">
+            <div ref={glanceTrackRef} className="section-content overflow-hidden">
               <div
                 className={`flex gap-3 [--per:2] sm:[--per:4] ${animate ? "transition-transform duration-[1400ms] ease-in-out" : ""}`}
                 style={{ transform: `translateX(calc(-${offset} * (100% + 0.75rem) / var(--per)))` }}
@@ -163,7 +157,7 @@ function Home() {
                   >
                     <h3 className="text-lg font-bold uppercase leading-[1.1] tracking-normal">{d.glanceNames[i % d.glance.length] ?? l}</h3>
                     <p className="mt-5 text-xs leading-snug opacity-70">{l}</p>
-                    <p className="mt-auto text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl text-forest-deep"><CountUp value={n ?? ""} active={i >= offset && i < offset + per} instant={!animate} /></p>
+                    <p className="mt-auto text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl text-forest-deep"><CountUp value={n ?? ""} root={glanceTrackRef} instant={!animate} /></p>
                   </div>
                 ))}
               </div>
@@ -284,11 +278,21 @@ function Home() {
   );
 }
 
-/** Counts a stat up from zero over the same 1400ms easing as the carousel slide, whenever its card comes into view. */
-function CountUp({ value, active, instant }: { value: string; active: boolean; instant: boolean }) {
+/** Counts a stat up from zero over the same 1400ms easing as the carousel slide. A card counts up as soon as any part of it is visible and only resets to zero once it is completely out of view. */
+function CountUp({ value, root, instant }: { value: string; root: RefObject<HTMLDivElement | null>; instant: boolean }) {
   const m = value.match(/^(\D*)(\d+)(.*)$/);
   const target = m ? Number(m[2]) : 0;
+  const ref = useRef<HTMLSpanElement>(null);
+  const [active, setActive] = useState(false);
   const [cur, setCur] = useState(target);
+  useEffect(() => {
+    const el = ref.current;
+    const rootEl = root.current;
+    if (!el || !rootEl) return;
+    const io = new IntersectionObserver(([e]) => setActive(!!e?.isIntersecting), { root: rootEl, threshold: 0 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [root]);
   useEffect(() => {
     if (!m) return;
     if (!active) { setCur(0); return; }
@@ -305,5 +309,5 @@ function CountUp({ value, active, instant }: { value: string; active: boolean; i
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, target]);
   if (!m) return <>{value}</>;
-  return <>{m[1]}{cur}{m[3]}</>;
+  return <span ref={ref}>{m[1]}{cur}{m[3]}</span>;
 }

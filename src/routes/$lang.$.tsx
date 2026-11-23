@@ -140,7 +140,7 @@ function ContentPage() {
         )}
         {p.cta && (
           <div className="relative isolate flex flex-col items-start gap-4 overflow-hidden bg-gradient-to-b from-forest-deep via-forest-deep to-night p-10 text-forest-foreground md:flex-row md:items-center md:justify-between md:bg-gradient-to-r">
-            <img src={ctaPhoto.url} alt="" loading="lazy" className="absolute inset-y-0 left-0 -z-10 h-full w-full object-cover object-center opacity-25 [mask-image:linear-gradient(to_right,black_0%,black_35%,transparent_75%)] md:w-3/4" />
+            <img src={ctaPhoto.url} alt="" loading="lazy" className="absolute inset-y-0 left-0 -z-10 h-full w-full object-cover object-[65%_28%] opacity-25 [mask-image:linear-gradient(to_right,black_0%,black_35%,transparent_75%)] md:w-3/4" />
             <p className="text-2xl font-bold">{d.motto}</p>
             <Link to="/$lang/$" params={{ lang, _splat: p.cta.slug }} className="wwu group relative inline-flex items-center rounded-full border border-sun">
               <span className="wwu-fill" aria-hidden="true" />

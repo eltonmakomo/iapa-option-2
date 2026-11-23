@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Users, HeartHandshake, HandHeart } from "lucide-react";
+import { ArrowUpRight, Users, HeartHandshake, HandHeart } from "lucide-react";
 import { t, isLang, type Lang } from "@/lib/i18n";
 import { PAGES, type Img } from "@/lib/pages";
 import { DynamicBlock, blockQuery } from "@/components/site/DynamicBlock";
@@ -11,6 +11,7 @@ import coop from "@/assets/cooperative.jpg";
 import processor from "@/assets/processor.jpg";
 import training from "@/assets/training-tree.jpg";
 import planting from "@/assets/hands-planting-lettuce.jpg.asset.json";
+import ctaPhoto from "@/assets/man-planting-seedlings.jpg.asset.json";
 
 const IMGS: Record<Img, string> = { hero, coop, processor, training, planting: planting.url };
 
@@ -138,10 +139,13 @@ function ContentPage() {
           <p className="rounded-2xl bg-secondary p-8 text-lg text-muted-foreground">{d.comingBody}</p>
         )}
         {p.cta && (
-          <div className="flex flex-col items-start gap-4 rounded-3xl bg-forest-deep p-10 text-forest-foreground md:flex-row md:items-center md:justify-between">
+          <div className="relative isolate flex flex-col items-start gap-4 overflow-hidden bg-gradient-to-b from-forest-deep via-forest-deep to-night p-10 text-forest-foreground md:flex-row md:items-center md:justify-between md:bg-gradient-to-r">
+            <img src={ctaPhoto.url} alt="" loading="lazy" className="absolute inset-y-0 left-0 -z-10 h-full w-full object-cover object-center opacity-25 [mask-image:linear-gradient(to_right,black_0%,black_35%,transparent_75%)] md:w-3/4" />
             <p className="text-2xl font-bold">{d.motto}</p>
-            <Link to="/$lang/$" params={{ lang, _splat: p.cta.slug }} className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-bold text-accent-foreground">
-              {p.cta.label[lang]} <ArrowRight className="h-4 w-4" />
+            <Link to="/$lang/$" params={{ lang, _splat: p.cta.slug }} className="wwu group relative inline-flex items-center rounded-full border border-sun">
+              <span className="wwu-fill" aria-hidden="true" />
+              <span className="relative z-10 px-7 py-3.5 font-bold text-forest-deep">{p.cta.label[lang]}</span>
+              <span className="wwu-arrow relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowUpRight className="h-[23px] w-[23px]" strokeWidth={2} /></span>
             </Link>
           </div>
         )}

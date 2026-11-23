@@ -111,9 +111,9 @@ function ContentPage() {
             {s.items && (
               <div className={`${s.p ? "mt-8" : "section-content"} grid gap-4 md:grid-cols-2 lg:grid-cols-3`}>
                 {s.items.map(([h, b, keys], i) => (
-                  <div key={h.en} className={s.icons ? "rounded-2xl bg-card p-8 shadow-sm" : "rounded-2xl border border-border bg-card p-6"}>
+                  <div key={h.en} className={s.icons ? "group rounded-2xl bg-card p-8 shadow-sm transition-colors duration-300 hover:bg-night" : "rounded-2xl border border-border bg-card p-6"}>
                     {s.icons && (() => { const Icon = [Users, HeartHandshake, HandHeart][i % 3]!; return (
-                      <span className="icon-tile mb-20 flex h-12 w-12 items-center justify-center bg-night text-forest-foreground"><Icon className="h-5 w-5" /></span>
+                      <span className="icon-tile mb-20 flex h-12 w-12 items-center justify-center bg-night text-forest-foreground transition-colors duration-300 group-hover:bg-forest-foreground group-hover:text-night"><Icon className="h-5 w-5" /></span>
                     ); })()}
                     {keys && keys.length > 0 && (
                       <div className="mb-5 flex flex-wrap items-center gap-x-5 gap-y-3">
@@ -123,8 +123,8 @@ function ContentPage() {
                         })}
                       </div>
                     )}
-                    <h3 className="text-lg text-foreground">{h[lang]}</h3>
-                    <p className="mt-2 text-muted-foreground">{b[lang]}</p>
+                    <h3 className={`text-lg text-foreground${s.icons ? " transition-colors duration-300 group-hover:text-forest-foreground" : ""}`}>{h[lang]}</h3>
+                    <p className={`mt-2 text-muted-foreground${s.icons ? " transition-colors duration-300 group-hover:text-forest-foreground/70" : ""}`}>{b[lang]}</p>
                   </div>
                 ))}
               </div>

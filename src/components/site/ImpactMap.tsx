@@ -23,7 +23,7 @@ export function ImpactMap({ lang }: { lang: Lang }) {
     <header className="mx-auto max-w-7xl px-4 pb-16 pt-12 text-center lg:px-6">
       <p className="eyebrow text-forest-deep">{fr ? "Carte d’impact" : 'Impact map'}</p>
       <h1 className="mt-4 text-4xl text-forest-deep md:text-5xl">{fr ? 'Notre présence en Afrique' : 'Our footprint across Africa'}</h1>
-      <p className="mx-auto mt-8 max-w-2xl text-muted-foreground">{fr ? 'Un réseau de praticiens certifiés, relié par cinq régions africaines.' : 'A network of certified practitioners, connected across five African regions.'}</p>
+      <p className="mx-auto mt-8 max-w-2xl text-lg font-light opacity-95">{fr ? 'Un réseau de praticiens certifiés, relié par cinq régions africaines.' : 'A network of certified practitioners, connected across five African regions.'}</p>
       <div className="section-content mx-auto grid max-w-4xl grid-cols-3 gap-4">
         {[[IMPACT_TOTALS.countries, fr ? 'Pays dans le réseau' : 'Countries in the network'], [IMPACT_TOTALS.regions, fr ? 'Régions' : 'Regions'], [IMPACT_TOTALS.masterTrainers, fr ? 'Master Trainers' : 'Master Trainers']].map(([value, label]) => <div key={label}>
           <p className="text-4xl font-bold leading-none md:text-5xl">{value}</p><span className="mx-auto my-4 block h-px w-6 bg-clay" /><p className="text-xs text-muted-foreground md:text-sm">{label}</p>

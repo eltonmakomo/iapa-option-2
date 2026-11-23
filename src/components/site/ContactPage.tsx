@@ -110,7 +110,7 @@ export function ContactPage({ lang }: { lang: Lang }) {
           <h1 className="mt-4 text-4xl text-forest-deep md:text-5xl">
             {l("Contact us", "Contactez-nous")}
           </h1>
-          <p className="mt-8 max-w-3xl text-base md:text-lg">
+          <p className="mt-8 max-w-2xl text-lg font-light opacity-95">
             {l(
               "Whether you're a partner looking for agribusiness expertise, a practitioner interested in joining, or simply want to learn more about IAPA, we'd love to hear from you.",
               "Que vous soyez un partenaire à la recherche d’expertise en agribusiness, un praticien souhaitant nous rejoindre ou simplement curieux d’en savoir plus sur l’AIPA, nous serions ravis d’échanger avec vous.",

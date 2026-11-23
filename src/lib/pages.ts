@@ -32,7 +32,7 @@ export type Page = {
   intro: L;
   img: Img;
   sections: Section[];
-  stats?: [string, L][];
+  stats?: [string, L, L?][];
   /** Render the stats as the homepage impact cards (cut corner, leaf fill). */
   statsCards?: boolean;
   cta?: { label: L; slug: string };
@@ -370,12 +370,54 @@ export const PAGES: Record<string, Page> = {
       "Où nous en sommes aujourd'hui, et où nous voulons être en 2030.",
     ),
     stats: [
-      ["20+", l("Countries today", "Pays aujourd'hui")],
-      ["75+", l("Master Trainers", "Master Trainers")],
-      ["63", l("Founding members", "Membres fondateurs")],
-      ["40", l("Countries by 2030", "Pays d'ici 2030")],
-      ["860", l("New trainers by 2030", "Nouveaux formateurs d'ici 2030")],
-      ["1M+", l("Farmers trained by 2030", "Agriculteurs formés d'ici 2030")],
+      [
+        "20+",
+        l("Countries today", "Pays aujourd'hui"),
+        l(
+          "Members active across all five regions of the continent.",
+          "Des membres actifs dans les cinq régions du continent.",
+        ),
+      ],
+      [
+        "75+",
+        l("Master Trainers", "Master Trainers"),
+        l(
+          "Certified experts training agribusiness practitioners.",
+          "Des experts certifiés qui forment les praticiens de l'agribusiness.",
+        ),
+      ],
+      [
+        "63",
+        l("Founding members", "Membres fondateurs"),
+        l(
+          "Organisations that launched IAPA in 2023.",
+          "Les organisations qui ont lancé l'AIPA en 2023.",
+        ),
+      ],
+      [
+        "40",
+        l("Countries by 2030", "Pays d'ici 2030"),
+        l(
+          "Doubling our footprint across Africa.",
+          "Une présence qui double à l'échelle africaine.",
+        ),
+      ],
+      [
+        "860",
+        l("New trainers by 2030", "Nouveaux formateurs d'ici 2030"),
+        l(
+          "Growing the next generation of Master Trainers.",
+          "Former la prochaine génération de Master Trainers.",
+        ),
+      ],
+      [
+        "1M+",
+        l("Farmers trained by 2030", "Agriculteurs formés d'ici 2030"),
+        l(
+          "Practical skills reaching farms at scale.",
+          "Des compétences pratiques qui atteignent les fermes à grande échelle.",
+        ),
+      ],
     ],
     statsCards: true,
     sections: [],

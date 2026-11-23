@@ -103,7 +103,7 @@ function ContentPage() {
           <div className="mx-auto max-w-7xl px-4 lg:px-6">
             {p.statsCards ? (
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {p.stats.map(([n, lbl]) => (
+                {p.stats.map(([n, lbl, sub]) => (
                   <div
                     key={n + lbl.en}
                     className="stat-notch flex min-h-[300px] flex-col bg-leaf-1 p-5 text-night md:min-h-[370px]"
@@ -111,6 +111,7 @@ function ContentPage() {
                     <h3 className="text-lg font-bold uppercase leading-[1.1] tracking-normal">
                       {lbl[lang]}
                     </h3>
+                    {sub && <p className="mt-3 text-sm leading-relaxed opacity-80">{sub[lang]}</p>}
                     <p className="mt-auto text-6xl font-medium tracking-tight text-forest-deep md:text-7xl lg:text-8xl">
                       <CountUp value={n} />
                     </p>

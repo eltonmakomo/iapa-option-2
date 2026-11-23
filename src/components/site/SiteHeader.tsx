@@ -1,7 +1,7 @@
 import { Link, useParams, useLocation } from "@tanstack/react-router";
 import { ChevronDown, Menu, X, ArrowUpRight, Plus, Globe, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import logoFull from "@/assets/iapa-logo.jpg.asset.json";
+import logoFull from "@/assets/iapa-logo-fullcolour.png.asset.json";
 import trainingImg from "@/assets/training-tree.jpg";
 import { NAV } from "@/lib/nav";
 import { t, type Lang } from "@/lib/i18n";
@@ -80,7 +80,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
             alt="IAPA — International Agribusiness Practitioners Association"
             width={1270}
             height={354}
-            className={`w-auto mix-blend-multiply transition-all ${compact ? "h-9" : "h-11"}`}
+            className={`w-auto transition-all ${compact ? "h-9" : "h-11"}`}
           />
         </Link>
 

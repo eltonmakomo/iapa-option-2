@@ -43,7 +43,11 @@ export const getContactInfo = createServerFn({ method: "GET" }).handler(async ()
     },
   });
   const [settings, contacts] = await Promise.all([
-    sb.from("site_settings").select("*").eq("id", 1).single(),
+    (await import("@/integrations/supabase/client.server")).supabaseAdmin
+      .from("site_settings")
+      .select("secretariat_email, hq_address, contact_phones, whatsapp, office_hours, hq_coordinates, linkedin_url, facebook_url, x_url, youtube_url, show_placeholders, id")
+      .eq("id", 1)
+      .single(),
     sb.from("regional_contacts").select("*"),
   ]);
   if (settings.error || contacts.error) throw new Error("Contact details are unavailable");

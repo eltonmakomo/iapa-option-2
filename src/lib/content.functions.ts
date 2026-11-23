@@ -25,7 +25,7 @@ function publicClient() {
 const DEFAULT_SETTINGS: Settings = { show_placeholders: true, linkedin_url: "#", facebook_url: "#", x_url: "#", youtube_url: "#" };
 
 export const getSiteSettings = createServerFn({ method: "GET" }).handler(async (): Promise<Settings> => {
-  const { data } = await publicClient().from("site_settings").select("show_placeholders, linkedin_url, facebook_url, x_url, youtube_url").eq("id", 1).maybeSingle();
+  const { data } = await (await import("@/integrations/supabase/client.server")).supabaseAdmin.from("site_settings").select("show_placeholders, linkedin_url, facebook_url, x_url, youtube_url").eq("id", 1).maybeSingle();
   return data ?? DEFAULT_SETTINGS;
 });
 
@@ -36,7 +36,8 @@ export const getContent = createServerFn({ method: "GET" })
   })
   .handler(async ({ data }): Promise<Row[]> => {
     const sb = publicClient();
-    const { data: s } = await sb.from("site_settings").select("show_placeholders").eq("id", 1).maybeSingle();
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: s } = await supabaseAdmin.from("site_settings").select("show_placeholders").eq("id", 1).maybeSingle();
     let q = sb.from(data.table).select("*").order("sort");
     if (data.filter) q = q.eq(data.filter[0], data.filter[1]);
     if (s && !s.show_placeholders) q = q.eq("is_placeholder", false);

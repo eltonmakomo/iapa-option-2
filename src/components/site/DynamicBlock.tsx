@@ -49,20 +49,18 @@ export function DynamicBlock({ block, lang }: { block: Block; lang: Lang }) {
 
 function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }) {
   if (kind === "team") return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
       {rows.map((r) => (
-        <div key={r.id} className="rounded-2xl border border-border bg-card p-6">
-          <div className="flex items-center gap-4">
-            <PlaceholderImage round className="h-16 w-16 shrink-0" />
-            <div>
-              <h3 className="text-lg text-foreground"><Tagged text={s(r, "name")} /></h3>
-              <p className="text-sm font-semibold text-primary">{loc(r, "role", lang)}</p>
-              <p className="text-xs text-muted-foreground"><Tagged text={s(r, "country")} /></p>
-            </div>
+        <article key={r.id} className="min-w-0">
+          <PlaceholderImage caption={lang === "fr" ? "[Portrait à venir]" : "[Portrait to come]"} className="aspect-[3/2] w-full" />
+          <div className="mt-2">
+            <h3 className="text-sm font-bold leading-snug tracking-normal text-ink"><Tagged text={s(r, "name")} /></h3>
+            <p className="mt-1 text-xs leading-relaxed text-ink">{loc(r, "role", lang)}</p>
+            <p className="mt-1 text-xs text-muted-foreground"><Tagged text={s(r, "country")} /></p>
           </div>
-          <p className="mt-4 text-sm text-muted-foreground"><Tagged text={loc(r, "bio", lang)} /></p>
-          <a href={s(r, "linkedin")} aria-label="LinkedIn" className="mt-4 inline-flex text-ink/70 hover:text-primary"><Linkedin className="h-4 w-4" /></a>
-        </div>
+          <p className="mt-3 text-sm text-muted-foreground"><Tagged text={loc(r, "bio", lang)} /></p>
+          <a href={s(r, "linkedin")} aria-label="LinkedIn" className="mt-3 inline-flex text-ink/70 hover:text-primary"><Linkedin className="h-4 w-4" /></a>
+        </article>
       ))}
     </div>
   );

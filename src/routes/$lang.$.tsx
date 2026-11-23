@@ -101,16 +101,34 @@ function ContentPage() {
       <div className="space-y-16 py-16">
         {p.stats && (
           <div className="mx-auto max-w-7xl px-4 lg:px-6">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {p.stats.map(([n, lbl]) => (
-                <div key={n + lbl.en} className="rounded-2xl bg-card p-8 shadow-sm">
-                  <p className="text-5xl font-extrabold text-primary">
-                    <CountUp value={n} />
-                  </p>
-                  <p className="mt-2 font-semibold text-muted-foreground">{lbl[lang]}</p>
-                </div>
-              ))}
-            </div>
+            {p.statsCards ? (
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {p.stats.map(([n, lbl]) => (
+                  <div
+                    key={n + lbl.en}
+                    className="stat-notch flex min-h-[300px] flex-col bg-leaf-1 p-5 text-night md:min-h-[370px]"
+                  >
+                    <h3 className="text-lg font-bold uppercase leading-[1.1] tracking-normal">
+                      {lbl[lang]}
+                    </h3>
+                    <p className="mt-auto text-6xl font-medium tracking-tight text-forest-deep md:text-7xl lg:text-8xl">
+                      <CountUp value={n} />
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {p.stats.map(([n, lbl]) => (
+                  <div key={n + lbl.en} className="rounded-2xl bg-card p-8 shadow-sm">
+                    <p className="text-5xl font-extrabold text-primary">
+                      <CountUp value={n} />
+                    </p>
+                    <p className="mt-2 font-semibold text-muted-foreground">{lbl[lang]}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
         {p.sections.map((s) =>

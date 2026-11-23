@@ -33,6 +33,8 @@ export type Page = {
   img: Img;
   sections: Section[];
   stats?: [string, L][];
+  /** Render the stats as the homepage impact cards (cut corner, leaf fill). */
+  statsCards?: boolean;
   cta?: { label: L; slug: string };
   blocks?: Block[];
   draft?: boolean;
@@ -375,6 +377,7 @@ export const PAGES: Record<string, Page> = {
       ["860", l("New trainers by 2030", "Nouveaux formateurs d'ici 2030")],
       ["1M+", l("Farmers trained by 2030", "Agriculteurs formés d'ici 2030")],
     ],
+    statsCards: true,
     sections: [],
   },
   "our-work/stories": {

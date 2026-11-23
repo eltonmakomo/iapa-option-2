@@ -2,8 +2,10 @@ import type { Lang } from "./i18n";
 type L = Record<Lang, string>;
 const l = (en: string, fr: string): L => ({ en, fr });
 export type Img = "hero" | "coop" | "processor" | "training";
-export type Section = { h: L; p?: L; items?: [L, L, string[]?][] };
-export type Page = { eyebrow: L; title: L; intro: L; img: Img; sections: Section[]; stats?: [string, L][]; cta?: { label: L; slug: string } };
+export type Section = { h: L; p?: L; items?: [L, L, string[]?][]; list?: L[]; tags?: string[]; steps?: [L, L][]; rows?: [L, string][]; note?: L };
+export type BlockKind = "team" | "testimonials" | "resources" | "events" | "news" | "press" | "vacancies" | "scholarships" | "faqs";
+export type Block = { kind: BlockKind; h?: L; filter?: [string, string]; empty?: L };
+export type Page = { eyebrow: L; title: L; intro: L; img: Img; sections: Section[]; stats?: [string, L][]; cta?: { label: L; slug: string }; blocks?: Block[]; draft?: boolean };
 
 const join = { label: l("Become a member", "Devenir membre"), slug: "join" };
 const contact = { label: l("Work with us", "Travailler avec nous"), slug: "work-with-us" };
@@ -148,3 +150,187 @@ PAGES["media/events"] = news(l("Events", "Événements"), l("Upcoming workshops,
 PAGES["media/press"] = news(l("Press releases", "Communiqués de presse"), l("Official IAPA announcements will be published here.", "Les annonces officielles de l'AIPA seront publiées ici."));
 PAGES["media/newsletter"] = news(l("IAPA Pulse archive", "Archives d'IAPA Pulse"), l("Past issues of our newsletter will be available here. Subscribe in the footer to receive the next one.", "Les anciens numéros de notre lettre seront disponibles ici. Abonnez-vous en bas de page pour recevoir le prochain."));
 PAGES["media/documents"] = news(l("Key documents", "Documents clés"), l("Our Strategic Plan 2026–2030, brand guidelines and flyer will be downloadable here.", "Notre Plan stratégique 2026–2030, la charte graphique et la plaquette seront téléchargeables ici."));
+
+/* ───────────── Placeholder content for client review ───────────── */
+const R = " [Client to review]";
+const FR = " [FR à valider]";
+/** Descriptive placeholder copy: EN gets [Client to review], FR gets both tags. */
+const r = (en: string, fr: string): L => ({ en: en + R, fr: fr + R + FR });
+/** Translated label/heading: FR flagged for validation. */
+const f = (en: string, fr: string): L => ({ en, fr: fr + FR });
+const pulseEmpty = (en: string, fr: string): L => ({ en, fr: fr + FR });
+const requestTraining = { label: l("Request this training", "Demander cette formation"), slug: "work-with-us" };
+
+type Approach = { code: string; name: L; what: L; who: L; learn: L[]; delivery?: L; chains?: string[] };
+const defaultDelivery = r("Short, participatory sessions led by certified trainers and supervised by Master Trainers.", "Des séances courtes et participatives animées par des formateurs certifiés et supervisées par des Master Trainers.");
+const approachPage = (a: Approach, img: Img): Page => ({
+  eyebrow: l("Training approach", "Approche de formation"), title: a.name, intro: a.what, img,
+  sections: [
+    { h: l("What it is", "De quoi s'agit-il"), p: a.what },
+    { h: l("Who it's for", "À qui s'adresse-t-elle"), p: a.who },
+    { h: l("What participants learn", "Ce que les participants apprennent"), list: a.learn },
+    { h: l("How it's delivered", "Comment elle est dispensée"), p: a.delivery ?? defaultDelivery },
+    ...(a.chains ? [{ h: l("Value chains", "Chaînes de valeur"), tags: a.chains }] : []),
+  ],
+  blocks: [{ kind: "news", h: l("Related stories", "Histoires liées"), filter: ["approach", a.code], empty: pulseEmpty("Related stories will appear here.", "Les histoires liées apparaîtront ici.") }],
+  cta: requestTraining,
+});
+
+Object.assign(PAGES, {
+  "who-we-are/leadership": {
+    eyebrow: l("Leadership", "Direction"), title: l("The people steering IAPA", "Les personnes qui pilotent l'AIPA"), img: "training",
+    intro: f("IAPA is led by volunteer professionals elected by its members — experienced Master Trainers and agribusiness practitioners from across Africa's five regions.", "L'AIPA est dirigée par des professionnels bénévoles élus par ses membres — des Master Trainers expérimentés et des praticiens de l'agribusiness des cinq régions d'Afrique."),
+    sections: [],
+    blocks: [
+      { kind: "team", h: l("Board of Directors", "Conseil d'administration"), filter: ["group_key", "board"] },
+      { kind: "team", h: l("Supervisory Board", "Conseil de surveillance"), filter: ["group_key", "supervisory"] },
+      { kind: "team", h: l("Executive Secretariat", "Secrétariat exécutif"), filter: ["group_key", "secretariat"] },
+    ],
+  },
+  training: {
+    eyebrow: l("Training", "Formation"), title: l("Certified, practical, adult-centred training", "Une formation certifiée, pratique et centrée sur l'adulte"), img: "training",
+    intro: l("Six proven approaches, delivered by certified Master Trainers in online, residential, blended and tailor-made formats.", "Six approches éprouvées, dispensées par des Master Trainers certifiés en ligne, en résidentiel, en hybride et sur mesure."),
+    sections: [
+      { h: l("Training formats", "Formats de formation"), items: [
+        [l("Online", "En ligne"), r("Self-paced and live virtual courses, designed to work on low bandwidth.", "Cours virtuels en autonomie ou en direct, conçus pour fonctionner avec une faible connexion.")],
+        [l("Residential", "Résidentiel"), r("Intensive in-person programmes for trainers and practitioners.", "Programmes intensifs en présentiel pour formateurs et praticiens.")],
+        [l("Blended", "Hybride"), r("Online learning combined with in-person practice and coaching.", "Apprentissage en ligne combiné à la pratique en présentiel et au coaching.")],
+        [l("Tailor-made", "Sur mesure"), r("Programmes adapted to a partner's value chain, target group and context.", "Programmes adaptés à la chaîne de valeur, au public cible et au contexte d'un partenaire.")],
+      ]},
+      { h: l("Certification pathway", "Parcours de certification"), steps: [
+        [l("Trainer", "Formateur"), f("Completes the Training of Trainers in an IAPA approach.", "Suit la formation de formateurs dans une approche de l'AIPA.")],
+        [l("Certified Trainer", "Formateur certifié"), f("Delivers supervised trainings and meets the quality standards.", "Dispense des formations supervisées et respecte les normes de qualité.")],
+        [l("Master Trainer", "Master Trainer"), f("Trains and coaches new trainers and adapts training materials.", "Forme et accompagne de nouveaux formateurs et adapte les supports de formation.")],
+        [l("Supervisor / Coordinator", "Superviseur / Coordinateur"), f("Oversees programmes and quality assurance.", "Supervise les programmes et l'assurance qualité.")],
+      ], note: l("[Client to confirm]", "[Client to confirm]") },
+    ], cta: contact },
+  "training/formats": {
+    eyebrow: l("Formats", "Formats"), title: l("Learning that fits your context", "Un apprentissage adapté à votre contexte"), img: "training",
+    intro: l("We deliver our training in the format that best suits participants and partners.", "Nous dispensons nos formations dans le format le plus adapté aux participants et partenaires."),
+    sections: [{ h: l("Available formats", "Formats disponibles"), items: [
+      [l("Online", "En ligne"), r("Self-paced and live virtual courses, designed to work on low bandwidth.", "Cours virtuels en autonomie ou en direct, conçus pour fonctionner avec une faible connexion.")],
+      [l("Residential", "Résidentiel"), r("Intensive in-person programmes for trainers and practitioners.", "Programmes intensifs en présentiel pour formateurs et praticiens.")],
+      [l("Blended", "Hybride"), r("Online learning combined with in-person practice and coaching.", "Apprentissage en ligne combiné à la pratique en présentiel et au coaching.")],
+      [l("Tailor-made", "Sur mesure"), r("Programmes adapted to a partner's value chain, target group and context.", "Programmes adaptés à la chaîne de valeur, au public cible et au contexte d'un partenaire.")],
+    ]}], cta: contact },
+  "training/fbs": approachPage({ code: "FBS", name: l("Farmer Business School", "École d'entrepreneuriat agricole"),
+    what: r("A practical, adult-learning training that helps smallholder farmers see their farm as a business: planning production, understanding costs and profits, and making informed investment decisions.", "Une formation pratique, fondée sur l'apprentissage des adultes, qui aide les petits producteurs à considérer leur exploitation comme une entreprise : planifier la production, comprendre les coûts et les bénéfices, et prendre des décisions d'investissement éclairées."),
+    who: r("Smallholder farmers and farmer groups, plus the extension staff and trainers who support them.", "Les petits producteurs et groupements de producteurs, ainsi que les agents de vulgarisation et formateurs qui les accompagnent."),
+    learn: [f("Farm planning and record keeping", "Planification de l'exploitation et tenue des registres"), f("Calculating production costs and profits", "Calcul des coûts de production et des bénéfices"), f("Comparing farm enterprises", "Comparaison des activités agricoles"), f("Household and farm financial planning", "Planification financière du ménage et de l'exploitation"), f("Working together in producer groups", "Travailler ensemble en groupements de producteurs"), f("Accessing finance and markets", "Accès au financement et aux marchés")],
+    delivery: r("Short, participatory sessions in the community, led by certified trainers and supervised by Master Trainers.", "Des séances courtes et participatives au sein de la communauté, animées par des formateurs certifiés et supervisées par des Master Trainers."),
+    chains: ["Cocoa", "Coffee", "Maize", "Rice", "Dairy"] }, "hero"),
+  "training/cbs": approachPage({ code: "CBS", name: l("Cooperative Business School", "École d'entrepreneuriat coopératif"),
+    what: r("A training that strengthens cooperatives and producer organisations as businesses, so they serve members better and trade more profitably.", "Une formation qui renforce les coopératives et organisations de producteurs en tant qu'entreprises, afin qu'elles servent mieux leurs membres et commercent de façon plus rentable."),
+    who: r("Cooperative leaders, managers and members, and farmer organisations.", "Les dirigeants, gestionnaires et membres de coopératives, ainsi que les organisations paysannes."),
+    learn: [f("Cooperative governance and leadership", "Gouvernance et leadership coopératifs"), f("Business planning for cooperatives", "Plan d'affaires pour les coopératives"), f("Financial management and record keeping", "Gestion financière et tenue des registres"), f("Collective marketing", "Commercialisation collective"), f("Member services and loyalty", "Services aux membres et fidélisation")],
+    chains: ["Onion", "Cashew", "Soybean", "Rice-fish", "Peanut"] }, "coop"),
+  "training/pbs": approachPage({ code: "PBS", name: l("Processor Business School", "École d'entrepreneuriat des transformateurs"),
+    what: r("A training for small and medium agro-processors that builds the business skills they need to grow, improve quality and reach new markets.", "Une formation destinée aux petits et moyens transformateurs agroalimentaires, qui développe les compétences entrepreneuriales nécessaires pour croître, améliorer la qualité et atteindre de nouveaux marchés."),
+    who: r("Small and medium processors, women's processing groups and agro-processing entrepreneurs.", "Les petits et moyens transformateurs, les groupements de transformatrices et les entrepreneurs de l'agro-transformation."),
+    learn: [f("Costing and pricing processed products", "Calcul des coûts et fixation des prix des produits transformés"), f("Quality and hygiene standards", "Normes de qualité et d'hygiène"), f("Marketing and packaging", "Marketing et emballage"), f("Business planning and access to finance", "Plan d'affaires et accès au financement"), f("Managing suppliers", "Gestion des fournisseurs")] }, "processor"),
+  "training/abs": approachPage({ code: "ABS", name: l("Aquaculture Business School", "École d'entrepreneuriat aquacole"),
+    what: r("A training that helps fish farmers run profitable, sustainable aquaculture businesses.", "Une formation qui aide les pisciculteurs à gérer des entreprises aquacoles rentables et durables."),
+    who: r("Fish farmers, aquaculture groups and hatchery operators.", "Les pisciculteurs, les groupements aquacoles et les exploitants d'écloseries."),
+    learn: [f("Planning a fish-farming business", "Planifier une entreprise piscicole"), f("Feed and production costs", "Coûts d'alimentation et de production"), f("Profitability and record keeping", "Rentabilité et tenue des registres"), f("Marketing fish products", "Commercialisation des produits halieutiques"), f("Sustainable practices", "Pratiques durables")] }, "processor"),
+  "training/icf": approachPage({ code: "CF", name: l("Inclusive Contract Farming", "Agriculture contractuelle inclusive"),
+    what: r("An approach that builds fair, lasting business relationships between farmers and buyers, so both sides benefit from reliable supply and secure markets.", "Une approche qui établit des relations commerciales équitables et durables entre producteurs et acheteurs, afin que chacun bénéficie d'un approvisionnement fiable et de débouchés sûrs."),
+    who: r("Producer organisations, agribusiness companies, off-takers and processors.", "Les organisations de producteurs, les entreprises agroalimentaires, les acheteurs et les transformateurs."),
+    learn: [f("Designing fair contracts", "Concevoir des contrats équitables"), f("Building trust between farmers and buyers", "Instaurer la confiance entre producteurs et acheteurs"), f("Pricing and quality agreements", "Accords sur les prix et la qualité"), f("Managing risk", "Gestion des risques"), f("Including women and youth in supply chains", "Inclure les femmes et les jeunes dans les chaînes d'approvisionnement")] }, "coop"),
+  "training/gap": approachPage({ code: "GAP", name: l("Good Agricultural Practices", "Bonnes pratiques agricoles"),
+    what: r("Training in proven farming practices that raise yields and quality while protecting soils, water and the climate, including climate-smart practices.", "Une formation aux pratiques agricoles éprouvées qui augmentent les rendements et la qualité tout en protégeant les sols, l'eau et le climat, y compris les pratiques climato-intelligentes."),
+    who: r("Farmers, farmer groups and extension staff.", "Les agriculteurs, les groupements de producteurs et les agents de vulgarisation."),
+    learn: [f("Improved crop and soil management", "Gestion améliorée des cultures et des sols"), f("Climate-smart techniques", "Techniques climato-intelligentes"), f("Safe input use", "Utilisation sûre des intrants"), f("Post-harvest handling", "Gestion post-récolte"), f("Meeting market quality standards", "Respect des normes de qualité du marché")] }, "hero"),
+  join: {
+    eyebrow: l("Membership", "Adhésion"), title: l("Join Africa's agribusiness practitioners", "Rejoignez les praticiens de l'agribusiness africain"), img: "training",
+    intro: l("Membership is open to Master Trainers, trainers and value chain experts committed to inclusive agribusiness.", "L'adhésion est ouverte aux Master Trainers, formateurs et experts des chaînes de valeur engagés pour un agribusiness inclusif."),
+    sections: [
+      { h: l("Who can join", "Qui peut adhérer"), items: [
+        [l("Full Member", "Membre titulaire"), f("Certified Master Trainers, trainers and supervisors who have completed an IAPA/ABF Master Trainer Programme.", "Master Trainers, formateurs et superviseurs certifiés ayant suivi un programme Master Trainer AIPA/ABF.")],
+        [l("Associate Member", "Membre associé"), f("Agribusiness consultants and value chain experts who share IAPA's mission.", "Consultants en agribusiness et experts des chaînes de valeur qui partagent la mission de l'AIPA.")],
+        [l("Honorary Member", "Membre d'honneur"), f("People recognised by the General Assembly for outstanding contributions.", "Personnes reconnues par l'Assemblée générale pour leur contribution exceptionnelle.")],
+      ], note: l("[Client to confirm categories]", "[Client to confirm categories]") },
+      { h: l("How to join", "Comment adhérer"), steps: [
+        [l("Submit your application", "Soumettez votre candidature"), l("", "")],
+        [l("Review by the Secretariat", "Examen par le Secrétariat"), l("", "")],
+        [l("Pay your application and registration fees", "Réglez les frais de candidature et d'inscription"), l("", "")],
+        [l("Welcome and onboarding", "Accueil et intégration"), l("", "")],
+      ]},
+      { h: l("Fees", "Cotisations"), rows: [
+        [l("Application fee", "Frais de candidature"), "[Fee TBC]"],
+        [l("Registration fee", "Frais d'inscription"), "[Fee TBC]"],
+        [l("Annual subscription", "Cotisation annuelle"), "[Fee TBC]"],
+      ], note: f("Fees are confirmed by the General Assembly.", "Les cotisations sont confirmées par l'Assemblée générale.") },
+      { h: l("Member benefits", "Avantages des membres"), items: [
+        [l("Capacity building & certification", "Renforcement des capacités et certification"), l("Professional development and certification programmes.", "Développement professionnel et programmes de certification.")],
+        [l("Coaching & mentorship", "Coaching et mentorat"), l("Peer-to-peer learning with experienced Master Trainers.", "Apprentissage entre pairs avec des Master Trainers expérimentés.")],
+        [l("Visibility", "Visibilité"), l("Your profile showcased to partners and clients.", "Votre profil présenté aux partenaires et clients.")],
+        [l("Assignments", "Missions"), l("Access to consultancy and career opportunities across Africa.", "Accès à des missions de conseil et à des opportunités de carrière en Afrique.")],
+      ]},
+      { h: l("Members in demand", "Des membres sollicités"), p: f("Five IAPA Master Trainers from Nigeria, Ghana and Ethiopia were selected to coach the winners of an agribusiness competition run by the Agribusiness E-Academy.", "Cinq Master Trainers de l'AIPA venant du Nigeria, du Ghana et d'Éthiopie ont été sélectionnés pour accompagner les lauréats d'un concours agribusiness organisé par l'Agribusiness E-Academy.") },
+    ],
+    blocks: [{ kind: "faqs", h: l("Membership FAQs", "FAQ sur l'adhésion"), filter: ["category", "membership"] }],
+    cta: contact },
+  "our-work/testimonials": { eyebrow: l("Testimonials", "Témoignages"), title: l("What partners and members say", "Ce que disent partenaires et membres"), img: "training",
+    intro: l("Voices from partners, trainers and the people they train.", "Les voix des partenaires, des formateurs et des personnes qu'ils forment."), sections: [],
+    blocks: [{ kind: "testimonials", empty: pulseEmpty("Testimonials will be published here.", "Les témoignages seront publiés ici.") }] },
+  "our-work/stories": { eyebrow: l("Stories", "Histoires"), title: l("Change, told by the people who live it", "Le changement, raconté par ceux qui le vivent"), img: "coop",
+    intro: l("News and stories from across the IAPA network.", "Actualités et histoires du réseau de l'AIPA."), sections: [],
+    blocks: [{ kind: "news", filter: ["kind", "news"] }] },
+  "knowledge-hub": { eyebrow: l("Knowledge Hub", "Centre de savoirs"), title: l("Evidence, tools and learning", "Données, outils et apprentissages"), img: "processor",
+    intro: l("Publications, policy briefs, case studies, webinars and newsletters from practitioners across Africa.", "Publications, notes de politique, études de cas, webinaires et lettres d'information de praticiens à travers l'Afrique."), sections: [],
+    blocks: [{ kind: "resources", h: l("Library", "Bibliothèque"), empty: pulseEmpty("Resources will be published here.", "Les ressources seront publiées ici.") }] },
+  media: { eyebrow: l("Media", "Médias"), title: l("News, events and IAPA Pulse", "Actualités, événements et IAPA Pulse"), img: "coop",
+    intro: l("Follow what's happening across the IAPA network.", "Suivez l'actualité du réseau de l'AIPA."), sections: [],
+    blocks: [
+      { kind: "news", h: l("Latest news", "Dernières actualités"), filter: ["kind", "news"] },
+      { kind: "events", h: l("Upcoming events", "Événements à venir"), empty: pulseEmpty("No upcoming events right now. Subscribe to IAPA Pulse to hear first.", "Aucun événement à venir pour le moment. Abonnez-vous à IAPA Pulse pour être informé en premier.") },
+    ] },
+  "media/news": { eyebrow: l("News", "Actualités"), title: l("News and stories", "Actualités et histoires"), img: "coop",
+    intro: l("The latest from IAPA and its members, drawn from IAPA Pulse.", "Les dernières nouvelles de l'AIPA et de ses membres, tirées d'IAPA Pulse."), sections: [],
+    blocks: [{ kind: "news", filter: ["kind", "news"] }] },
+  "media/events": { eyebrow: l("Events", "Événements"), title: l("Events", "Événements"), img: "training",
+    intro: l("Assemblies, webinars and trainings across the IAPA network.", "Assemblées, webinaires et formations au sein du réseau de l'AIPA."), sections: [],
+    blocks: [{ kind: "events", empty: pulseEmpty("No upcoming events right now. Subscribe to IAPA Pulse to hear first.", "Aucun événement à venir pour le moment. Abonnez-vous à IAPA Pulse pour être informé en premier.") }] },
+  "media/press": { eyebrow: l("Press releases", "Communiqués de presse"), title: l("Press releases", "Communiqués de presse"), img: "processor",
+    intro: l("Official announcements from IAPA.", "Annonces officielles de l'AIPA."), sections: [],
+    blocks: [{ kind: "press", filter: ["kind", "press"], empty: pulseEmpty("No press releases yet.", "Aucun communiqué pour le moment.") }] },
+  "media/newsletter": { eyebrow: l("Newsletter archive", "Archives de la lettre"), title: l("IAPA Pulse", "IAPA Pulse"), img: "coop",
+    intro: l("The official newsletter of the International Agribusiness Practitioners Association.", "La lettre officielle de l'Association internationale des praticiens de l'agribusiness."), sections: [],
+    blocks: [{ kind: "resources", filter: ["type_en", "Newsletter"] }] },
+  "join/vacancies": { eyebrow: l("Vacancies", "Offres d'emploi"), title: l("Work with IAPA", "Travailler avec l'AIPA"), img: "processor",
+    intro: l("New roles and consultancy calls will be posted here.", "Les nouveaux postes et appels à consultance seront publiés ici."), sections: [],
+    blocks: [{ kind: "vacancies", empty: pulseEmpty("There are no open positions at the moment. Subscribe to IAPA Pulse to be notified of new opportunities.", "Aucun poste n'est ouvert pour le moment. Abonnez-vous à IAPA Pulse pour être informé des nouvelles opportunités.") }] },
+  "join/scholarships": { eyebrow: l("Scholarships", "Bourses"), title: l("Support to grow your skills", "Un soutien pour développer vos compétences"), img: "training",
+    intro: l("Scholarships for trainers, including women and young professionals.", "Des bourses pour les formateurs, notamment les femmes et les jeunes professionnels."), sections: [],
+    blocks: [{ kind: "scholarships", empty: pulseEmpty("Scholarship opportunities will be announced here. Subscribe to IAPA Pulse to stay informed.", "Les opportunités de bourses seront annoncées ici. Abonnez-vous à IAPA Pulse pour rester informé.") }] },
+  faq: { eyebrow: l("FAQs", "FAQ"), title: l("Frequently asked questions", "Questions fréquentes"), img: "training",
+    intro: l("Answers to the questions partners and practitioners ask us most.", "Les réponses aux questions que partenaires et praticiens nous posent le plus."), sections: [],
+    blocks: [
+      { kind: "faqs", h: l("About IAPA", "À propos de l'AIPA"), filter: ["category", "about"] },
+      { kind: "faqs", h: l("Services", "Services"), filter: ["category", "services"] },
+      { kind: "faqs", h: l("Membership", "Adhésion"), filter: ["category", "membership"] },
+    ] },
+  privacy: { draft: true, eyebrow: l("Privacy policy", "Politique de confidentialité"), title: l("Privacy policy", "Politique de confidentialité"), img: "processor",
+    intro: l("Last updated: [Date]", "Dernière mise à jour : [Date]"),
+    sections: [
+      { h: l("Data controller", "Responsable du traitement"), p: f("The International Agribusiness Practitioners Association (IAPA), Accra, Ghana, is responsible for the personal data collected through this website. Contact: secretariatexecutif.iapa@gmail.com.", "L'Association internationale des praticiens de l'agribusiness (AIPA), Accra, Ghana, est responsable des données personnelles collectées sur ce site. Contact : secretariatexecutif.iapa@gmail.com.") },
+      { h: l("Data we collect", "Données collectées"), list: [
+        f("Membership applications: name, contact details, country, professional background and certifications.", "Candidatures d'adhésion : nom, coordonnées, pays, parcours professionnel et certifications."),
+        f("Enquiries through \"Work with us\" and contact forms: name, organisation, email and your message.", "Demandes via « Travailler avec nous » et les formulaires de contact : nom, organisation, e-mail et message."),
+        f("Newsletter sign-up: your email address.", "Inscription à la lettre d'information : votre adresse e-mail."),
+      ]},
+      { h: l("Why we collect it", "Pourquoi nous les collectons"), p: f("We use this data only to process membership applications, respond to enquiries, send IAPA Pulse and manage our relationship with members and partners. We do not sell personal data.", "Nous utilisons ces données uniquement pour traiter les candidatures, répondre aux demandes, envoyer IAPA Pulse et gérer notre relation avec membres et partenaires. Nous ne vendons pas de données personnelles.") },
+      { h: l("How long we keep it", "Durée de conservation"), p: f("Membership data is kept for the duration of membership plus [X] years. Enquiries are kept for [X] months. Newsletter data is kept until you unsubscribe.", "Les données d'adhésion sont conservées pendant la durée de l'adhésion plus [X] ans. Les demandes sont conservées [X] mois. Les données de la lettre sont conservées jusqu'à votre désinscription.") },
+      { h: l("Cookies and analytics", "Cookies et mesure d'audience"), p: f("This website uses only the cookies needed for it to work and [analytics tool TBC] to understand how pages are used. [Client to confirm]", "Ce site utilise uniquement les cookies nécessaires à son fonctionnement et [outil d'analyse à confirmer] pour comprendre l'utilisation des pages. [Client to confirm]") },
+      { h: l("Your rights", "Vos droits"), p: f("You can ask to access, correct or delete your data, object to its use, or withdraw consent at any time by writing to secretariatexecutif.iapa@gmail.com.", "Vous pouvez demander l'accès, la rectification ou la suppression de vos données, vous opposer à leur utilisation ou retirer votre consentement à tout moment en écrivant à secretariatexecutif.iapa@gmail.com.") },
+    ] },
+  "legal-notice": { draft: true, eyebrow: l("Legal notice", "Mentions légales"), title: l("Legal notice", "Mentions légales"), img: "processor",
+    intro: l("Last updated: [Date]", "Dernière mise à jour : [Date]"),
+    sections: [
+      { h: l("Publisher", "Éditeur"), p: f("International Agribusiness Practitioners Association (IAPA), a non-profit association registered in Accra, Ghana. Registration number: [Number TBC]. Contact: secretariatexecutif.iapa@gmail.com.", "Association internationale des praticiens de l'agribusiness (AIPA), association à but non lucratif enregistrée à Accra, Ghana. Numéro d'enregistrement : [Numéro à confirmer]. Contact : secretariatexecutif.iapa@gmail.com.") },
+      { h: l("Publication director", "Directeur de la publication"), p: l("[Name], [Role]", "[Nom], [Fonction]") },
+      { h: l("Hosting", "Hébergement"), p: l("[Hosting provider TBC]", "[Hébergeur à confirmer]") },
+      { h: l("Intellectual property", "Propriété intellectuelle"), p: f("All content on this website, including text, logos and training approach names, belongs to IAPA or its partners unless stated otherwise. Reuse requires prior written permission.", "Tous les contenus de ce site, y compris les textes, logos et noms des approches de formation, appartiennent à l'AIPA ou à ses partenaires sauf mention contraire. Toute réutilisation nécessite une autorisation écrite préalable.") },
+      { h: l("Liability", "Responsabilité"), p: f("IAPA takes care to keep information accurate but cannot guarantee it is complete or up to date. Links to external sites are provided for convenience; IAPA is not responsible for their content.", "L'AIPA veille à l'exactitude des informations mais ne peut garantir leur exhaustivité ni leur actualité. Les liens vers des sites externes sont fournis à titre indicatif ; l'AIPA n'est pas responsable de leur contenu.") },
+    ] },
+} satisfies Record<string, Page>);

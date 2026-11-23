@@ -32,3 +32,7 @@ use the editor.
 Use shared section-heading and section-content classes for content-section titles and their first content block so spacing remains consistent across language and content routes.
 
 Render regional illustrations in the shared RegionCard using simplified public-domain Natural Earth boundary paths; accurate map crops stay scalable and theme-aware without a live map service.
+
+## Project rules
+- Editable content (team, news/press, events, resources, testimonials, vacancies, scholarships, FAQs, site settings) lives in Lovable Cloud tables with an `is_placeholder` flag; static page copy stays in src/lib/pages.ts and pages pull rows via `blocks`. Why: client replaces placeholders from /admin and a `show_placeholders` switch hides them at launch.
+- The first account created becomes admin (DB trigger); roles live in `user_roles`. Why: no other way for IAPA staff to bootstrap admin access.

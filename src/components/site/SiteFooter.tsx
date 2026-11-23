@@ -4,22 +4,31 @@ import logoWhite from "@/assets/iapa-logo-white.png.asset.json";
 import { NAV } from "@/lib/nav";
 import { CONTACT, t, type Lang } from "@/lib/i18n";
 import { NewsletterForm } from "./NewsletterForm";
+import { useQuery } from "@tanstack/react-query";
+import { getSiteSettings } from "@/lib/content.functions";
 
 const legalSlugs = ["brand-guidelines", "privacy", "legal-notice", "faq"];
 const colSlugs = ["who-we-are", "training", "join"];
 
 export function SiteFooter({ lang }: { lang: Lang }) {
   const d = t(lang);
+  const { data: st } = useQuery({ queryKey: ["site-settings"], queryFn: () => getSiteSettings() });
+  const socials = [
+    { I: Linkedin, n: "LinkedIn", u: st?.linkedin_url ?? "#" },
+    { I: Facebook, n: "Facebook", u: st?.facebook_url ?? "#" },
+    { I: Twitter, n: "X", u: st?.x_url ?? "#" },
+    { I: Youtube, n: "YouTube", u: st?.youtube_url ?? "#" },
+  ].filter((x) => st?.show_placeholders !== false || (x.u && x.u !== "#"));
   const cols = colSlugs.map((s) => NAV.find((g) => g.slug === s)!).filter(Boolean);
   return (
-    <footer className="bg-background px-3 pb-3 pt-10 md:px-6 md:pb-6">
-      <div className="mx-auto max-w-7xl rounded-3xl bg-ink px-4 pb-8 pt-4 text-cream md:px-8 md:pt-8">
+    <footer className="bg-night">
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-4 text-cream md:px-8 md:pt-8">
         <div className="grid gap-8 rounded-2xl bg-clay px-6 py-10 text-ink md:grid-cols-2 md:items-center md:px-10 md:py-14">
           <div>
             <h2 className="text-3xl md:text-4xl">{d.nlTitle}</h2>
             <p className="mt-4 max-w-md text-sm">{d.nlBody}</p>
           </div>
-          <div className="[&_button]:bg-ink [&_button]:text-cream [&_input]:border-transparent [&_input]:bg-cream/60">
+          <div className="[&_button]:bg-night [&_button]:text-cream [&_input]:border-transparent [&_input]:bg-cream/60">
             <NewsletterForm lang={lang} tone="dark" />
           </div>
         </div>
@@ -29,8 +38,8 @@ export function SiteFooter({ lang }: { lang: Lang }) {
             <img src={logoWhite.url} alt={lang === "fr" ? "AIPA" : "IAPA"} width={1920} height={543} loading="lazy" className="h-12 w-auto" />
             <p className="mt-5 max-w-sm text-sm text-cream/75">{d.footerTagline}</p>
             <div className="mt-5 flex gap-4">
-              {[Linkedin, Facebook, Twitter, Youtube].map((I, i) => (
-                <a key={i} href="#" aria-label={["LinkedIn", "Facebook", "X", "YouTube"][i]} className="text-cream/80 transition hover:text-clay">
+              {socials.map(({ I, n, u }) => (
+                <a key={n} href={u || "#"} aria-label={n} className="text-cream/80 transition hover:text-clay">
                   <I className="h-4 w-4" />
                 </a>
               ))}

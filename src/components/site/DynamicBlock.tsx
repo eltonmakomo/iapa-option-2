@@ -1,0 +1,146 @@
+import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { Calendar, FileText, Linkedin, MapPin } from "lucide-react";
+import { getContent, type ContentTable, type Row } from "@/lib/content.functions";
+import type { Block, BlockKind } from "@/lib/pages";
+import type { Lang } from "@/lib/i18n";
+import { PlaceholderImage } from "./PlaceholderImage";
+
+const TABLE: Record<BlockKind, ContentTable> = {
+  team: "team_members", testimonials: "testimonials", resources: "resources", events: "events",
+  news: "news_posts", press: "news_posts", vacancies: "vacancies", scholarships: "scholarships", faqs: "faqs",
+};
+
+export const blockQuery = (b: Block) => {
+  const table = TABLE[b.kind];
+  const filter = b.filter && b.kind === "news" && b.filter[0] === "approach" ? undefined : b.filter;
+  return queryOptions({
+    queryKey: ["content", table, filter ?? null],
+    queryFn: () => getContent({ data: filter ? { table, filter } : { table } }),
+  });
+};
+
+const s = (r: Row, k: string) => String(r[k] ?? "");
+const loc = (r: Row, k: string, lang: Lang) => s(r, `${k}_${lang}`);
+/** Bracketed placeholder text reads in italics. */
+const Tagged = ({ text }: { text: string }) => (
+  <>{text.split(/(\[[^\]]+\])/g).map((p, i) => (p.startsWith("[") ? <em key={i} className="text-muted-foreground">{p}</em> : p))}</>
+);
+
+export function DynamicBlock({ block, lang }: { block: Block; lang: Lang }) {
+  const { data } = useSuspenseQuery(blockQuery(block));
+  let rows = data;
+  if (block.kind === "news" && block.filter?.[0] === "approach") rows = rows.filter((r) => s(r, "kind") === "news" && s(r, "approach") === block.filter![1]);
+  if (block.kind === "news" && !block.filter) rows = rows.filter((r) => s(r, "kind") === "news");
+  if (rows.length === 0 && !block.empty && block.kind === "news" && block.filter?.[0] === "approach") return null;
+
+  return (
+    <section>
+      {block.h && <h2 className="section-heading text-3xl text-primary md:text-4xl">{block.h[lang]}</h2>}
+      <div className={block.h ? "section-content" : ""}>
+        {rows.length === 0 ? (
+          <p className="rounded-2xl bg-secondary p-8 text-lg text-muted-foreground">{block.empty?.[lang] ?? "—"}</p>
+        ) : (
+          <Rows kind={block.kind} rows={rows} lang={lang} />
+        )}
+      </div>
+    </section>
+  );
+}
+
+function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }) {
+  if (kind === "team") return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {rows.map((r) => (
+        <div key={r.id} className="rounded-2xl border border-border bg-card p-6">
+          <div className="flex items-center gap-4">
+            <PlaceholderImage round className="h-16 w-16 shrink-0" />
+            <div>
+              <h3 className="text-lg text-foreground"><Tagged text={s(r, "name")} /></h3>
+              <p className="text-sm font-semibold text-primary">{loc(r, "role", lang)}</p>
+              <p className="text-xs text-muted-foreground"><Tagged text={s(r, "country")} /></p>
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground"><Tagged text={loc(r, "bio", lang)} /></p>
+          <a href={s(r, "linkedin")} aria-label="LinkedIn" className="mt-4 inline-flex text-ink/70 hover:text-primary"><Linkedin className="h-4 w-4" /></a>
+        </div>
+      ))}
+    </div>
+  );
+  if (kind === "testimonials") return (
+    <div className="grid gap-4 md:grid-cols-3">
+      {rows.map((r) => (
+        <figure key={r.id} className="rounded-2xl bg-card p-6 shadow-sm">
+          <blockquote className="text-lg italic text-foreground">“{loc(r, "quote", lang)}”</blockquote>
+          <figcaption className="mt-6 flex items-center gap-3">
+            <PlaceholderImage round className="h-12 w-12 shrink-0" />
+            <span className="text-sm"><em className="font-semibold not-italic text-foreground"><Tagged text={s(r, "name")} /></em><br /><span className="text-muted-foreground"><Tagged text={loc(r, "role", lang)} /></span></span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+  if (kind === "resources") return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {rows.map((r) => {
+        const url = s(r, "url");
+        const body = (
+          <>
+            <PlaceholderImage caption={lang === "fr" ? "Couverture" : "Cover"} className="aspect-[4/3] w-full" />
+            <div className="p-5">
+              <p className="eyebrow text-clay-deep">{loc(r, "type", lang)}</p>
+              <h3 className="mt-2 text-lg text-foreground">{loc(r, "title", lang)}</h3>
+              <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-muted-foreground"><FileText className="h-3.5 w-3.5" />{url ? (lang === "fr" ? "Télécharger" : "Download") : (lang === "fr" ? "[Fichier à venir]" : "[File to come]")}</p>
+            </div>
+          </>
+        );
+        return url ? <a key={r.id} href={url} target="_blank" rel="noreferrer" className="overflow-hidden border border-border bg-card">{body}</a> : <div key={r.id} className="overflow-hidden border border-border bg-card">{body}</div>;
+      })}
+    </div>
+  );
+  if (kind === "events") return (
+    <div className="grid gap-4 md:grid-cols-2">
+      {rows.map((r) => (
+        <div key={r.id} className="rounded-2xl border border-border bg-card p-6">
+          <p className="eyebrow text-clay-deep">{s(r, "status") === "upcoming" ? (lang === "fr" ? "À venir" : "Upcoming") : s(r, "status")}</p>
+          <h3 className="mt-2 text-xl text-foreground">{loc(r, "title", lang)}</h3>
+          <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground"><Calendar className="h-4 w-4" /><Tagged text={s(r, "date_label")} /></p>
+          <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground"><MapPin className="h-4 w-4" /><Tagged text={s(r, "location")} /></p>
+        </div>
+      ))}
+    </div>
+  );
+  if (kind === "news" || kind === "press") return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {rows.map((r) => (
+        <article key={r.id} className="overflow-hidden bg-night text-cream">
+          <PlaceholderImage caption={s(r, "image_caption")} className="aspect-[16/10] w-full bg-savanna/30 text-cream/80" />
+          <div className="p-5">
+            <p className="eyebrow text-clay"><Tagged text={[s(r, "date_label"), s(r, "country"), s(r, "approach")].filter(Boolean).join(" · ")} /></p>
+            <h3 className="mt-2 text-lg leading-snug">{loc(r, "title", lang)}</h3>
+            <div className="mt-4 space-y-3 text-sm text-cream/70">{loc(r, "body", lang).split("\n\n").map((p, i) => <p key={i}>{p}</p>)}</div>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+  if (kind === "faqs") return (
+    <div className="divide-y divide-border rounded-2xl border border-border bg-card">
+      {rows.map((r) => (
+        <details key={r.id} className="group p-5">
+          <summary className="cursor-pointer list-none font-semibold text-foreground">{loc(r, "question", lang)}</summary>
+          <p className="mt-3 text-muted-foreground"><Tagged text={loc(r, "answer", lang)} /></p>
+        </details>
+      ))}
+    </div>
+  );
+  return (
+    <div className="grid gap-4 md:grid-cols-2">
+      {rows.map((r) => (
+        <div key={r.id} className="rounded-2xl border border-border bg-card p-6">
+          <h3 className="text-lg text-foreground">{loc(r, "title", lang)}</h3>
+          <p className="mt-2 text-muted-foreground">{loc(r, "body", lang)}</p>
+        </div>
+      ))}
+    </div>
+  );
+}

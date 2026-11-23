@@ -47,6 +47,7 @@
   --color-clay-deep: oklch(0.47 0.11 58);
   /* Neutral near-black for text on the region map cards. */
   --color-ink: #2e2e2e;
+  --color-night: #0d0d0d;
   --color-leaf-2: oklch(0.7787 0.1054 117.04);
   --color-leaf-3: oklch(0.7206 0.1299 119.08);
   --color-leaf-4: oklch(0.5517 0.1442 136.18);

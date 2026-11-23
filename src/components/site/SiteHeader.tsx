@@ -1,20 +1,20 @@
 import { Link, useParams, useLocation } from "@tanstack/react-router";
 import { ChevronDown, Menu, X, ArrowUpRight, Plus, Globe, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import logoWhite from "@/assets/iapa-logo-white.png.asset.json";
+import logoFull from "@/assets/iapa-logo.jpg.asset.json";
 import trainingImg from "@/assets/training-tree.jpg";
 import { NAV } from "@/lib/nav";
 import { t, type Lang } from "@/lib/i18n";
 import { ReadMoreLink } from "@/components/site/ReadMoreLink";
 import { Button } from "@/components/ui/button";
 
-function LangSwitch({ lang, dark }: { lang: Lang; dark?: boolean }) {
+function LangSwitch({ lang }: { lang: Lang }) {
   const params = useParams({ strict: false }) as { _splat?: string };
   const splat = params._splat;
   const isContact = /\/(en|fr)\/contact\/?$/.test(useLocation().pathname);
   const other: Lang = lang === "en" ? "fr" : "en";
   const label = other === "fr" ? "Français" : "English";
-  const cls = `flex items-center gap-1.5 text-[0.95rem] font-bold ${dark ? "text-foreground hover:text-primary" : "hover:text-sun"}`;
+  const cls = "flex items-center gap-1.5 text-[0.95rem] font-bold text-foreground hover:text-primary";
   const inner = (
     <>
       <Globe className="h-4 w-4" aria-hidden />
@@ -72,15 +72,15 @@ export function SiteHeader({ lang }: { lang: Lang }) {
         {d.skip}
       </a>
       <div
-        className={`mx-auto flex max-w-7xl items-center gap-4 rounded-full border border-forest-foreground/25 pl-4 pr-2 text-forest-foreground backdrop-blur-md transition-all lg:pl-6 ${compact ? "h-16 bg-forest-deep/90 shadow-lg" : "h-20 bg-forest-deep/55"}`}
+        className={`mx-auto flex max-w-7xl items-center gap-4 rounded-full border border-white/70 pl-4 pr-2 text-forest-deep shadow-lg backdrop-blur-xl transition-all lg:pl-6 ${compact ? "h-16 bg-white/90" : "h-20 bg-white/80"}`}
       >
         <Link to="/$lang" params={{ lang }} className="shrink-0" onClick={() => setOpen(null)}>
           <img
-            src={logoWhite.url}
+            src={logoFull.url}
             alt="IAPA — International Agribusiness Practitioners Association"
             width={1270}
             height={354}
-            className={`w-auto transition-all ${compact ? "h-9" : "h-11"}`}
+            className={`w-auto mix-blend-multiply transition-all ${compact ? "h-9" : "h-11"}`}
           />
         </Link>
 
@@ -92,7 +92,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                   type="button"
                   aria-expanded={open === i}
                   onClick={() => setOpen(open === i ? null : i)}
-                  className={`flex items-center gap-1 px-3 py-2 text-[0.95rem] font-medium transition-colors ${open === i ? "text-sun" : "hover:text-sun"}`}
+                  className={`flex items-center gap-1 px-3 py-2 text-[0.95rem] font-medium transition-colors ${open === i ? "text-primary" : "hover:text-primary"}`}
                 >
                   {g.label[lang]}
                   <Plus
@@ -106,7 +106,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
               <Button
                 asChild
                 variant="ghost"
-                className="px-3 text-[0.95rem] font-medium hover:bg-transparent hover:text-sun"
+                className="px-3 text-[0.95rem] font-medium hover:bg-transparent hover:text-primary"
               >
                 <Link to="/$lang/contact" params={{ lang }} onClick={() => setOpen(null)}>
                   {lang === "fr" ? "Contact" : "Contact"}
@@ -205,7 +205,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
           <div className="absolute inset-0 bg-foreground/50" onClick={() => setMobile(false)} />
           <div className="absolute right-0 top-0 flex h-full w-[88%] max-w-sm flex-col overflow-y-auto bg-card p-5 animate-in slide-in-from-right">
             <div className="flex items-center justify-between">
-              <LangSwitch lang={lang} dark />
+              <LangSwitch lang={lang} />
               <button
                 type="button"
                 aria-label={d.close}

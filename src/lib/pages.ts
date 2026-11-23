@@ -152,9 +152,9 @@ PAGES["media/newsletter"] = news(l("IAPA Pulse archive", "Archives d'IAPA Pulse"
 PAGES["media/documents"] = news(l("Key documents", "Documents clés"), l("Our Strategic Plan 2026–2030, brand guidelines and flyer will be downloadable here.", "Notre Plan stratégique 2026–2030, la charte graphique et la plaquette seront téléchargeables ici."));
 
 /* ───────────── Placeholder content for client review ───────────── */
-const R = " [Client to review]";
+const R = "";
 const FR = " [FR à valider]";
-/** Descriptive placeholder copy: EN gets [Client to review], FR gets both tags. */
+/** Descriptive placeholder copy: FR gets the [FR à valider] tag. */
 const r = (en: string, fr: string): L => ({ en: en + R, fr: fr + R + FR });
 /** Translated label/heading: FR flagged for validation. */
 const f = (en: string, fr: string): L => ({ en, fr: fr + FR });

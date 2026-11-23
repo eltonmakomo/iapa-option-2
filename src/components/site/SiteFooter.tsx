@@ -4,6 +4,7 @@ import logoWhite from "@/assets/iapa-logo-white.png.asset.json";
 import { NAV } from "@/lib/nav";
 import { CONTACT, t, type Lang } from "@/lib/i18n";
 import { NewsletterForm } from "./NewsletterForm";
+import { GlobeDots } from "./GlobeDots";
 import { useQuery } from "@tanstack/react-query";
 import { getSiteSettings } from "@/lib/content.functions";
 
@@ -23,13 +24,17 @@ export function SiteFooter({ lang }: { lang: Lang }) {
   return (
     <footer className="bg-night">
       <div className="mx-auto max-w-7xl px-4 pb-8 pt-4 text-cream md:px-8 md:pt-8">
-        <div className="grid gap-8 rounded-2xl bg-clay px-6 py-10 text-ink md:grid-cols-2 md:items-center md:px-10 md:py-14">
-          <div>
-            <h2 className="text-3xl md:text-4xl">{d.nlTitle}</h2>
-            <p className="mt-4 max-w-md text-sm">{d.nlBody}</p>
-          </div>
-          <div className="[&_button]:bg-night [&_button]:text-cream [&_input]:border-transparent [&_input]:bg-card">
-            <NewsletterForm lang={lang} tone="dark" />
+        <div className="relative overflow-hidden rounded-2xl border border-cream/10 bg-night px-6 py-10 text-cream md:px-10 md:py-14">
+          <div className="nl-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+          <GlobeDots className="pointer-events-none absolute -right-24 top-1/2 hidden h-[150%] w-auto -translate-y-1/2 md:block" />
+          <div className="relative grid gap-8 md:grid-cols-2 md:items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl">{d.nlTitle}</h2>
+              <p className="mt-4 max-w-md text-sm text-cream/80">{d.nlBody}</p>
+            </div>
+            <div className="[&_button]:bg-cream [&_button]:text-night [&_button]:hover:bg-cream/90 [&_input]:border-transparent [&_input]:bg-card">
+              <NewsletterForm lang={lang} tone="dark" />
+            </div>
           </div>
         </div>
 

@@ -253,6 +253,15 @@
 .ambition-scroll::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 0.15); border-radius: 9999px; }
 .ambition-scroll:hover::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 0.6); }
 
+/* Newsletter banner: faint Arid Orange glow over the near-black card. */
+@utility nl-glow {
+  background: radial-gradient(120% 150% at 6% 100%, color-mix(in srgb, var(--color-arid-orange) 26%, transparent), transparent 58%);
+}
+/* Dotted globe in the logo's rainforest green; Africa's real geography sits brighter on top. */
+.globe-sphere { fill: none; stroke: var(--color-rainforest); stroke-opacity: 0.4; stroke-width: 0.75; }
+.globe-dots { fill: none; stroke: var(--color-rainforest); stroke-opacity: 0.45; stroke-width: 1.5; stroke-linecap: round; }
+.globe-dots-land { fill: none; stroke: var(--color-rainforest); stroke-width: 1.6; stroke-linecap: round; }
+
 /* Public-domain Natural Earth dotted footprint; colours follow the site palette. */
 .impact-map-wrapper { width: 100% !important; height: auto !important; }
 .impact-map-content { width: 100% !important; }

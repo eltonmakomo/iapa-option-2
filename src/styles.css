@@ -47,7 +47,7 @@
   --color-clay-deep: oklch(0.47 0.11 58);
   /* Neutral near-black for text on the region map cards. */
   --color-ink: #2e2e2e;
-  --color-night: #0d0d0d;
+  --color-night: #1a1a1a;
   --color-leaf-2: oklch(0.7787 0.1054 117.04);
   --color-leaf-3: oklch(0.7206 0.1299 119.08);
   --color-leaf-4: oklch(0.5517 0.1442 136.18);
@@ -112,10 +112,10 @@
 }
 
 @utility photo-scrim {
-  background: linear-gradient(90deg, rgb(0 0 0 / 0.85) 0%, rgb(0 0 0 / 0.45) 50%, transparent 100%);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-night) 85%, transparent) 0%, color-mix(in srgb, var(--color-night) 45%, transparent) 50%, transparent 100%);
 }
 @utility photo-scrim-bottom {
-  background: linear-gradient(0deg, rgb(0 0 0 / 0.9) 0%, rgb(0 0 0 / 0.2) 60%, transparent 100%);
+  background: linear-gradient(0deg, color-mix(in srgb, var(--color-night) 90%, transparent) 0%, color-mix(in srgb, var(--color-night) 20%, transparent) 60%, transparent 100%);
 }
 
 @utility bg-sunrise { background-image: var(--gradient-sunrise); }

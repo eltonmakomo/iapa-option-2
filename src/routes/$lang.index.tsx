@@ -227,7 +227,7 @@ function Home() {
 
       <section className="relative isolate overflow-hidden py-16 text-forest-foreground">
         <img src={coop} alt="" loading="lazy" width={1280} height={960} className="absolute inset-0 -z-10 h-full w-full object-cover" />
-        <div className="absolute inset-0 -z-10 bg-black/85" />
+        <div className="absolute inset-0 -z-10 bg-night/85" />
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-sun">{d.ambitionEyebrow}</p>
           <h2 className="section-heading ambition-heading mt-3 text-3xl md:text-4xl">

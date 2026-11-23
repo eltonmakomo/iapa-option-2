@@ -31,10 +31,10 @@ export function GlobeDots({ className }: { className?: string }) {
       }
     }
     const landPts: [number, number][] = [];
-    for (const c of geography as { dots: [number, number][] }[]) {
+    for (const c of geography as { dots: number[][] }[]) {
       // The source dots are far denser than the globe scale; thin them so Africa reads as dots.
       for (let i = 0; i < c.dots.length; i += 3) {
-        const [px, py] = c.dots[i]!;
+        const [px = 0, py = 0] = c.dots[i] ?? [];
         const lon = LON_MIN + (px / 850) * (LON_MAX - LON_MIN);
         const lat = LAT_MAX + (py / 650) * (LAT_MIN - LAT_MAX);
         const [x, y, z] = project(lon, lat);

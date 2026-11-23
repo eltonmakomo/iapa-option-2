@@ -225,6 +225,7 @@ export type Database = {
           is_placeholder: boolean
           linkedin: string
           name: string
+          photo_url: string
           role_en: string
           role_fr: string
           sort: number
@@ -238,6 +239,7 @@ export type Database = {
           is_placeholder?: boolean
           linkedin?: string
           name?: string
+          photo_url?: string
           role_en: string
           role_fr: string
           sort?: number
@@ -251,6 +253,7 @@ export type Database = {
           is_placeholder?: boolean
           linkedin?: string
           name?: string
+          photo_url?: string
           role_en?: string
           role_fr?: string
           sort?: number

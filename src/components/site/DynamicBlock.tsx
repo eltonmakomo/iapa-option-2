@@ -52,7 +52,11 @@ function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }
     <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
       {rows.map((r) => (
         <article key={r.id} className="min-w-0">
-          <PlaceholderImage caption={lang === "fr" ? "[Portrait à venir]" : "[Portrait to come]"} className="aspect-[3/2] w-full" />
+          {s(r, "photo_url") ? (
+            <img src={s(r, "photo_url")} alt={s(r, "name")} loading="lazy" className="aspect-[3/2] w-full object-cover" />
+          ) : (
+            <PlaceholderImage caption={lang === "fr" ? "[Portrait à venir]" : "[Portrait to come]"} className="aspect-[3/2] w-full" />
+          )}
           <div className="mt-2">
             <h3 className="text-sm font-bold leading-snug tracking-normal text-ink"><Tagged text={s(r, "name")} /></h3>
             <p className="mt-1 text-xs leading-relaxed text-ink">{loc(r, "role", lang)}</p>

@@ -116,8 +116,10 @@ function ContentPage() {
         {p.sections.map((s) =>
           s.regions ? (
             <section key={s.h.en} className="bg-cream py-16">
-              <div className="px-4 lg:px-6">
-                <h2 className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</h2>
+              <div>
+                <div className="mx-auto max-w-7xl px-4 lg:px-6">
+                  <h2 className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</h2>
+                </div>
                 <ul className="section-content grid gap-px overflow-hidden border-y border-forest-deep/20 bg-forest-deep/12 sm:grid-cols-2 lg:grid-cols-3">
                   {d.regions.map(([r, c], i) => (
                     <li key={r} className="flex min-w-0">

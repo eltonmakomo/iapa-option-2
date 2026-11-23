@@ -107,7 +107,7 @@ function Home() {
               </span>
             ))}
           </h2>
-          <p className="inclusion-note mt-4 font-light leading-snug text-forest-deep">{d.inclusionNote}</p>
+          <p className="section-lede inclusion-note mt-4">{d.inclusionNote}</p>
           <div key={group} className="section-content what-move-in grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[...d.partnerItems.map((item) => [d.forPartners, item] as const), ...d.memberItems.map((item) => [d.forMembers, item] as const)].map(([tag, [h, b]], i) => [tag, h, b, i] as const).filter(([, , , i]) => Math.floor(i / 4) === group).map(([tag, h, b, i]) => {
               const Icon = whatIcons[i];
@@ -217,7 +217,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-forest-deep">{d.whereEyebrow}</p>
           <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.whereTitle}</h2>
-          <p className="mt-4 text-muted-foreground">{d.whereBody}</p>
+          <p className="section-lede mt-4">{d.whereBody}</p>
           <ul className="section-content grid gap-px overflow-hidden rounded-xl border border-forest-deep/20 bg-forest-deep/12 sm:grid-cols-2 lg:grid-cols-3">
               {d.regions.map(([r, c], i) => (
                 <li key={r} className="flex min-w-0">

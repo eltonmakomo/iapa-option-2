@@ -48,7 +48,7 @@
   /* Neutral near-black for text on the region map cards. */
   --color-ink: #2e2e2e;
   --color-night: #1a1a1a;
-  --what-shadow: 0 8px 8px -6px color-mix(in srgb, var(--color-night) 16%, transparent);
+  --what-shadow: 0 0 8px -2px color-mix(in srgb, var(--color-night) 16%, transparent);
   --color-leaf-2: oklch(0.7787 0.1054 117.04);
   --color-leaf-3: oklch(0.7206 0.1299 119.08);
   --color-leaf-4: oklch(0.5517 0.1442 136.18);

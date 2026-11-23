@@ -38,6 +38,7 @@
   --color-cream: var(--cream);
   --color-savanna: var(--savanna);
   --color-forest-deep: var(--forest-deep);
+  --color-mint: oklch(0.95 0.04 145);
   --color-leaf-1: oklch(0.8343 0.076 114.56);
   /* White → leaf-1 fade for the What we do cards (steps 2 and 3 of 4). */
   --color-leaf-fade-1: oklch(0.9448 0.0253 114.56);

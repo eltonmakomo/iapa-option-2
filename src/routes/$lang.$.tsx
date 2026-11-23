@@ -66,7 +66,17 @@ function ContentPage() {
             ))}
           </div>
         )}
-        {p.sections.map((s) => (
+        {p.sections.map((s) => s.feature && s.p ? (
+          <section key={s.h.en} className="grid gap-6 rounded-xl bg-mint p-8 md:grid-cols-[1fr_2fr] md:gap-12 md:p-12">
+            <p className="text-sm font-medium text-night">{s.h[lang]}</p>
+            <div>
+              {(() => { const t = s.p[lang]; const i = t.indexOf(",") + 1; return (
+                <p className="text-2xl font-bold leading-snug text-forest-deep md:text-3xl">{t.slice(0, i)}<span className="text-muted-foreground/70">{t.slice(i)}</span></p>
+              ); })()}
+              <img src={IMGS[s.feature]} alt="" loading="lazy" className="mt-8 aspect-[16/9] w-full rounded-lg object-cover" />
+            </div>
+          </section>
+        ) : (
           <section key={s.h.en}>
             <h2 className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</h2>
             {s.p && <p className="section-content max-w-3xl text-lg">{s.p[lang]}</p>}

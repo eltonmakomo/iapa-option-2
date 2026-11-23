@@ -106,13 +106,13 @@ function ContentPage() {
                 {p.stats.map(([n, lbl, sub]) => (
                   <div
                     key={n + lbl.en}
-                    className="stat-notch flex min-h-[300px] flex-col bg-leaf-1 p-5 text-night md:min-h-[370px]"
+                    className="stat-notch group flex min-h-[300px] flex-col bg-leaf-1 p-5 text-night transition-colors duration-300 hover:bg-night hover:text-cream md:min-h-[370px]"
                   >
                     <h3 className="text-lg font-bold uppercase leading-[1.1] tracking-normal">
                       {lbl[lang]}
                     </h3>
                     {sub && <p className="mt-3 text-sm leading-relaxed opacity-80">{sub[lang]}</p>}
-                    <p className="mt-auto text-6xl font-medium tracking-tight text-forest-deep md:text-7xl lg:text-8xl">
+                    <p className="mt-auto text-7xl font-medium tracking-tight text-forest-deep transition-colors duration-300 group-hover:text-cream md:text-8xl lg:text-9xl">
                       <CountUp value={n} />
                     </p>
                   </div>

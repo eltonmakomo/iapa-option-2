@@ -17,15 +17,30 @@ export function RegionCard({ lang, title, countries, index }: RegionCardProps) {
 
   return (
     <Link to="/$lang/$" params={{ lang, _splat: "who-we-are/where-we-work" }} className={cellBase}>
-      <svg viewBox="0 0 280 300" preserveAspectRatio="xMidYMid slice" className="region-map absolute inset-y-0 right-0 h-full w-[52%] sm:w-[58%]" fill="none" aria-hidden="true">
+      <svg
+        viewBox="0 0 280 300"
+        preserveAspectRatio="xMidYMid slice"
+        className="region-map absolute inset-y-0 right-0 h-full w-[52%] sm:w-[58%]"
+        fill="none"
+        aria-hidden="true"
+      >
         <defs>
-          <pattern id={patternId} width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+          <pattern
+            id={patternId}
+            width="7"
+            height="7"
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(30)"
+          >
             <path d="M0 0V7" className="region-hatch" />
           </pattern>
         </defs>
         {map.countries.map((country) => (
           <g key={country.id}>
-            <path d={country.path} className={country.active ? "region-country-active" : "region-country"} />
+            <path
+              d={country.path}
+              className={country.active ? "region-country-active" : "region-country"}
+            />
             {country.active && <path d={country.path} fill={`url(#${patternId})`} />}
           </g>
         ))}
@@ -36,11 +51,16 @@ export function RegionCard({ lang, title, countries, index }: RegionCardProps) {
           </g>
         ))}
       </svg>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-[72%] bg-gradient-to-r from-card via-card/92 to-transparent" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 w-[72%] bg-gradient-to-r from-card via-card/92 to-transparent"
+        aria-hidden="true"
+      />
       <div className="relative z-10 flex h-full flex-col p-5">
         <h3 className="max-w-[62%] text-lg leading-snug sm:max-w-[52%]">{title}</h3>
-        <p className="mt-2 max-w-[60%] text-sm leading-relaxed text-ink/70 sm:max-w-[50%]">{countries}</p>
-        <span className="mt-auto inline-flex items-center gap-1.5 self-start rounded-full border border-night/40 px-3 py-1 text-xs font-semibold text-ink transition-colors duration-300 group-hover:border-night/70">
+        <p className="mt-2 max-w-[60%] text-sm leading-relaxed text-ink/70 sm:max-w-[50%]">
+          {countries}
+        </p>
+        <span className="mt-auto inline-flex items-center gap-1.5 self-start rounded-full border border-night/40 px-3 py-1 text-xs font-semibold text-ink transition-colors duration-300 group-hover:border-night group-hover:bg-night group-hover:text-cream">
           <ArrowRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
           {t(lang).viewRegion}
         </span>
@@ -55,7 +75,13 @@ export function RegionMapTile({ lang, label }: { lang: Lang; label: string }) {
     <div className={cellBase}>
       <svg className="absolute inset-0 h-full w-full" fill="none" aria-hidden="true">
         <defs>
-          <pattern id={patternId} width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+          <pattern
+            id={patternId}
+            width="7"
+            height="7"
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(30)"
+          >
             <path d="M0 0V7" className="region-hatch" />
           </pattern>
         </defs>

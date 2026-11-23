@@ -39,6 +39,13 @@ function Home() {
   const [offset, setOffset] = useState(0);
   const [animate, setAnimate] = useState(true);
   const [group, setGroup] = useState(0);
+  const [whatPaused, setWhatPaused] = useState(false);
+
+  useEffect(() => {
+    if (whatPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setGroup((current) => (current + 1) % 2), 3500);
+    return () => clearInterval(id);
+  }, [whatPaused, group]);
 
   useEffect(() => {
     if (!animate) {
@@ -85,7 +92,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-card py-16">
+      <section className="overflow-hidden bg-card py-16" onMouseEnter={() => setWhatPaused(true)} onMouseLeave={() => setWhatPaused(false)} onFocusCapture={() => setWhatPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setWhatPaused(false); }}>
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-forest-deep">{d.whatEyebrow}</p>
           <h2 className={`section-heading mt-3 ${lang === "en" ? "what-heading" : "text-3xl md:text-4xl"}`}>
@@ -99,12 +106,13 @@ function Home() {
             ))}
           </h2>
           <p className="inclusion-note mt-4 font-light leading-snug text-forest-deep">{d.inclusionNote}</p>
-          <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div key={group} className="section-content what-move-in grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[...d.partnerItems.map((item) => [d.forPartners, item] as const), ...d.memberItems.map((item) => [d.forMembers, item] as const)].map(([tag, [h, b]], i) => [tag, h, b, i] as const).filter(([, , , i]) => Math.floor(i / 4) === group).map(([tag, h, b, i]) => {
-              const Icon = whatIcons[i]!;
-              const tone = whatTones[i % 4]!;
+              const Icon = whatIcons[i];
+              const tone = whatTones[i % 4];
+              if (!Icon || !tone) return null;
               return (
-                <div key={h} className="[filter:drop-shadow(0_14px_24px_rgb(33_54_24/0.16))_drop-shadow(0_2px_6px_rgb(33_54_24/0.12))] animate-in fade-in duration-500">
+                <div key={h} className="what-card-shadow">
                   <div className={`stat-notch relative flex h-full min-h-[300px] flex-col p-5 ${tone.card}`}>
                     <span className={`grid h-11 w-11 place-items-center rounded-xl ${tone.tile}`}><Icon className="h-5 w-5" /></span>
                     <div className="mt-[90px]">

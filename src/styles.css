@@ -48,6 +48,7 @@
   /* Neutral near-black for text on the region map cards. */
   --color-ink: #2e2e2e;
   --color-night: #1a1a1a;
+  --what-shadow: drop-shadow(0 12px 20px color-mix(in srgb, var(--color-night) 12%, transparent)) drop-shadow(0 2px 5px color-mix(in srgb, var(--color-night) 9%, transparent));
   --color-leaf-2: oklch(0.7787 0.1054 117.04);
   --color-leaf-3: oklch(0.7206 0.1299 119.08);
   --color-leaf-4: oklch(0.5517 0.1442 136.18);
@@ -128,6 +129,15 @@
 }
 
 /* Match the impact section's heading-to-content rhythm throughout the site. */
+.what-card-shadow { filter: var(--what-shadow); }
+.what-move-in { animation: what-move-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes what-move-in {
+  from { transform: translateX(48px); }
+  to { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .what-move-in { animation: none; }
+}
 .section-content { margin-top: 2.6667rem; }
 .section-heading { max-width: 28ch; text-wrap: balance; letter-spacing: 0; }
 .region-card { aspect-ratio: auto; }

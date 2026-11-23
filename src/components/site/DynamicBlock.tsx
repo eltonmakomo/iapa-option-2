@@ -119,7 +119,7 @@ function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }
             ) : (
               <PlaceholderImage caption={s(r, "image_caption")} className="aspect-[16/10] w-full bg-savanna/30 text-cream/80" />
             )}
-            <div className="absolute inset-x-0 top-0 bg-gradient-to-b from-night/85 via-night/50 to-transparent p-4 pb-10">
+            <div className="absolute inset-0 bg-gradient-to-b from-night/60 via-night/15 to-night/25 p-4">
               <p className="eyebrow text-clay"><Tagged text={[s(r, "date_label"), s(r, "country"), s(r, "approach")].filter(Boolean).join(" · ")} /></p>
             </div>
           </div>

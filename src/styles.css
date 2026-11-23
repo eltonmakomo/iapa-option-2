@@ -247,3 +247,15 @@
 .ambition-scroll::-webkit-scrollbar { width: 6px; }
 .ambition-scroll::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 0.15); border-radius: 9999px; }
 .ambition-scroll:hover::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 0.6); }
+
+/* Public-domain Natural Earth dotted footprint; colours follow the site palette. */
+.impact-map-wrapper { width: 100% !important; height: auto !important; }
+.impact-map-content { width: 100% !important; }
+.impact-dots, .impact-dots-active, .impact-dots-selected { fill: none; stroke: var(--border); stroke-width: 2.8; stroke-linecap: round; }
+.impact-dots-active { stroke: var(--forest); }
+.impact-dots-selected { stroke: var(--clay); }
+.impact-hit { fill: transparent; stroke: transparent; cursor: pointer; }
+.impact-hit:hover, .impact-hit:focus-visible { fill: color-mix(in srgb, var(--sun) 20%, transparent); stroke: var(--clay); stroke-width: 1.5; outline: none; }
+.impact-pin { cursor: pointer; }
+.impact-pin:hover, .impact-pin:focus-visible, .impact-pin-selected { filter: drop-shadow(0 2px 2px color-mix(in srgb, var(--color-night) 20%, transparent)); outline: none; }
+.impact-pin:focus-visible path, .impact-pin-selected path { stroke: var(--forest-deep); stroke-width: 3; }

@@ -4,6 +4,7 @@ import { t, isLang, type Lang } from "@/lib/i18n";
 import { PAGES, type Img } from "@/lib/pages";
 import { DynamicBlock, blockQuery } from "@/components/site/DynamicBlock";
 import { logoOf } from "@/lib/partner-logos";
+import { ImpactMap } from "@/components/site/ImpactMap";
 import hero from "@/assets/hero-farmer.jpg";
 import coop from "@/assets/cooperative.jpg";
 import processor from "@/assets/processor.jpg";
@@ -33,6 +34,7 @@ function ContentPage() {
   const lang = rawLang as Lang;
   const d = t(lang);
   const p = PAGES[_splat ?? ""];
+  if (_splat === "our-work/impact-map") return <ImpactMap lang={lang} />;
   if (!p) return (
     <section className="mx-auto max-w-2xl px-4 py-32 text-center">
       <h1 className="text-4xl text-primary">{d.comingTitle}</h1>

@@ -76,7 +76,7 @@ export const PAGES: Record<string, Page> = {
       [l("Events", "Événements"), l("Workshops, conferences and knowledge-sharing platforms.", "Ateliers, conférences et plateformes d'échange.")],
     ]}], cta: contact },
   "our-work/impact-map": { eyebrow: l("Impact map", "Carte d'impact"), title: l("Our footprint across Africa", "Notre présence en Afrique"), img: "hero",
-    intro: l("IAPA members are active in more than 20 countries across five regions. An interactive map of projects is being prepared.", "Les membres de l'AIPA sont actifs dans plus de 20 pays et cinq régions. Une carte interactive des projets est en préparation."),
+    intro: l("Explore IAPA’s member network across five African regions, with country locations from the supplied regional list.", "Découvrez le réseau de membres de l’AIPA dans cinq régions africaines, avec les pays de la liste régionale fournie."),
     stats: [["20+", l("Countries", "Pays")], ["5", l("Regions", "Régions")], ["75+", l("Master Trainers", "Master Trainers")]], sections: [] },
   "our-work/numbers": { eyebrow: l("IAPA in numbers", "L'AIPA en chiffres"), title: l("A growing continental network", "Un réseau continental en croissance"), img: "training",
     intro: l("Where we are today, and where we aim to be by 2030.", "Où nous en sommes aujourd'hui, et où nous voulons être en 2030."),

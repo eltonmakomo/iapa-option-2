@@ -98,9 +98,9 @@ function ContentPage() {
           </p>
         </div>
       </header>
-      <div className="space-y-20 py-10">
+      <div className="py-10">
         {p.stats && (
-          <div className="mx-auto max-w-7xl px-4 lg:px-6">
+          <div className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
             {p.statsCards ? (
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {p.stats.map(([n, lbl, sub]) => (
@@ -152,7 +152,7 @@ function ContentPage() {
               </div>
             </section>
           ) : s.feature && s.p ? (
-            <div key={s.h.en} className="mx-auto max-w-7xl px-4 lg:px-6">
+            <div key={s.h.en} className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
               <section className="grid gap-6 rounded-xl bg-mint p-8 md:grid-cols-[1fr_2fr] md:gap-12 md:p-12">
                 <p className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</p>
                 <div>
@@ -176,7 +176,7 @@ function ContentPage() {
               </section>
             </div>
           ) : (
-            <div key={s.h.en} className="mx-auto max-w-7xl px-4 lg:px-6">
+            <div key={s.h.en} className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
               <section>
                 <h2 className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</h2>
                 {s.p && <p className="section-content max-w-3xl text-lg">{s.p[lang]}</p>}
@@ -288,7 +288,7 @@ function ContentPage() {
           ),
         )}
         {p.blocks && p.blocks.length > 0 && (
-          <div className="mx-auto max-w-7xl space-y-20 px-4 lg:px-6">
+          <div className="mx-auto max-w-7xl space-y-20 px-4 py-10 lg:px-6">
             {p.blocks.map((b, i) => (
               <DynamicBlock key={i} block={b} lang={lang} />
             ))}

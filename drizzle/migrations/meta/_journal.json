@@ -36,6 +36,13 @@
       "when": 1795436874646,
       "tag": "0004_restrict_site_settings_reads",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1795513862455,
+      "tag": "0005_add_resource_cover_image",
+      "breakpoints": true
     }
   ]
 }

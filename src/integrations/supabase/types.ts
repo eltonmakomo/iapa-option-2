@@ -218,6 +218,7 @@ export type Database = {
       resources: {
         Row: {
           id: string
+          image_url: string | null
           is_placeholder: boolean
           sort: number
           title_en: string
@@ -228,6 +229,7 @@ export type Database = {
         }
         Insert: {
           id?: string
+          image_url?: string | null
           is_placeholder?: boolean
           sort?: number
           title_en: string
@@ -238,6 +240,7 @@ export type Database = {
         }
         Update: {
           id?: string
+          image_url?: string | null
           is_placeholder?: boolean
           sort?: number
           title_en?: string

@@ -148,12 +148,12 @@ function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }
                   src={s(r, "image_url")}
                   alt={loc(r, "title", lang)}
                   loading="lazy"
-                  className="aspect-[4/3] w-full object-cover"
+                  className="aspect-[3/4] w-full object-cover"
                 />
               ) : (
                 <PlaceholderImage
                   caption={lang === "fr" ? "Couverture" : "Cover"}
-                  className="aspect-[4/3] w-full"
+                  className="aspect-[3/4] w-full"
                 />
               )}
               <div className="p-5">

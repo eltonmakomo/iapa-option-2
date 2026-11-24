@@ -31,7 +31,7 @@ import pCorn from "@/assets/man-inspecting-corn-crop-with-digital-tablet.jpg.ass
 import iBoard from "@/assets/page-board-strategy.jpg";
 import iGovernance from "@/assets/page-governance-vote.jpg";
 import iPartners from "@/assets/page-partnership-handshake.jpg";
-import iCabbage from "@/assets/woman-inspecting-cabbage-crops-in-field.jpg.asset.json";
+import iCabbage from "@/assets/cooperative-greenhouse-growers.jpg.asset.json";
 import iData from "@/assets/page-data-review.jpg";
 import iNewsField from "@/assets/news-field.png.asset.json";
 import iNewsTrainers from "@/assets/news-trainers.png.asset.json";
@@ -47,8 +47,8 @@ import iNewsletter from "@/assets/page-newsletter-reading.jpg";
 import iVacancy from "@/assets/page-vacancy-board.jpg";
 import iScholarship from "@/assets/page-scholarship-graduate.jpg";
 import iCertificate from "@/assets/page-certificate-handover.jpg";
-import iAgronomist from "@/assets/woman-agronomist-works-with-tablet-in-greenhouse.jpg.asset.json";
-import iGreens from "@/assets/woman-harvesting-fresh-greens-in-greenhouse.jpg.asset.json";
+import iAgronomist from "@/assets/farmers-soil-tablet.jpg.asset.json";
+import iGreens from "@/assets/farmer-field-tablet.jpg.asset.json";
 import iLeadership from "@/assets/page-leadership-meeting.jpg";
 import iSeedlings from "@/assets/adult-man-planting-seedlings-in-the-field.jpg.asset.json";
 import iLettuceHands from "@/assets/hands-planting-young-lettuce-in-fertile-soil.jpg.asset.json";
@@ -133,7 +133,7 @@ const IMGS: Record<Img, string> = {
 const HERO_FRAMING: Partial<Record<Img, string>> = {
   hero: "object-[35%_0%]",
   processor: "object-[35%_0%]",
-  cabbage: "object-[85%_8%] md:object-contain md:object-right",
+  cabbage: "object-[50%_0%]",
   data: "object-[45%_0%]",
   seedlings: "object-[65%_0%]",
   classroom: "object-[70%_0%]",
@@ -142,8 +142,8 @@ const HERO_FRAMING: Partial<Record<Img, string>> = {
   scholarship: "object-[35%_0%]",
   press: "object-[75%_0%]",
   newsletter: "object-[70%_0%]",
-  agronomist: "object-[55%_14%] md:object-contain md:object-right",
-  greens: "object-[45%_32%] md:object-contain md:object-right",
+  agronomist: "object-[50%_0%]",
+  greens: "object-[55%_0%]",
   contract: "object-[60%_0%]",
 };
 

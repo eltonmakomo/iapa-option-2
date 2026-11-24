@@ -253,7 +253,7 @@ function ContentPage() {
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {p.stats.map(([n, lbl]) => (
                   <div key={n + lbl.en} className="rounded-2xl bg-card p-8 shadow-sm">
-                    <p className="text-5xl font-extrabold text-primary">
+                    <p className="text-5xl font-extrabold text-night">
                       <CountUp value={n} />
                     </p>
                     <p className="mt-2 font-semibold text-muted-foreground">{lbl[lang]}</p>
@@ -425,7 +425,7 @@ function ContentPage() {
                       {s.tags.map((x) => (
                         <div
                           key={x}
-                          className="rounded-2xl border border-border bg-card p-6 text-center text-lg font-semibold text-primary"
+                          className="rounded-2xl border border-border bg-card p-6 text-center text-lg font-semibold text-night"
                         >
                           {x}
                         </div>

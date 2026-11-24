@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
@@ -264,6 +265,7 @@ function ContentPage() {
                 : "Draft — to be reviewed by IAPA before publication."}
             </p>
           )}
+          <Breadcrumbs lang={lang} slug={_splat ?? ""} current={p.eyebrow[lang]} />
           <p className="section-label">{p.eyebrow[lang]}</p>
           <h1
             className={`mt-3 whitespace-pre-line text-4xl md:text-5xl ${p.narrowIntro ? "max-w-5xl" : "max-w-3xl"}`}

@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Megaphone, Users } from "lucide-react";
@@ -65,6 +66,7 @@ function Home() {
         <img src={hero.url} alt="" width={1804} height={1015} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 photo-scrim" />
         <div className="mx-auto flex h-full max-w-7xl flex-col justify-center px-4 pt-36 pb-12 text-forest-foreground min-[800px]:pt-28 min-[800px]:pb-12 lg:px-6">
+          <Breadcrumbs lang={lang} slug="" />
           <h1 className="max-w-none text-4xl md:text-[2.75rem] lg:text-[3.25rem] xl:text-6xl">{d.heroTitle}</h1>
           <p className="mt-8 max-w-2xl text-lg font-light opacity-95">{d.heroSub}</p>
           <div className="mt-[2.6667rem] flex flex-wrap gap-3 md:mt-16">

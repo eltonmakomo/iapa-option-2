@@ -305,3 +305,17 @@
 .impact-pin { cursor: pointer; }
 .impact-pin:hover, .impact-pin:focus-visible, .impact-pin-selected { filter: drop-shadow(0 2px 2px color-mix(in srgb, var(--color-night) 20%, transparent)); outline: none; }
 .impact-pin:focus-visible path, .impact-pin-selected path { stroke: var(--forest-deep); stroke-width: 3; }
+
+/* Nav bar: current-section marker (dot under the active item) */
+.nav-item.is-active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-arid-orange);
+  transform: translateX(-50%);
+}
+[data-here] { color: var(--color-arid-orange); font-weight: 700; }

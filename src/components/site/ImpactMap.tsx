@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
@@ -21,6 +22,7 @@ export function ImpactMap({ lang }: { lang: Lang }) {
   const chooseRegion = (id: string) => { setRegionId(id); setCountryId(null); setSearch(''); };
   return <article className="impact-page bg-card text-ink">
     <header className="mx-auto max-w-7xl px-4 pb-16 pt-12 text-center lg:px-6">
+      <Breadcrumbs lang={lang} slug="our-work/impact-map" tone="dark" />
       <p className="eyebrow text-forest-deep">{fr ? "Carte d’impact" : 'Impact map'}</p>
       <h1 className="mt-4 text-4xl text-forest-deep md:text-5xl">{fr ? 'Notre présence en Afrique' : 'Our footprint across Africa'}</h1>
       <p className="mx-auto mt-8 max-w-2xl text-lg font-light opacity-95">{fr ? 'Un réseau de praticiens certifiés, relié par cinq régions africaines.' : 'A network of certified practitioners, connected across five African regions.'}</p>

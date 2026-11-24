@@ -55,6 +55,13 @@ export function SiteHeader({ lang }: { lang: Lang }) {
     };
   }, []);
 
+  const path = useLocation({ select: (l) => l.pathname });
+  const here = path.replace(/^\/(en|fr)\/?/, "").replace(/\/$/, "");
+  const activeGroup = NAV.findIndex(
+    (g) => here === g.slug || here.startsWith(g.slug + "/") || g.columns.some((c) => c.links.some((l) => l.slug === here)),
+  );
+  const onContact = here === "contact";
+
   const enter = (i: number) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setOpen(i);
@@ -91,8 +98,9 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                 <button
                   type="button"
                   aria-expanded={open === i}
+                  aria-current={activeGroup === i ? "page" : undefined}
                   onClick={() => setOpen(open === i ? null : i)}
-                  className={`flex items-center gap-1 px-3 py-2 text-[0.95rem] font-medium transition-colors ${open === i ? "text-primary" : "hover:text-primary"}`}
+                  className={`nav-item relative flex items-center gap-1 px-3 py-2 text-[0.95rem] font-medium transition-colors ${activeGroup === i ? "is-active font-bold text-primary" : ""} ${open === i ? "text-primary" : "hover:text-primary"}`}
                 >
                   {g.label[lang]}
                   <Plus
@@ -106,9 +114,9 @@ export function SiteHeader({ lang }: { lang: Lang }) {
               <Button
                 asChild
                 variant="ghost"
-                className="px-3 text-[0.95rem] font-medium hover:bg-transparent hover:text-primary"
+                className={`nav-item relative px-3 text-[0.95rem] font-medium hover:bg-transparent hover:text-primary ${onContact ? "is-active font-bold text-primary" : ""}`}
               >
-                <Link to="/$lang/contact" params={{ lang }} onClick={() => setOpen(null)}>
+                <Link to="/$lang/contact" params={{ lang }} aria-current={onContact ? "page" : undefined} onClick={() => setOpen(null)}>
                   {lang === "fr" ? "Contact" : "Contact"}
                 </Link>
               </Button>
@@ -170,6 +178,8 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                         <Link
                           to="/$lang/$"
                           params={{ lang, _splat: ln.slug }}
+                          aria-current={ln.slug === here ? "page" : undefined}
+                          data-here={ln.slug === here || undefined}
                           onClick={() => setOpen(null)}
                           className="block rounded-md px-2 py-1.5 -mx-2 font-medium text-foreground hover:bg-secondary hover:text-primary"
                         >
@@ -216,10 +226,10 @@ export function SiteHeader({ lang }: { lang: Lang }) {
               </button>
             </div>
             <ul className="mt-6 divide-y divide-border">
-              {NAV.map((g) => (
+              {NAV.map((g, gi) => (
                 <li key={g.slug}>
-                  <details className="group py-3">
-                    <summary className="flex cursor-pointer list-none items-center justify-between text-lg font-semibold">
+                  <details className="group py-3" open={activeGroup === gi || undefined}>
+                    <summary className={`flex cursor-pointer list-none items-center justify-between text-lg font-semibold ${activeGroup === gi ? "text-primary" : ""}`}>
                       {g.label[lang]}{" "}
                       <ChevronDown className="h-5 w-5 transition-transform group-open:rotate-180" />
                     </summary>
@@ -232,7 +242,8 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                               to="/$lang/$"
                               params={{ lang, _splat: ln.slug }}
                               onClick={() => setMobile(false)}
-                              className="block py-1.5 text-muted-foreground hover:text-primary"
+                              aria-current={ln.slug === here ? "page" : undefined}
+                              className={`block py-1.5 hover:text-primary ${ln.slug === here ? "font-bold text-primary" : "text-muted-foreground"}`}
                             >
                               {ln.label[lang]}
                             </Link>

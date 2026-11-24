@@ -512,7 +512,7 @@ function ContentPage() {
                         className={
                           s.icons
                             ? "group rounded-2xl bg-card p-8 shadow-sm transition-colors duration-300 hover:bg-night"
-                            : "rounded-2xl border border-border bg-card p-6"
+                            : "group rounded-2xl border border-border bg-card p-6 transition-colors duration-300 hover:bg-night"
                         }
                       >
                         {s.icons &&
@@ -541,12 +541,12 @@ function ContentPage() {
                           </div>
                         )}
                         <h3
-                          className={`text-lg text-foreground${s.icons ? " transition-colors duration-300 group-hover:text-forest-foreground" : ""}`}
+                          className="text-lg text-foreground transition-colors duration-300 group-hover:text-forest-foreground"
                         >
                           {h[lang]}
                         </h3>
                         <p
-                          className={`mt-2 text-muted-foreground${s.icons ? " transition-colors duration-300 group-hover:text-forest-foreground/70" : ""}`}
+                          className="mt-2 text-muted-foreground transition-colors duration-300 group-hover:text-forest-foreground/70"
                         >
                           {b[lang]}
                         </p>

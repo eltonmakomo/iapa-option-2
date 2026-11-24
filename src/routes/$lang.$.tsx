@@ -209,12 +209,14 @@ function ContentPage() {
                         key={h.en}
                         className="group rounded-2xl bg-card p-8 shadow-sm transition-colors duration-300 hover:bg-night"
                       >
-                        <span className="icon-tile mb-12 flex h-12 w-12 items-center justify-center bg-night text-forest-foreground transition-colors duration-300 group-hover:bg-forest-foreground group-hover:text-night">
+                        <div className="mb-6 flex items-center gap-4">
+                        <span className="icon-tile flex h-12 w-12 shrink-0 items-center justify-center bg-night text-forest-foreground transition-colors duration-300 group-hover:bg-forest-foreground group-hover:text-night">
                           <Icon className="h-5 w-5" />
                         </span>
-                        <h3 className="text-lg text-foreground transition-colors duration-300 group-hover:text-forest-foreground">
+                        <h3 className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-forest-foreground md:text-2xl">
                           {h[lang]}
                         </h3>
+                        </div>
                         {Array.isArray(b) ? (
                           <ul className="mt-2 grid gap-1.5 text-muted-foreground transition-colors duration-300 group-hover:text-forest-foreground/70">
                             {b.map((x) => (
@@ -315,16 +317,22 @@ function ContentPage() {
                   (s.cropCards ? (
                     <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                       {s.tags.map((x) => (
-                        <div key={x} className="overflow-hidden rounded-2xl bg-card shadow-sm">
+                        <div
+                          key={x}
+                          className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-card shadow-sm"
+                        >
                           <img
                             src={CROPS[x]}
                             alt={x}
                             loading="lazy"
                             width={944}
                             height={704}
-                            className="aspect-[4/3] w-full object-cover"
+                            className="absolute inset-0 h-full w-full object-cover"
                           />
-                          <p className="p-6 text-lg font-bold text-foreground">{x}</p>
+                          <div className="absolute inset-0 bg-gradient-to-t from-night/85 via-night/25 to-transparent" />
+                          <p className="absolute bottom-0 left-0 p-6 text-2xl font-extrabold text-forest-foreground md:text-3xl">
+                            {x}
+                          </p>
                         </div>
                       ))}
                     </div>

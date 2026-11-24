@@ -264,7 +264,7 @@ function ContentPage() {
                 : "Draft — to be reviewed by IAPA before publication."}
             </p>
           )}
-          <p className="eyebrow text-sun">{p.eyebrow[lang]}</p>
+          <p className="section-label">{p.eyebrow[lang]}</p>
           <h1
             className={`mt-3 whitespace-pre-line text-4xl md:text-5xl ${p.narrowIntro ? "max-w-5xl" : "max-w-3xl"}`}
           >

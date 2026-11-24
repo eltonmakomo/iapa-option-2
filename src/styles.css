@@ -118,6 +118,29 @@
   text-transform: uppercase;
 }
 
+@utility section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-background));
+  padding: 0.45rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-night);
+  &::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 0.26rem solid transparent;
+    border-right: 0.26rem solid transparent;
+    border-bottom: 0.42rem solid var(--color-primary);
+  }
+}
+
 @utility photo-scrim {
   background: linear-gradient(90deg, color-mix(in srgb, var(--color-night) 85%, transparent) 0%, color-mix(in srgb, var(--color-night) 45%, transparent) 50%, transparent 100%);
 }

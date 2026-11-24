@@ -85,7 +85,7 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
         <div className="grid gap-6 md:grid-cols-2 md:gap-10">
           <div>
-            <p className="eyebrow text-forest-deep">{d.aboutEyebrow}</p>
+            <p className="section-label">{d.aboutEyebrow}</p>
             <h2 className="section-heading about-heading mt-3 text-3xl text-night md:text-4xl">
               {lang === "en" ? <>Built by practitioners, for Africa's<br />agribusiness<br />future</> : d.aboutTitle}
             </h2>
@@ -99,7 +99,7 @@ function Home() {
 
       <section className="overflow-hidden bg-card py-10" onMouseEnter={() => setWhatPaused(true)} onMouseLeave={() => setWhatPaused(false)} onFocusCapture={() => setWhatPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setWhatPaused(false); }}>
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <p className="eyebrow text-forest-deep">{d.whatEyebrow}</p>
+          <p className="section-label">{d.whatEyebrow}</p>
           <h2 className={`section-heading mt-3 ${lang === "en" ? "what-heading" : "text-3xl md:text-4xl"}`}>
             {d.whatTitle.split(", ").map((part, gi) => (
               <span key={gi}>
@@ -182,7 +182,7 @@ function Home() {
 
       <section className="bg-clay py-10">
         <div className="mx-auto max-w-7xl px-5">
-          <p className="eyebrow text-center text-forest-deep">{d.approachesEyebrow}</p>
+          <div className="flex justify-center"><p className="section-label">{d.approachesEyebrow}</p></div>
           <h2 className="section-heading approach-heading mx-auto mt-3 text-center text-cream">{d.approachesTitle}</h2>
           <div className="section-content approach-grid mx-auto w-full">
             {d.approaches.map(([code, name, short]) => {
@@ -218,7 +218,7 @@ function Home() {
 
       <section className="bg-cream py-10">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <p className="eyebrow text-forest-deep">{d.whereEyebrow}</p>
+          <p className="section-label">{d.whereEyebrow}</p>
           <h2 className="section-heading mt-3 text-3xl text-night md:text-4xl">{d.whereTitle}</h2>
           <p className="section-lede mt-4">{d.whereBody}</p>
           <ul className="section-content grid gap-px overflow-hidden rounded-xl border border-forest-deep/20 bg-forest-deep/12 sm:grid-cols-2 lg:grid-cols-3">
@@ -238,7 +238,7 @@ function Home() {
         <img src={coop} alt="" loading="lazy" width={1280} height={960} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-night/85" />
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <p className="eyebrow text-sun">{d.ambitionEyebrow}</p>
+          <p className="section-label">{d.ambitionEyebrow}</p>
           <h2 className="section-heading ambition-heading mt-3 text-3xl md:text-4xl">
             {d.ambitionTitle.split("\n").map((line, i, all) => (
               <span key={i} className="md:block">{line}{i < all.length - 1 ? " " : ""}</span>
@@ -249,7 +249,7 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
-        <p className="eyebrow text-forest-deep">{d.newsEyebrow}</p>
+        <p className="section-label">{d.newsEyebrow}</p>
         <h2 className="section-heading mt-3 text-3xl text-night md:text-4xl">{d.newsTitle}</h2>
         <div className="section-content grid gap-6 md:grid-cols-3">
           {d.news.map(([cat, date, title, body], i) => (
@@ -263,7 +263,7 @@ function Home() {
 
       <section className="border-y border-border py-10">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <p className="eyebrow text-center text-forest-deep">{d.partnersEyebrow}</p>
+          <div className="flex justify-center"><p className="section-label">{d.partnersEyebrow}</p></div>
           <ul className="section-content grid grid-cols-2 items-center gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-7">
             {PARTNER_LOGOS.map((p) => (
               <li key={p.key} className="flex min-w-0 items-center justify-center">

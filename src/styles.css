@@ -147,7 +147,7 @@
 @media (prefers-reduced-motion: reduce) {
   .what-move-in { animation: none; }
 }
-.section-content { margin-top: 2.6667rem; }
+.section-content { margin-top: 3.5rem; }
 .section-heading { max-width: 28ch; text-wrap: balance; letter-spacing: 0; }
 .region-card { aspect-ratio: auto; }
 .region-map { min-height: 0; transition: transform 500ms ease; }

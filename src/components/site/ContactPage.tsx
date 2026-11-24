@@ -121,7 +121,7 @@ export function ContactPage({ lang }: { lang: Lang }) {
           className="absolute -bottom-8 left-0 h-16 w-full rounded-t-[50%] bg-background"
         />
       </header>
-      <div className="mx-auto max-w-7xl px-4 py-16 lg:px-6">
+      <div className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
         <div className="grid gap-5 md:grid-cols-3">
           {[
             {

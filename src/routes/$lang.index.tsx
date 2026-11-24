@@ -82,7 +82,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 lg:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
         <div className="grid gap-6 md:grid-cols-2 md:gap-10">
           <div>
             <p className="eyebrow text-forest-deep">{d.aboutEyebrow}</p>
@@ -95,7 +95,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-card py-16" onMouseEnter={() => setWhatPaused(true)} onMouseLeave={() => setWhatPaused(false)} onFocusCapture={() => setWhatPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setWhatPaused(false); }}>
+      <section className="overflow-hidden bg-card py-10" onMouseEnter={() => setWhatPaused(true)} onMouseLeave={() => setWhatPaused(false)} onFocusCapture={() => setWhatPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setWhatPaused(false); }}>
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-forest-deep">{d.whatEyebrow}</p>
           <h2 className={`section-heading mt-3 ${lang === "en" ? "what-heading" : "text-3xl md:text-4xl"}`}>
@@ -140,7 +140,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-cream py-16">
+      <section className="bg-cream py-10">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
             <h2 className="section-heading text-3xl text-primary md:text-4xl">{lang === "en" ? <>A growing<br />continental network</> : d.glanceTitle}</h2>
             <div ref={glanceTrackRef} className="section-content overflow-hidden">
@@ -178,7 +178,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-clay py-16">
+      <section className="bg-clay py-10">
         <div className="mx-auto max-w-7xl px-5">
           <p className="eyebrow text-center text-forest-deep">{d.approachesEyebrow}</p>
           <h2 className="section-heading approach-heading mx-auto mt-3 text-center text-cream">{d.approachesTitle}</h2>
@@ -214,7 +214,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-cream py-16">
+      <section className="bg-cream py-10">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-forest-deep">{d.whereEyebrow}</p>
           <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.whereTitle}</h2>
@@ -232,7 +232,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden py-16 text-forest-foreground">
+      <section className="relative isolate overflow-hidden py-10 text-forest-foreground">
         <img src={coop} alt="" loading="lazy" width={1280} height={960} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-night/85" />
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
@@ -246,7 +246,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 lg:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
         <p className="eyebrow text-forest-deep">{d.newsEyebrow}</p>
         <h2 className="section-heading mt-3 text-3xl text-primary md:text-4xl">{d.newsTitle}</h2>
         <div className="section-content grid gap-6 md:grid-cols-3">
@@ -259,7 +259,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="border-y border-border py-16">
+      <section className="border-y border-border py-10">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="eyebrow text-center text-forest-deep">{d.partnersEyebrow}</p>
           <ul className="section-content grid grid-cols-2 items-center gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-7">

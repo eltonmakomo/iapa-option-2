@@ -98,7 +98,7 @@ function ContentPage() {
           </p>
         </div>
       </header>
-      <div className="space-y-16 py-16">
+      <div className="space-y-20 py-10">
         {p.stats && (
           <div className="mx-auto max-w-7xl px-4 lg:px-6">
             {p.statsCards ? (
@@ -134,7 +134,7 @@ function ContentPage() {
         )}
         {p.sections.map((s) =>
           s.regions ? (
-            <section key={s.h.en} className="bg-cream py-16">
+            <section key={s.h.en} className="bg-cream py-10">
               <div>
                 <div className="mx-auto max-w-7xl px-4 lg:px-6">
                   <h2 className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</h2>
@@ -288,7 +288,7 @@ function ContentPage() {
           ),
         )}
         {p.blocks && p.blocks.length > 0 && (
-          <div className="mx-auto max-w-7xl space-y-16 px-4 lg:px-6">
+          <div className="mx-auto max-w-7xl space-y-20 px-4 lg:px-6">
             {p.blocks.map((b, i) => (
               <DynamicBlock key={i} block={b} lang={lang} />
             ))}

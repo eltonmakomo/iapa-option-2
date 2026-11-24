@@ -160,7 +160,7 @@ function ContentPage() {
                     const t = s.p[lang];
                     const i = t.indexOf(",") + 1;
                     return (
-                      <p className="text-2xl font-bold leading-snug text-forest-deep md:text-3xl">
+                      <p className="text-3xl font-bold leading-snug text-forest-deep md:text-4xl lg:text-5xl">
                         {t.slice(0, i)}
                         <span className="text-muted-foreground/70">{t.slice(i)}</span>
                       </p>

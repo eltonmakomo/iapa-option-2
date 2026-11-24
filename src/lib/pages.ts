@@ -242,8 +242,8 @@ export const PAGES: Record<string, Page> = {
   "who-we-are/governance": {
     eyebrow: l("Governance", "Gouvernance"),
     title: l(
-      "Transparent, member-driven governance",
-      "Une gouvernance transparente et portée par les membres",
+      "Transparent, member-driven\ngovernance",
+      "Une gouvernance transparente\net portée par les membres",
     ),
     img: "governance",
     intro: l(
@@ -282,8 +282,8 @@ export const PAGES: Record<string, Page> = {
   "who-we-are/partners": {
     eyebrow: l("Partners & funders", "Partenaires et bailleurs"),
     title: l(
-      "Working with those who invest in Africa's farmers",
-      "Aux côtés de ceux qui investissent dans les agriculteurs africains",
+      "Working with those who invest\nin Africa's farmers",
+      "Aux côtés de ceux qui investissent\ndans les agriculteurs africains",
     ),
     img: "partners",
     intro: l(
@@ -360,8 +360,8 @@ export const PAGES: Record<string, Page> = {
   "our-work": {
     eyebrow: l("Our work", "Nos activités"),
     title: l(
-      "Advisory, curricula, training and events",
-      "Conseil, curricula, formation et événements",
+      "Advisory, curricula, training\nand events",
+      "Conseil, curricula, formation\net événements",
     ),
     img: "processor",
     intro: l(
@@ -484,8 +484,8 @@ export const PAGES: Record<string, Page> = {
   "our-work/stories": {
     eyebrow: l("Stories", "Histoires"),
     title: l(
-      "Change, told by the people who live it",
-      "Le changement, raconté par ceux qui le vivent",
+      "Change, told by the people\nwho live it",
+      "Le changement, raconté par ceux\nqui le vivent",
     ),
     img: "newsField",
     intro: l(
@@ -496,7 +496,7 @@ export const PAGES: Record<string, Page> = {
   },
   "our-work/testimonials": {
     eyebrow: l("Testimonials", "Témoignages"),
-    title: l("What partners and members say", "Ce que disent partenaires et membres"),
+    title: l("What partners\nand members say", "Ce que disent partenaires\net membres"),
     img: "discussion",
     intro: l(
       "Testimonials from partners, trainers and participants are being collected.",
@@ -507,8 +507,8 @@ export const PAGES: Record<string, Page> = {
   training: {
     eyebrow: l("Training", "Formation"),
     title: l(
-      "Certified, practical, adult-centred training",
-      "Une formation certifiée, pratique et centrée sur l'adulte",
+      "Certified, practical,\nadult-centred training",
+      "Une formation certifiée, pratique\net centrée sur l'adulte",
     ),
     img: "training",
     intro: l(
@@ -628,7 +628,7 @@ export const PAGES: Record<string, Page> = {
   ),
   "training/formats": {
     eyebrow: l("Formats", "Formats"),
-    title: l("Learning that fits your context", "Un apprentissage adapté à votre contexte"),
+    title: l("Learning that fits\nyour context", "Un apprentissage adapté\nà votre contexte"),
     img: "classroom",
     intro: l(
       "We deliver our training in the format that best suits participants and partners.",
@@ -673,7 +673,7 @@ export const PAGES: Record<string, Page> = {
   },
   "knowledge-hub": {
     eyebrow: l("Knowledge Hub", "Centre de savoirs"),
-    title: l("Evidence, tools and learning", "Données, outils et apprentissages"),
+    title: l("Evidence, tools\nand learning", "Données, outils\net apprentissages"),
     img: "library",
     intro: l(
       "Publications, policy briefs, case studies, webinars and podcasts from practitioners across Africa. Our library is being built.",
@@ -707,7 +707,7 @@ export const PAGES: Record<string, Page> = {
   },
   media: {
     eyebrow: l("Media", "Médias"),
-    title: l("News, events and IAPA Pulse", "Actualités, événements et IAPA Pulse"),
+    title: l("News, events\nand IAPA Pulse", "Actualités, événements\net IAPA Pulse"),
     img: "networking",
     intro: l(
       "Follow what's happening across the IAPA network.",
@@ -748,8 +748,8 @@ export const PAGES: Record<string, Page> = {
   join: {
     eyebrow: l("Membership", "Adhésion"),
     title: l(
-      "Join Africa's agribusiness practitioners",
-      "Rejoignez les praticiens de l'agribusiness africain",
+      "Join Africa's agribusiness\npractitioners",
+      "Rejoignez les praticiens\nde l'agribusiness africain",
     ),
     img: "newsTrainers",
     intro: l(
@@ -806,7 +806,7 @@ export const PAGES: Record<string, Page> = {
   },
   "join/scholarships": {
     eyebrow: l("Scholarships", "Bourses"),
-    title: l("Support to grow your skills", "Un soutien pour développer vos compétences"),
+    title: l("Support to grow\nyour skills", "Un soutien pour développer\nvos compétences"),
     img: "scholarship",
     intro: l(
       "Scholarship opportunities for trainers, including women and young professionals, will be announced here.",
@@ -817,7 +817,7 @@ export const PAGES: Record<string, Page> = {
   },
   "work-with-us": {
     eyebrow: l("Work with us", "Travailler avec nous"),
-    title: l("Let's strengthen value chains together", "Renforçons ensemble les chaînes de valeur"),
+    title: l("Let's strengthen value chains\ntogether", "Renforçons ensemble\nles chaînes de valeur"),
     img: "certificate",
     intro: l(
       "Development partners, governments and companies work with IAPA for advisory, curricula, certified training and events.",
@@ -1007,8 +1007,8 @@ Object.assign(PAGES, {
   training: {
     eyebrow: l("Training", "Formation"),
     title: l(
-      "Certified, practical, adult-centred training",
-      "Une formation certifiée, pratique et centrée sur l'adulte",
+      "Certified, practical,\nadult-centred training",
+      "Une formation certifiée, pratique\net centrée sur l'adulte",
     ),
     img: "training",
     intro: l(
@@ -1088,7 +1088,7 @@ Object.assign(PAGES, {
   },
   "training/formats": {
     eyebrow: l("Formats", "Formats"),
-    title: l("Learning that fits your context", "Un apprentissage adapté à votre contexte"),
+    title: l("Learning that fits\nyour context", "Un apprentissage adapté\nà votre contexte"),
     img: "classroom",
     intro: l(
       "We deliver our training in the format that best suits participants and partners.",
@@ -1300,8 +1300,8 @@ Object.assign(PAGES, {
   join: {
     eyebrow: l("Membership", "Adhésion"),
     title: l(
-      "Join Africa's agribusiness practitioners",
-      "Rejoignez les praticiens de l'agribusiness africain",
+      "Join Africa's agribusiness\npractitioners",
+      "Rejoignez les praticiens\nde l'agribusiness africain",
     ),
     img: "newsTrainers",
     intro: l(
@@ -1415,7 +1415,7 @@ Object.assign(PAGES, {
   },
   "our-work/testimonials": {
     eyebrow: l("Testimonials", "Témoignages"),
-    title: l("What partners and members say", "Ce que disent partenaires et membres"),
+    title: l("What partners\nand members say", "Ce que disent partenaires\net membres"),
     img: "discussion",
     intro: l(
       "Voices from partners, trainers and the people they train.",
@@ -1435,8 +1435,8 @@ Object.assign(PAGES, {
   "our-work/stories": {
     eyebrow: l("Stories", "Histoires"),
     title: l(
-      "Change, told by the people who live it",
-      "Le changement, raconté par ceux qui le vivent",
+      "Change, told by the people\nwho live it",
+      "Le changement, raconté par ceux\nqui le vivent",
     ),
     img: "newsField",
     intro: l(
@@ -1448,7 +1448,7 @@ Object.assign(PAGES, {
   },
   "knowledge-hub": {
     eyebrow: l("Knowledge Hub", "Centre de savoirs"),
-    title: l("Evidence, tools and learning", "Données, outils et apprentissages"),
+    title: l("Evidence, tools\nand learning", "Données, outils\net apprentissages"),
     img: "library",
     intro: l(
       "Publications, policy briefs, case studies, webinars and newsletters from practitioners across Africa.",
@@ -1468,7 +1468,7 @@ Object.assign(PAGES, {
   },
   media: {
     eyebrow: l("Media", "Médias"),
-    title: l("News, events and IAPA Pulse", "Actualités, événements et IAPA Pulse"),
+    title: l("News, events\nand IAPA Pulse", "Actualités, événements\net IAPA Pulse"),
     img: "networking",
     intro: l(
       "Follow what's happening across the IAPA network.",
@@ -1563,7 +1563,7 @@ Object.assign(PAGES, {
   },
   "join/scholarships": {
     eyebrow: l("Scholarships", "Bourses"),
-    title: l("Support to grow your skills", "Un soutien pour développer vos compétences"),
+    title: l("Support to grow\nyour skills", "Un soutien pour développer\nvos compétences"),
     img: "scholarship",
     intro: l(
       "Scholarships for trainers, including women and young professionals.",
@@ -1582,7 +1582,7 @@ Object.assign(PAGES, {
   },
   faq: {
     eyebrow: l("FAQs", "FAQ"),
-    title: l("Frequently asked questions", "Questions fréquentes"),
+    title: l("Frequently asked\nquestions", "Questions fréquentes"),
     img: "agronomist",
     intro: l(
       "Answers to the questions partners and practitioners ask us most.",

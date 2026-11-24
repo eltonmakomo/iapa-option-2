@@ -116,17 +116,35 @@ const IMGS: Record<Img, string> = {
   agronomist: iAgronomist.url,
   greens: iGreens.url,
   leadership: iLeadership,
-  "happy-farmer": TRAINING_PHOTOS["happy-farmer"]!,
-  "coop-cabbages": TRAINING_PHOTOS["coop-cabbages"]!,
-  "lettuce-crate": TRAINING_PHOTOS["lettuce-crate"]!,
-  "harvesting-produce": TRAINING_PHOTOS["harvesting-produce"]!,
-  laptop: TRAINING_PHOTOS["laptop"]!,
-  "corn-tablet": TRAINING_PHOTOS["corn-tablet"]!,
+  "happy-farmer": pFarmer.url,
+  "coop-cabbages": pCabbages.url,
+  "lettuce-crate": pCrate.url,
+  "harvesting-produce": pHarvest.url,
+  laptop: pLaptop.url,
+  "corn-tablet": pCorn.url,
   seedlings: iSeedlings.url,
   lettuceHands: iLettuceHands.url,
   fish: iFish,
   contract: iContract,
   cornField: iCornField.url,
+};
+
+// Frame the upper part of each photo, with horizontal focus on its subject.
+const HERO_FRAMING: Partial<Record<Img, string>> = {
+  hero: "object-[35%_0%]",
+  processor: "object-[35%_0%]",
+  cabbage: "object-[85%_8%] md:object-contain md:object-right",
+  data: "object-[45%_0%]",
+  seedlings: "object-[65%_0%]",
+  classroom: "object-[70%_0%]",
+  newsTrainers: "object-[55%_0%]",
+  vacancy: "object-[35%_0%]",
+  scholarship: "object-[35%_0%]",
+  press: "object-[75%_0%]",
+  newsletter: "object-[70%_0%]",
+  agronomist: "object-[55%_14%] md:object-contain md:object-right",
+  greens: "object-[45%_32%] md:object-contain md:object-right",
+  contract: "object-[60%_0%]",
 };
 
 export const Route = createFileRoute("/$lang/$")({
@@ -183,11 +201,11 @@ function ContentPage() {
     );
   return (
     <article>
-      <header className="relative isolate -mt-28 overflow-hidden">
+      <header className="relative isolate -mt-28 min-h-[520px] overflow-hidden bg-night md:aspect-[16/7]">
         <img
           src={IMGS[p.img]}
           alt=""
-          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          className={`absolute inset-0 -z-10 h-full w-full object-cover ${HERO_FRAMING[p.img] ?? "object-top"}`}
         />
         <div className="photo-scrim absolute inset-0 -z-10" />
         <div className="mx-auto max-w-7xl px-4 pb-20 pt-48 text-forest-foreground lg:px-6">

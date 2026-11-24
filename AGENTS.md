@@ -41,3 +41,4 @@ Render the interactive footprint using local Natural Earth geometry and shared, 
 - Contact and newsletter submissions use validated public server functions with insert-only privileged writes; inbox reads and status updates use admin RLS. Why: visitors must never read private submissions.
 - Regional focal-point records reference the shared sourced region IDs without duplicating country membership. Why: Contact and map pages stay aligned.
 - Contact maps use configurable headquarters coordinates; without them, show an Accra city view without an invented headquarters pin. Why: precise office location is unverified.
+- Hero photo crops use a shared image-key framing map and top alignment by default; keep subject faces in view across both languages and screen sizes.

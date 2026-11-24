@@ -15,6 +15,11 @@ export type Section = {
   icons?: boolean;
   regions?: boolean;
   logoGrid?: boolean;
+  /** Render the section body (paragraph, list or tags) as cards. */
+  cards?: boolean;
+  /** Center the heading and show a sub-heading under it. */
+  centered?: boolean;
+  sub?: L;
 };
 export type BlockKind =
   | "team"
@@ -883,11 +888,32 @@ const approachPage = (a: Approach, img: Img): Page => ({
   intro: a.what,
   img,
   sections: [
-    { h: l("What it is", "De quoi s'agit-il"), p: a.what },
-    { h: l("Who it's for", "À qui s'adresse-t-elle"), p: a.who },
-    { h: l("What participants learn", "Ce que les participants apprennent"), list: a.learn },
-    { h: l("How it's delivered", "Comment elle est dispensée"), p: a.delivery ?? defaultDelivery },
-    ...(a.chains ? [{ h: l("Value chains", "Chaînes de valeur"), tags: a.chains }] : []),
+    { h: l("What it is", "De quoi s'agit-il"), p: a.what, cards: true },
+    { h: l("Who it's for", "À qui s'adresse-t-elle"), p: a.who, cards: true },
+    {
+      h: l("What participants learn", "Ce que les participants apprennent"),
+      list: a.learn,
+      cards: true,
+    },
+    {
+      h: l("How it's delivered", "Comment elle est dispensée"),
+      p: a.delivery ?? defaultDelivery,
+      cards: true,
+    },
+    ...(a.chains
+      ? [
+          {
+            h: l("Value chains", "Chaînes de valeur"),
+            sub: l(
+              "The value chains where this approach is applied.",
+              "Les chaînes de valeur où cette approche est appliquée.",
+            ),
+            tags: a.chains,
+            cards: true,
+            centered: true,
+          },
+        ]
+      : []),
   ],
   blocks: [
     {

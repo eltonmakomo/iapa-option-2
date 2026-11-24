@@ -178,30 +178,73 @@ function ContentPage() {
           ) : (
             <div key={s.h.en} className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
               <section>
-                <h2 className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</h2>
-                {s.p && <p className="section-content max-w-3xl text-lg">{s.p[lang]}</p>}
-                {s.list && (
-                  <ul className="section-content grid max-w-3xl gap-3">
-                    {s.list.map((x) => (
-                      <li key={x.en} className="flex gap-3 text-lg">
-                        <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-savanna" />
-                        {x[lang]}
-                      </li>
-                    ))}
-                  </ul>
+                <h2
+                  className={`section-heading text-3xl text-primary md:text-4xl${s.centered ? " text-center" : ""}`}
+                >
+                  {s.h[lang]}
+                </h2>
+                {s.sub && (
+                  <p
+                    className={`mt-4 text-lg text-muted-foreground${s.centered ? " mx-auto max-w-2xl text-center" : " max-w-3xl"}`}
+                  >
+                    {s.sub[lang]}
+                  </p>
                 )}
-                {s.tags && (
-                  <div className="section-content flex flex-wrap gap-2">
-                    {s.tags.map((x) => (
-                      <span
-                        key={x}
-                        className="rounded-full border border-primary/30 px-4 py-1.5 text-sm font-semibold text-primary"
-                      >
-                        {x}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                {s.p &&
+                  (s.cards ? (
+                    <div className="section-content max-w-3xl rounded-2xl border border-border bg-card p-6">
+                      <p className="text-lg">{s.p[lang]}</p>
+                    </div>
+                  ) : (
+                    <p className="section-content max-w-3xl text-lg">{s.p[lang]}</p>
+                  ))}
+                {s.list &&
+                  (s.cards ? (
+                    <ul className="section-content grid gap-4 md:grid-cols-2">
+                      {s.list.map((x) => (
+                        <li
+                          key={x.en}
+                          className="flex gap-3 rounded-2xl border border-border bg-card p-6 text-lg"
+                        >
+                          <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-savanna" />
+                          {x[lang]}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <ul className="section-content grid max-w-3xl gap-3">
+                      {s.list.map((x) => (
+                        <li key={x.en} className="flex gap-3 text-lg">
+                          <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-savanna" />
+                          {x[lang]}
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
+                {s.tags &&
+                  (s.cards ? (
+                    <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                      {s.tags.map((x) => (
+                        <div
+                          key={x}
+                          className="rounded-2xl border border-border bg-card p-6 text-center text-lg font-semibold text-primary"
+                        >
+                          {x}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="section-content flex flex-wrap gap-2">
+                      {s.tags.map((x) => (
+                        <span
+                          key={x}
+                          className="rounded-full border border-primary/30 px-4 py-1.5 text-sm font-semibold text-primary"
+                        >
+                          {x}
+                        </span>
+                      ))}
+                    </div>
+                  ))}
                 {s.steps && (
                   <ol className="section-content grid gap-4 md:grid-cols-4">
                     {s.steps.map(([h, b], i) => (

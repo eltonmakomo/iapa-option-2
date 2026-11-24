@@ -62,7 +62,7 @@ export function DynamicBlock({ block, lang }: { block: Block; lang: Lang }) {
   return (
     <section>
       {block.h && (
-        <h2 className="section-heading text-3xl text-primary md:text-4xl">{block.h[lang]}</h2>
+        <h2 className="section-heading text-3xl text-night md:text-4xl">{block.h[lang]}</h2>
       )}
       <div className={block.h ? "section-content" : ""}>
         {rows.length === 0 ? (

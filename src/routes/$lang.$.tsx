@@ -188,7 +188,7 @@ function ContentPage() {
   if (!p)
     return (
       <section className="mx-auto max-w-2xl px-4 py-32 text-center">
-        <h1 className="text-4xl text-primary">{d.comingTitle}</h1>
+        <h1 className="text-4xl text-night">{d.comingTitle}</h1>
         <p className="mt-4 text-muted-foreground">{d.comingBody}</p>
         <Link
           to="/$lang"
@@ -268,7 +268,7 @@ function ContentPage() {
             <section key={s.h.en} className="bg-cream py-10">
               <div>
                 <div className="mx-auto max-w-7xl px-4 lg:px-6">
-                  <h2 className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</h2>
+                  <h2 className="section-heading text-3xl text-night md:text-4xl">{s.h[lang]}</h2>
                 </div>
                 <ul className="section-content grid gap-px overflow-hidden border-y border-forest-deep/20 bg-forest-deep/12 sm:grid-cols-2 lg:grid-cols-3">
                   {d.regions.map(([r, c], i) => (
@@ -330,7 +330,7 @@ function ContentPage() {
           ) : s.feature && s.p ? (
             <div key={s.h.en} className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
               <section className="grid gap-6 rounded-xl bg-mint p-8 md:grid-cols-[1fr_2fr] md:gap-12 md:p-12">
-                <p className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</p>
+                <p className="section-heading text-3xl text-night md:text-4xl">{s.h[lang]}</p>
                 <div>
                   {(() => {
                     const t = s.p[lang];
@@ -355,7 +355,7 @@ function ContentPage() {
             <div key={s.h.en} className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
               <section>
                 <h2
-                  className={`section-heading text-3xl text-primary md:text-4xl${s.centered ? " mx-auto text-center" : ""}`}
+                  className={`section-heading text-3xl text-night md:text-4xl${s.centered ? " mx-auto text-center" : ""}`}
                 >
                   {s.h[lang]}
                 </h2>

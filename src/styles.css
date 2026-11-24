@@ -162,6 +162,8 @@
 .what-heading { max-width: none; white-space: nowrap; font-size: clamp(0.8rem, 4.675vw - 1.5px, 2.25rem); line-height: 1.2; }
 /* The Our Approaches heading keeps the full width; it wraps rather than pushing the page sideways. */
 .approach-heading { max-width: none; font-size: clamp(0.75rem, 5.4vw, 1.875rem); line-height: 1.2; }
+/* The homepage About heading breaks into three controlled lines on desktop. */
+@media (min-width: 768px) { .about-heading { max-width: none; font-size: 1.875rem; } }
 /* The line of copy under a section heading: one size, weight, leading and colour everywhere.
    French is the longest variant, so it gets a smaller size. */
 .section-lede { font-size: 0.875rem; font-weight: 300; line-height: 1.375; color: var(--color-forest-deep); }

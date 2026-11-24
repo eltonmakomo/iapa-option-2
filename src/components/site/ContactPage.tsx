@@ -187,7 +187,7 @@ export function ContactPage({ lang }: { lang: Lang }) {
         </div>
         <section className="mt-16 grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div id="contact-form" className="scroll-mt-28">
-            <h2 className="section-heading text-3xl text-primary md:text-4xl">
+            <h2 className="section-heading text-3xl text-night md:text-4xl">
               {l("Send us a message", "Envoyez-nous un message")}
             </h2>
             {done ? (
@@ -389,7 +389,7 @@ export function ContactPage({ lang }: { lang: Lang }) {
             )}
           </div>
           <aside>
-            <h2 className="section-heading text-3xl text-primary md:text-4xl">
+            <h2 className="section-heading text-3xl text-night md:text-4xl">
               {l("Contact details", "Nos coordonnées")}
             </h2>
             <div className="section-content space-y-8 rounded-2xl bg-mint p-8">
@@ -481,7 +481,7 @@ export function ContactPage({ lang }: { lang: Lang }) {
           </aside>
         </section>
         <section className="mt-16">
-          <h2 className="section-heading text-3xl text-primary md:text-4xl">
+          <h2 className="section-heading text-3xl text-night md:text-4xl">
             {l("Find us in Accra", "Retrouvez-nous à Accra")}
           </h2>
           <div className="section-content">
@@ -530,7 +530,7 @@ export function ContactPage({ lang }: { lang: Lang }) {
           </div>
         </section>
         <section className="mt-16">
-          <h2 className="section-heading text-3xl text-primary md:text-4xl">
+          <h2 className="section-heading text-3xl text-night md:text-4xl">
             {l("Our regional focal points", "Nos points focaux régionaux")}
           </h2>
           <div className="section-content grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

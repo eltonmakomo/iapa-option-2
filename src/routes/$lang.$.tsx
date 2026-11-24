@@ -245,14 +245,14 @@ function ContentPage() {
                               src={p.url}
                               alt={p.name[lang]}
                               loading="lazy"
-                              className="h-12 w-auto max-w-[70%] object-contain transition-transform duration-300 group-hover:-translate-y-10 group-hover:scale-75"
+                              className="h-12 w-auto max-w-[70%] object-contain transition-all duration-300 group-hover:scale-75 group-hover:opacity-0"
                             />
                           );
                         })}
                         <p className="text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground transition-opacity duration-200 group-hover:opacity-0">
                           {h[lang]}
                         </p>
-                        <span className="pointer-events-none absolute inset-0 flex items-center justify-center p-6 pt-24">
+                        <span className="pointer-events-none absolute inset-0 flex items-center justify-center p-6">
                           <p className="translate-y-2 text-center text-sm font-medium leading-snug text-forest-foreground opacity-0 transition-all duration-300 delay-100 group-hover:translate-y-0 group-hover:opacity-100">
                             {b[lang]}
                           </p>

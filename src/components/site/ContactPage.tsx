@@ -24,7 +24,6 @@ import { contactSchema, AFRICAN_COUNTRIES, SUBJECTS, countryLabel } from "@/lib/
 import { getContactInfo, submitContact } from "@/lib/contact.functions";
 import { IMPACT_REGIONS } from "@/lib/impact-data";
 import type { Lang } from "@/lib/i18n";
-import { NewsletterForm } from "./NewsletterForm";
 export const contactInfoQuery = queryOptions({
   queryKey: ["contact-info"],
   queryFn: () => getContactInfo(),
@@ -153,11 +152,24 @@ export function ContactPage({ lang }: { lang: Lang }) {
               slug: "",
             },
           ].map(({ Icon, title, body, slug }) => (
-            <div key={title} className="flex flex-col rounded-lg border border-border bg-card p-6">
-              <Icon className="h-7 w-7 text-primary" />
-              <h2 className="mt-6 text-xl">{title}</h2>
-              <p className="mt-3 flex-1 text-sm text-muted-foreground">{body}</p>
-              <Button asChild variant="link" className="mt-5 self-start px-0">
+            <div
+              key={title}
+              className="group flex flex-col rounded-2xl bg-card p-8 shadow-sm transition-colors duration-300 hover:bg-night"
+            >
+              <span className="icon-tile mb-16 flex h-12 w-12 items-center justify-center bg-night text-forest-foreground transition-colors duration-300 group-hover:bg-forest-foreground group-hover:text-night">
+                <Icon className="h-5 w-5" />
+              </span>
+              <h2 className="text-lg text-foreground transition-colors duration-300 group-hover:text-forest-foreground">
+                {title}
+              </h2>
+              <p className="mt-2 flex-1 text-muted-foreground transition-colors duration-300 group-hover:text-forest-foreground/70">
+                {body}
+              </p>
+              <Button
+                asChild
+                variant="link"
+                className="mt-5 self-start px-0 text-primary transition-colors duration-300 group-hover:text-sun"
+              >
                 {slug ? (
                   <Link to="/$lang/$" params={{ lang, _splat: slug }}>
                     {title}
@@ -175,7 +187,7 @@ export function ContactPage({ lang }: { lang: Lang }) {
         </div>
         <section className="mt-16 grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div id="contact-form" className="scroll-mt-28">
-            <h2 className="section-heading text-3xl text-primary">
+            <h2 className="section-heading text-3xl text-primary md:text-4xl">
               {l("Send us a message", "Envoyez-nous un message")}
             </h2>
             {done ? (
@@ -360,18 +372,27 @@ export function ContactPage({ lang }: { lang: Lang }) {
                   className="hidden"
                 />
                 {fieldError("submit")}
-                <Button disabled={pending} size="lg" className="rounded-full">
-                  {pending ? l("Sending…", "Envoi…") : l("Send message", "Envoyer le message")}
-                  <Send />
-                </Button>
+                <button
+                  type="submit"
+                  disabled={pending}
+                  className="wwu group relative inline-flex items-center rounded-full border border-sun disabled:opacity-60"
+                >
+                  <span className="wwu-fill" aria-hidden="true" />
+                  <span className="relative z-10 px-7 py-3.5 font-bold text-forest-deep">
+                    {pending ? l("Sending…", "Envoi…") : l("Send message", "Envoyer le message")}
+                  </span>
+                  <span className="wwu-arrow relative z-10 grid h-11 w-11 shrink-0 place-items-center">
+                    <Send className="h-5 w-5" strokeWidth={2} />
+                  </span>
+                </button>
               </form>
             )}
           </div>
           <aside>
-            <h2 className="section-heading text-3xl text-primary">
+            <h2 className="section-heading text-3xl text-primary md:text-4xl">
               {l("Contact details", "Nos coordonnées")}
             </h2>
-            <div className="section-content space-y-8">
+            <div className="section-content space-y-8 rounded-2xl bg-mint p-8">
               <div>
                 <p className="eyebrow text-forest-deep">{l("Headquarters", "Siège social")}</p>
                 <p className="mt-3 flex gap-3">
@@ -460,7 +481,7 @@ export function ContactPage({ lang }: { lang: Lang }) {
           </aside>
         </section>
         <section className="mt-16">
-          <h2 className="section-heading text-3xl text-primary">
+          <h2 className="section-heading text-3xl text-primary md:text-4xl">
             {l("Find us in Accra", "Retrouvez-nous à Accra")}
           </h2>
           <div className="section-content">
@@ -469,10 +490,10 @@ export function ContactPage({ lang }: { lang: Lang }) {
                 title={l("IAPA Headquarters — Accra", "Siège de l’AIPA — Accra")}
                 src={osm}
                 loading="lazy"
-                className="h-80 w-full border border-border"
+                className="h-80 w-full rounded-2xl border border-border"
               />
             ) : (
-              <div className="relative flex min-h-64 flex-col items-center justify-center overflow-hidden bg-savanna/15 p-8 text-center">
+              <div className="relative flex min-h-64 flex-col items-center justify-center overflow-hidden rounded-2xl bg-mint p-8 text-center">
                 <svg
                   aria-hidden="true"
                   className="absolute inset-0 h-full w-full text-savanna/40"
@@ -509,7 +530,7 @@ export function ContactPage({ lang }: { lang: Lang }) {
           </div>
         </section>
         <section className="mt-16">
-          <h2 className="section-heading text-3xl text-primary">
+          <h2 className="section-heading text-3xl text-primary md:text-4xl">
             {l("Our regional focal points", "Nos points focaux régionaux")}
           </h2>
           <div className="section-content grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -517,12 +538,12 @@ export function ContactPage({ lang }: { lang: Lang }) {
               const point = contacts.find((c) => c.id === r.id);
               const show = point && (!point.is_placeholder || settings.show_placeholders);
               return (
-                <article
-                  key={r.id}
-                  className={`rounded-lg border border-border border-t-4 bg-card p-6 ${["border-t-savanna", "border-t-clay", "border-t-primary", "border-t-sun", "border-t-forest-deep"][i]}`}
-                >
-                  <h3 className="text-xl">{r.name[lang]}</h3>
-                  <p className="mt-3 text-sm text-muted-foreground">
+                <article key={r.id} className="bg-ink p-6 text-forest-foreground">
+                  <p className="text-xs font-bold uppercase tracking-wider text-arid-orange">
+                    {l("Region", "Région")} {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-3 text-xl leading-tight">{r.name[lang]}</h3>
+                  <p className="mt-3 text-sm text-forest-foreground/70">
                     {r.countries.map((c) => c.name[lang]).join(" · ")}
                   </p>
                   {show && (
@@ -530,13 +551,15 @@ export function ContactPage({ lang }: { lang: Lang }) {
                       <p className="mt-6 font-semibold">{point.name}</p>
                       {point.email.includes("@") ? (
                         <a
-                          className="mt-2 block break-all text-sm underline"
+                          className="mt-2 block break-all text-sm text-arid-orange underline"
                           href={`mailto:${point.email}`}
                         >
                           {point.email}
                         </a>
                       ) : (
-                        <p className="mt-2 text-sm italic text-muted-foreground">{point.email}</p>
+                        <p className="mt-2 text-sm italic text-forest-foreground/60">
+                          {point.email}
+                        </p>
                       )}
                     </>
                   )}
@@ -554,19 +577,6 @@ export function ContactPage({ lang }: { lang: Lang }) {
           </Link>
         </section>
       </div>
-      <section className="bg-savanna/20 py-16">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <h2 className="section-heading text-3xl text-primary">
-            {l(
-              "Stay connected — subscribe to IAPA Pulse",
-              "Gardez le contact — abonnez-vous à IAPA Pulse",
-            )}
-          </h2>
-          <div className="section-content max-w-xl">
-            <NewsletterForm lang={lang} />
-          </div>
-        </div>
-      </section>
     </article>
   );
 }

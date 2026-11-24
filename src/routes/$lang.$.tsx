@@ -17,6 +17,7 @@ import { logoOf } from "@/lib/partner-logos";
 import { ImpactMap } from "@/components/site/ImpactMap";
 import { RegionCard, RegionMapTile } from "@/components/site/RegionCard";
 import { CountUp } from "@/components/site/CountUp";
+import { EpisodeShowcase } from "@/components/site/EpisodeShowcase";
 import hero from "@/assets/hero-farmer.jpg";
 import coop from "@/assets/cooperative.jpg";
 import processor from "@/assets/processor.jpg";
@@ -590,6 +591,11 @@ function ContentPage() {
             </div>
           ),
         )}
+        {p.episodes && (
+          <div className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
+            <EpisodeShowcase kind={p.episodes} lang={lang} />
+          </div>
+        )}
         {p.blocks && p.blocks.length > 0 && (
           <div className="mx-auto max-w-7xl space-y-20 px-4 py-10 lg:px-6">
             {p.blocks.map((b, i) => (
@@ -597,7 +603,7 @@ function ContentPage() {
             ))}
           </div>
         )}
-        {p.sections.length === 0 && !p.stats && !p.blocks && (
+        {p.sections.length === 0 && !p.stats && !p.blocks && !p.episodes && (
           <div className="mx-auto max-w-7xl px-4 lg:px-6">
             <p className="rounded-2xl bg-secondary p-8 text-lg text-muted-foreground">
               {d.comingBody}

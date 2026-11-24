@@ -87,6 +87,8 @@ export type Page = {
   statsCards?: boolean;
   cta?: { label: L; slug: string };
   blocks?: Block[];
+  /** Episode layout (podcasts / webinars). */
+  episodes?: "podcast" | "webinar";
   draft?: boolean;
   narrowIntro?: boolean;
 };
@@ -1512,6 +1514,7 @@ Object.assign(PAGES, {
     title: l("Webinars & recordings", "Webinaires et enregistrements"),
     img: "library",
     intro: l("Webinars & recordings from IAPA and practitioners across Africa.", "Webinaires et enregistrements de l'AIPA et de praticiens à travers l'Afrique."),
+    episodes: "webinar",
     sections: [],
     blocks: [{ kind: "resources", filter: ["type_en", "Webinar / recording"], empty: l("Nothing published here yet. Check back soon.", "Rien de publié pour l'instant. Revenez bientôt.") }],
   },
@@ -1528,8 +1531,9 @@ Object.assign(PAGES, {
     title: l("Podcasts", "Podcasts"),
     img: "library",
     intro: l("Podcasts from IAPA and practitioners across Africa.", "Podcasts de l'AIPA et de praticiens à travers l'Afrique."),
+    episodes: "podcast",
     sections: [],
-    blocks: [{ kind: "resources", filter: ["type_en", "Podcast"], empty: l("Nothing published here yet. Check back soon.", "Rien de publié pour l'instant. Revenez bientôt.") }],
+    blocks: [],
   },
   media: {
     eyebrow: l("Media", "Médias"),

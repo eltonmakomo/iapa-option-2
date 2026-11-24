@@ -143,10 +143,19 @@ function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }
           const url = s(r, "url");
           const body = (
             <>
-              <PlaceholderImage
-                caption={lang === "fr" ? "Couverture" : "Cover"}
-                className="aspect-[4/3] w-full"
-              />
+              {s(r, "image_url") ? (
+                <img
+                  src={s(r, "image_url")}
+                  alt={loc(r, "title", lang)}
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              ) : (
+                <PlaceholderImage
+                  caption={lang === "fr" ? "Couverture" : "Cover"}
+                  className="aspect-[4/3] w-full"
+                />
+              )}
               <div className="p-5">
                 <p className="eyebrow text-clay-deep">{loc(r, "type", lang)}</p>
                 <h3 className="mt-2 text-lg text-foreground">{loc(r, "title", lang)}</h3>

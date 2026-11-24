@@ -63,15 +63,15 @@ export const NAV: NavGroup[] = [
     blurb: l("Evidence, tools and learning from practitioners across Africa.", "Données, outils et apprentissages de praticiens à travers l'Afrique."),
     columns: [
       { title: l("Read", "Lire"), links: [
-        { label: l("Publications", "Publications"), slug: "knowledge-hub" },
-        { label: l("Policy briefs", "Notes de politique"), slug: "knowledge-hub" },
-        { label: l("Research papers", "Articles de recherche"), slug: "knowledge-hub" },
-        { label: l("Case studies", "Études de cas"), slug: "knowledge-hub" },
+        { label: l("Publications", "Publications"), slug: "knowledge-hub/publications" },
+        { label: l("Policy briefs", "Notes de politique"), slug: "knowledge-hub/policy-briefs" },
+        { label: l("Research papers", "Articles de recherche"), slug: "knowledge-hub/research-papers" },
+        { label: l("Case studies", "Études de cas"), slug: "knowledge-hub/case-studies" },
       ]},
       { title: l("Watch & listen", "Voir et écouter"), links: [
-        { label: l("Webinars & recordings", "Webinaires et enregistrements"), slug: "knowledge-hub" },
-        { label: l("Multimedia", "Multimédia"), slug: "knowledge-hub" },
-        { label: l("Podcasts", "Podcasts"), slug: "knowledge-hub" },
+        { label: l("Webinars & recordings", "Webinaires et enregistrements"), slug: "knowledge-hub/webinars" },
+        { label: l("Multimedia", "Multimédia"), slug: "knowledge-hub/multimedia" },
+        { label: l("Podcasts", "Podcasts"), slug: "knowledge-hub/podcasts" },
       ]},
     ],
   },

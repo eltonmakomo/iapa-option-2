@@ -104,30 +104,30 @@ function Rows({ kind, rows, lang }: { kind: BlockKind; rows: Row[]; lang: Lang }
     return (
       <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
         {rows.map((r) => (
-          <article key={r.id} className="min-w-0">
+          <article key={r.id} className="group min-w-0 rounded-2xl bg-card p-4 shadow-sm transition-colors duration-300 hover:bg-night">
             {s(r, "photo_url") ? (
               <img
                 src={s(r, "photo_url")}
                 alt={s(r, "name")}
                 loading="lazy"
-                className="aspect-[3/2] w-full object-cover"
+                className="aspect-[3/2] w-full rounded-xl object-cover"
               />
             ) : (
               <PlaceholderImage
                 caption={lang === "fr" ? "[Portrait à venir]" : "[Portrait to come]"}
-                className="aspect-[3/2] w-full"
+                className="aspect-[3/2] w-full rounded-xl"
               />
             )}
             <div className="mt-2">
-              <h3 className="text-sm font-bold leading-snug tracking-normal text-ink">
+              <h3 className="text-sm font-bold leading-snug tracking-normal text-ink transition-colors duration-300 group-hover:text-cream">
                 <Tagged text={s(r, "name")} />
               </h3>
-              <p className="mt-1 text-xs leading-relaxed text-ink">{loc(r, "role", lang)}</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink transition-colors duration-300 group-hover:text-cream/80">{loc(r, "role", lang)}</p>
             </div>
             <a
               href={s(r, "linkedin")}
               aria-label="LinkedIn"
-              className="mt-3 inline-flex text-ink/70 hover:text-primary"
+              className="mt-3 inline-flex text-ink/70 transition-colors duration-300 hover:text-primary group-hover:text-cream/70"
             >
               <Linkedin className="h-4 w-4" />
             </a>

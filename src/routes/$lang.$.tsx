@@ -1,5 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Users, HeartHandshake, HandHeart } from "lucide-react";
+import {
+  ArrowUpRight,
+  Users,
+  HeartHandshake,
+  HandHeart,
+  Lightbulb,
+  GraduationCap,
+  Presentation,
+} from "lucide-react";
 import { t, isLang, type Lang } from "@/lib/i18n";
 import { PAGES, type Img } from "@/lib/pages";
 import { DynamicBlock, blockQuery } from "@/components/site/DynamicBlock";
@@ -13,6 +21,45 @@ import processor from "@/assets/processor.jpg";
 import training from "@/assets/training-tree.jpg";
 import planting from "@/assets/hands-planting-lettuce.jpg.asset.json";
 import ctaPhoto from "@/assets/man-planting-seedlings.jpg.asset.json";
+
+import pFarmer from "@/assets/happy-farmer-holding-fresh-vegetables-harvest-in-f.jpg.asset.json";
+import pCabbages from "@/assets/smiling-woman-carrying-cabbages-in-a-field.jpg.asset.json";
+import pCrate from "@/assets/woman-holds-lettuce-crate-in-greenhouse.jpg.asset.json";
+import pHarvest from "@/assets/man-harvesting-fresh-produce-in-a-rural-setting.jpg.asset.json";
+import pLaptop from "@/assets/focused-man-working-on-laptop-in-greenhouse.jpg.asset.json";
+import pCorn from "@/assets/man-inspecting-corn-crop-with-digital-tablet.jpg.asset.json";
+import cCocoa from "@/assets/crop-cocoa.jpg";
+import cCoffee from "@/assets/crop-coffee.jpg";
+import cMaize from "@/assets/crop-maize.jpg";
+import cRice from "@/assets/crop-rice.jpg";
+import cDairy from "@/assets/crop-dairy.jpg";
+import cOnion from "@/assets/crop-onion.jpg";
+import cCashew from "@/assets/crop-cashew.jpg";
+import cSoybean from "@/assets/crop-soybean.jpg";
+import cRiceFish from "@/assets/crop-rice-fish.jpg";
+import cPeanut from "@/assets/crop-peanut.jpg";
+
+const TRAINING_PHOTOS: Record<string, string> = {
+  "happy-farmer": pFarmer.url,
+  "coop-cabbages": pCabbages.url,
+  "lettuce-crate": pCrate.url,
+  "harvesting-produce": pHarvest.url,
+  laptop: pLaptop.url,
+  "corn-tablet": pCorn.url,
+};
+const CROPS: Record<string, string> = {
+  Cocoa: cCocoa,
+  Coffee: cCoffee,
+  Maize: cMaize,
+  Rice: cRice,
+  Dairy: cDairy,
+  Onion: cOnion,
+  Cashew: cCashew,
+  Soybean: cSoybean,
+  "Rice-fish": cRiceFish,
+  Peanut: cPeanut,
+};
+const QUAD_ICONS = [Lightbulb, Users, GraduationCap, Presentation];
 
 const IMGS: Record<Img, string> = { hero, coop, processor, training, planting: planting.url };
 
@@ -151,6 +198,49 @@ function ContentPage() {
                 </ul>
               </div>
             </section>
+          ) : s.quad ? (
+            <div key={s.h.en} className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
+              <section className="grid gap-4 lg:grid-cols-[3fr_2fr]">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {s.quad.cards.map(([h, b], i) => {
+                    const Icon = QUAD_ICONS[i % 4]!;
+                    return (
+                      <div
+                        key={h.en}
+                        className="group rounded-2xl bg-card p-8 shadow-sm transition-colors duration-300 hover:bg-night"
+                      >
+                        <span className="icon-tile mb-12 flex h-12 w-12 items-center justify-center bg-night text-forest-foreground transition-colors duration-300 group-hover:bg-forest-foreground group-hover:text-night">
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <h3 className="text-lg text-foreground transition-colors duration-300 group-hover:text-forest-foreground">
+                          {h[lang]}
+                        </h3>
+                        {Array.isArray(b) ? (
+                          <ul className="mt-2 grid gap-1.5 text-muted-foreground transition-colors duration-300 group-hover:text-forest-foreground/70">
+                            {b.map((x) => (
+                              <li key={x.en} className="flex gap-2">
+                                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-savanna" />
+                                {x[lang]}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="mt-2 text-muted-foreground transition-colors duration-300 group-hover:text-forest-foreground/70">
+                            {b[lang]}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+                <img
+                  src={TRAINING_PHOTOS[s.quad.photo]}
+                  alt=""
+                  loading="lazy"
+                  className="h-full min-h-[320px] w-full rounded-2xl object-cover"
+                />
+              </section>
+            </div>
           ) : s.feature && s.p ? (
             <div key={s.h.en} className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
               <section className="grid gap-6 rounded-xl bg-mint p-8 md:grid-cols-[1fr_2fr] md:gap-12 md:p-12">
@@ -179,7 +269,7 @@ function ContentPage() {
             <div key={s.h.en} className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
               <section>
                 <h2
-                  className={`section-heading text-3xl text-primary md:text-4xl${s.centered ? " text-center" : ""}`}
+                  className={`section-heading text-3xl text-primary md:text-4xl${s.centered ? " mx-auto text-center" : ""}`}
                 >
                   {s.h[lang]}
                 </h2>
@@ -222,7 +312,23 @@ function ContentPage() {
                     </ul>
                   ))}
                 {s.tags &&
-                  (s.cards ? (
+                  (s.cropCards ? (
+                    <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                      {s.tags.map((x) => (
+                        <div key={x} className="overflow-hidden rounded-2xl bg-card shadow-sm">
+                          <img
+                            src={CROPS[x]}
+                            alt={x}
+                            loading="lazy"
+                            width={944}
+                            height={704}
+                            className="aspect-[4/3] w-full object-cover"
+                          />
+                          <p className="p-6 text-lg font-bold text-foreground">{x}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : s.cards ? (
                     <div className="section-content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                       {s.tags.map((x) => (
                         <div

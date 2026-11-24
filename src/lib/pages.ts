@@ -20,6 +20,10 @@ export type Section = {
   /** Center the heading and show a sub-heading under it. */
   centered?: boolean;
   sub?: L;
+  /** Four overview cards in a 2x2 grid beside a photo (photo key from TRAINING_PHOTOS). */
+  quad?: { cards: [L, L | L[]][]; photo: string };
+  /** Render tags as image cards of the named crop. */
+  cropCards?: boolean;
 };
 export type BlockKind =
   | "team"
@@ -877,6 +881,7 @@ type Approach = {
   learn: L[];
   delivery?: L;
   chains?: string[];
+  photo: string;
 };
 const defaultDelivery = r(
   "Short, participatory sessions led by certified trainers and supervised by Master Trainers.",
@@ -888,17 +893,17 @@ const approachPage = (a: Approach, img: Img): Page => ({
   intro: a.what,
   img,
   sections: [
-    { h: l("What it is", "De quoi s'agit-il"), p: a.what, cards: true },
-    { h: l("Who it's for", "À qui s'adresse-t-elle"), p: a.who, cards: true },
     {
-      h: l("What participants learn", "Ce que les participants apprennent"),
-      list: a.learn,
-      cards: true,
-    },
-    {
-      h: l("How it's delivered", "Comment elle est dispensée"),
-      p: a.delivery ?? defaultDelivery,
-      cards: true,
+      h: l("About this approach", "À propos de cette approche"),
+      quad: {
+        photo: a.photo,
+        cards: [
+          [l("What it is", "De quoi s'agit-il"), a.what],
+          [l("Who it's for", "À qui s'adresse-t-elle"), a.who],
+          [l("What participants learn", "Ce que les participants apprennent"), a.learn],
+          [l("How it's delivered", "Comment elle est dispensée"), a.delivery ?? defaultDelivery],
+        ],
+      },
     },
     ...(a.chains
       ? [
@@ -909,7 +914,7 @@ const approachPage = (a: Approach, img: Img): Page => ({
               "Les chaînes de valeur où cette approche est appliquée.",
             ),
             tags: a.chains,
-            cards: true,
+            cropCards: true,
             centered: true,
           },
         ]
@@ -1087,6 +1092,7 @@ Object.assign(PAGES, {
   "training/fbs": approachPage(
     {
       code: "FBS",
+      photo: "happy-farmer",
       name: l("Farmer Business School", "École d'entrepreneuriat agricole"),
       what: r(
         "A practical, adult-learning training that helps smallholder farmers see their farm as a business: planning production, understanding costs and profits, and making informed investment decisions.",
@@ -1127,6 +1133,7 @@ Object.assign(PAGES, {
   "training/cbs": approachPage(
     {
       code: "CBS",
+      photo: "coop-cabbages",
       name: l("Cooperative Business School", "École d'entrepreneuriat coopératif"),
       what: r(
         "A training that strengthens cooperatives and producer organisations as businesses, so they serve members better and trade more profitably.",
@@ -1150,6 +1157,7 @@ Object.assign(PAGES, {
   "training/pbs": approachPage(
     {
       code: "PBS",
+      photo: "lettuce-crate",
       name: l("Processor Business School", "École d'entrepreneuriat des transformateurs"),
       what: r(
         "A training for small and medium agro-processors that builds the business skills they need to grow, improve quality and reach new markets.",
@@ -1175,6 +1183,7 @@ Object.assign(PAGES, {
   "training/abs": approachPage(
     {
       code: "ABS",
+      photo: "harvesting-produce",
       name: l("Aquaculture Business School", "École d'entrepreneuriat aquacole"),
       what: r(
         "A training that helps fish farmers run profitable, sustainable aquaculture businesses.",
@@ -1197,6 +1206,7 @@ Object.assign(PAGES, {
   "training/icf": approachPage(
     {
       code: "CF",
+      photo: "laptop",
       name: l("Inclusive Contract Farming", "Agriculture contractuelle inclusive"),
       what: r(
         "An approach that builds fair, lasting business relationships between farmers and buyers, so both sides benefit from reliable supply and secure markets.",
@@ -1225,6 +1235,7 @@ Object.assign(PAGES, {
   "training/gap": approachPage(
     {
       code: "GAP",
+      photo: "corn-tablet",
       name: l("Good Agricultural Practices", "Bonnes pratiques agricoles"),
       what: r(
         "Training in proven farming practices that raise yields and quality while protecting soils, water and the climate, including climate-smart practices.",

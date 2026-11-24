@@ -130,7 +130,7 @@ export function MessagesInbox() {
     <section className="space-y-10" id="messages">
       <header className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl text-primary">
+          <h2 className="text-2xl text-night">
             Messages{" "}
             <span className="text-base text-muted-foreground">({messages.data?.length ?? 0})</span>
           </h2>
@@ -277,7 +277,7 @@ export function MessagesInbox() {
       )}
       {settings.data && (
         <section>
-          <h2 className="text-2xl text-primary">Contact settings</h2>
+          <h2 className="text-2xl text-night">Contact settings</h2>
           <form
             className="mt-6 grid gap-4 md:grid-cols-2"
             onSubmit={async (e) => {
@@ -310,7 +310,7 @@ export function MessagesInbox() {
         </section>
       )}
       <section>
-        <h2 className="text-2xl text-primary">Regional focal points</h2>
+        <h2 className="text-2xl text-night">Regional focal points</h2>
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           {IMPACT_REGIONS.map((r) => {
             const point = points.data?.find((p) => p.id === r.id);

@@ -121,7 +121,7 @@ function AdminPage() {
   if (!admin.data?.ok)
     return (
       <main className="mx-auto max-w-lg p-10">
-        <h1 className="text-2xl text-primary">No admin access</h1>
+        <h1 className="text-2xl text-night">No admin access</h1>
         <p className="mt-3 text-muted-foreground">
           {admin.data?.email} is signed in but isn't an IAPA admin.
         </p>
@@ -136,7 +136,7 @@ function AdminPage() {
     <main className="mx-auto max-w-6xl space-y-10 px-4 py-10">
       <header className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl text-primary">IAPA admin</h1>
+          <h1 className="text-3xl text-night">IAPA admin</h1>
           <p className="text-sm text-muted-foreground">{admin.data.email}</p>
         </div>
         <Button variant="outline" onClick={signOut}>

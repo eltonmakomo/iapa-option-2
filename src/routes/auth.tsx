@@ -38,7 +38,7 @@ function AuthPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-cream px-4">
       <form onSubmit={submit} className="w-full max-w-sm space-y-4 rounded-2xl bg-card p-8 shadow-sm">
-        <h1 className="text-2xl text-primary">{mode === "in" ? "IAPA staff sign-in" : "Create staff account"}</h1>
+        <h1 className="text-2xl text-night">{mode === "in" ? "IAPA staff sign-in" : "Create staff account"}</h1>
         <Input type="email" required placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <Input type="password" required minLength={8} placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <Button type="submit" className="w-full" disabled={busy}>{mode === "in" ? "Sign in" : "Create account"}</Button>

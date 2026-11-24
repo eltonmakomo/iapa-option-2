@@ -28,10 +28,10 @@ const whatIcons = [Compass, BookOpen, GraduationCap, CalendarDays, Award, Users,
 // The four brand palette colours in order: Tropical Rainforest Green, Savanna Green,
 // Arid Orange, Semi-arid Yellow. Only the rainforest card needs white text.
 const whatTones = [
-  { card: "bg-rainforest text-cream", tile: "bg-cream/20 text-cream" },
-  { card: "bg-savanna-green text-night", tile: "bg-cream/70 text-forest-deep" },
-  { card: "bg-arid-orange text-night", tile: "bg-cream/70 text-forest-deep" },
-  { card: "bg-semiarid-yellow text-night", tile: "bg-cream/70 text-forest-deep" },
+  { card: "bg-rainforest/55 text-night", tile: "bg-cream/70 text-forest-deep" },
+  { card: "bg-savanna-green/55 text-night", tile: "bg-cream/70 text-forest-deep" },
+  { card: "bg-arid-orange/55 text-night", tile: "bg-cream/70 text-forest-deep" },
+  { card: "bg-semiarid-yellow/55 text-night", tile: "bg-cream/70 text-forest-deep" },
 ];
 
 

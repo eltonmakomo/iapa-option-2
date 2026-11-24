@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
@@ -9,7 +10,7 @@ import {
   Presentation,
 } from "lucide-react";
 import { t, isLang, type Lang } from "@/lib/i18n";
-import { PAGES, type Img } from "@/lib/pages";
+import { PAGES, type Img, type Section } from "@/lib/pages";
 import { DynamicBlock, blockQuery } from "@/components/site/DynamicBlock";
 import { logoOf } from "@/lib/partner-logos";
 import { ImpactMap } from "@/components/site/ImpactMap";
@@ -179,6 +180,53 @@ export const Route = createFileRoute("/$lang/$")({
   component: ContentPage,
 });
 
+/** Mission/vision feature panel: clickable headings toggle the statement, image stays fixed. */
+function FeatureSection({ s, lang }: { s: Section; lang: Lang }) {
+  const [alt, setAlt] = useState(false);
+  const tabs = s.featureAlt
+    ? [
+        { h: s.h, p: s.p! },
+        { h: s.featureAlt.h, p: s.featureAlt.p },
+      ]
+    : [{ h: s.h, p: s.p! }];
+  const active = tabs[alt && s.featureAlt ? 1 : 0]!;
+  const text = active.p[lang];
+  const i = text.indexOf(",") + 1;
+  return (
+    <section className="grid gap-6 rounded-xl bg-mint p-8 md:grid-cols-[1fr_2fr] md:gap-12 md:p-12">
+      <div className="flex gap-8 md:flex-col md:gap-4">
+        {tabs.map((tab, ti) => (
+          <button
+            key={tab.h.en}
+            type="button"
+            onClick={() => setAlt(ti === 1)}
+            aria-pressed={(ti === 1) === alt}
+            className={`section-heading text-left text-3xl transition-colors duration-300 md:text-4xl ${
+              (ti === 1) === alt
+                ? "text-night"
+                : "text-muted-foreground/50 hover:text-muted-foreground"
+            }`}
+          >
+            {tab.h[lang]}
+          </button>
+        ))}
+      </div>
+      <div>
+        <p className="text-2xl font-bold leading-snug text-forest-deep md:text-3xl">
+          {text.slice(0, i)}
+          <span className="text-muted-foreground/70">{text.slice(i)}</span>
+        </p>
+        <img
+          src={IMGS[s.feature!]}
+          alt=""
+          loading="lazy"
+          className="mt-8 aspect-[16/9] w-full rounded-lg object-cover"
+        />
+      </div>
+    </section>
+  );
+}
+
 function ContentPage() {
   const { lang: rawLang, _splat } = Route.useParams();
   const lang = rawLang as Lang;
@@ -329,27 +377,7 @@ function ContentPage() {
             </div>
           ) : s.feature && s.p ? (
             <div key={s.h.en} className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
-              <section className="grid gap-6 rounded-xl bg-mint p-8 md:grid-cols-[1fr_2fr] md:gap-12 md:p-12">
-                <p className="section-heading text-3xl text-night md:text-4xl">{s.h[lang]}</p>
-                <div>
-                  {(() => {
-                    const t = s.p[lang];
-                    const i = t.indexOf(",") + 1;
-                    return (
-                      <p className="text-2xl font-bold leading-snug text-forest-deep md:text-3xl">
-                        {t.slice(0, i)}
-                        <span className="text-muted-foreground/70">{t.slice(i)}</span>
-                      </p>
-                    );
-                  })()}
-                  <img
-                    src={IMGS[s.feature]}
-                    alt=""
-                    loading="lazy"
-                    className="mt-8 aspect-[16/9] w-full rounded-lg object-cover"
-                  />
-                </div>
-              </section>
+              <FeatureSection s={s} lang={lang} />
             </div>
           ) : (
             <div key={s.h.en} className="mx-auto max-w-7xl px-4 py-10 lg:px-6">

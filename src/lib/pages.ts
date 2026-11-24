@@ -50,6 +50,8 @@ export type Section = {
   rows?: [L, string][];
   note?: L;
   feature?: Img;
+  /** Alternate statement toggled beside the feature heading (e.g. vision next to mission). */
+  featureAlt?: { h: L; p: L };
   icons?: boolean;
   regions?: boolean;
   logoGrid?: boolean;
@@ -164,6 +166,13 @@ export const PAGES: Record<string, Page> = {
           "Through a strong community of agribusiness professionals, we improve the livelihoods of agricultural value chain actors and strengthen their climate resilience.",
           "Grâce à une communauté solide de professionnels de l'agribusiness, nous améliorons les moyens de subsistance des acteurs des chaînes de valeur agricoles et renforçons leur résilience climatique.",
         ),
+        featureAlt: {
+          h: l("Our vision", "Notre vision"),
+          p: l(
+            "A thriving agribusiness sector across Africa, driven by certified local expertise and inclusive growth for every value chain actor.",
+            "Un secteur agribusiness africain prospère, porté par une expertise locale certifiée et une croissance inclusive pour chaque acteur des chaînes de valeur.",
+          ),
+        },
       },
       {
         h: l("Our values", "Nos valeurs"),

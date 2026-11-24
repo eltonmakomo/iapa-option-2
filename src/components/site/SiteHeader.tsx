@@ -2,7 +2,7 @@ import { Link, useParams, useLocation } from "@tanstack/react-router";
 import { ChevronDown, Menu, X, ArrowUpRight, Plus, Globe, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import logoFull from "@/assets/iapa-logo-fullcolour.png.asset.json";
-import trainingImg from "@/assets/training-tree.jpg";
+import trainingImg from "@/assets/training-tree.jpg.asset.json";
 import { NAV } from "@/lib/nav";
 import { t, type Lang } from "@/lib/i18n";
 import { ReadMoreLink } from "@/components/site/ReadMoreLink";
@@ -193,7 +193,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
             </div>
             <div className="col-span-3 overflow-hidden rounded-xl">
               <img
-                src={trainingImg}
+                src={trainingImg.url}
                 alt=""
                 loading="lazy"
                 width={1280}

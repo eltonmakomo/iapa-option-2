@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Award, BookOpen, Briefcase, CalendarDays, Compass, GraduationCap, Megaphone, Users } from "lucide-react";
 import hero from "@/assets/hero-corn-field.jpg.asset.json";
-import coop from "@/assets/cooperative.jpg";
-import proc from "@/assets/processor.jpg";
-import train from "@/assets/training-tree.jpg";
+import coop from "@/assets/cooperative.jpg.asset.json";
+import proc from "@/assets/processor.jpg.asset.json";
+import train from "@/assets/training-tree.jpg.asset.json";
 import { t, type Lang } from "@/lib/i18n";
 import { ReadMoreLink } from "@/components/site/ReadMoreLink";
 import { AmbitionStats } from "@/components/site/AmbitionStats";
@@ -38,7 +38,7 @@ const whatTones = [
 function Home() {
   const lang = Route.useParams().lang as Lang;
   const d = t(lang);
-  const newsImgs = [coop, train, proc];
+  const newsImgs = [coop.url, train.url, proc.url];
   const [offset, setOffset] = useState(0);
   const glanceTrackRef = useRef<HTMLDivElement>(null);
   const [animate, setAnimate] = useState(true);
@@ -237,7 +237,7 @@ function Home() {
       </section>
 
       <section className="relative isolate overflow-hidden py-10 text-forest-foreground">
-        <img src={coop} alt="" loading="lazy" width={1280} height={960} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={coop.url} alt="" loading="lazy" width={1280} height={960} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-night/85" />
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <p className="section-label">{d.ambitionEyebrow}</p>

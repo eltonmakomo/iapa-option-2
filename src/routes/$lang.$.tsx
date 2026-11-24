@@ -18,10 +18,10 @@ import { ImpactMap } from "@/components/site/ImpactMap";
 import { RegionCard, RegionMapTile } from "@/components/site/RegionCard";
 import { CountUp } from "@/components/site/CountUp";
 import { EpisodeShowcase } from "@/components/site/EpisodeShowcase";
-import hero from "@/assets/hero-farmer.jpg";
-import coop from "@/assets/cooperative.jpg";
-import processor from "@/assets/processor.jpg";
-import training from "@/assets/training-tree.jpg";
+import hero from "@/assets/hero-farmer.jpg.asset.json";
+import coop from "@/assets/cooperative.jpg.asset.json";
+import processor from "@/assets/processor.jpg.asset.json";
+import training from "@/assets/training-tree.jpg.asset.json";
 import planting from "@/assets/hands-planting-lettuce.jpg.asset.json";
 import ctaPhoto from "@/assets/man-planting-seedlings.jpg.asset.json";
 
@@ -31,43 +31,43 @@ import pCrate from "@/assets/woman-holds-lettuce-crate-in-greenhouse.jpg.asset.j
 import pHarvest from "@/assets/man-harvesting-fresh-produce-in-a-rural-setting.jpg.asset.json";
 import pLaptop from "@/assets/focused-man-working-on-laptop-in-greenhouse.jpg.asset.json";
 import pCorn from "@/assets/man-inspecting-corn-crop-with-digital-tablet.jpg.asset.json";
-import iBoard from "@/assets/page-board-strategy.jpg";
-import iGovernance from "@/assets/page-governance-vote.jpg";
-import iPartners from "@/assets/page-partnership-handshake.jpg";
+import iBoard from "@/assets/page-board-strategy.jpg.asset.json";
+import iGovernance from "@/assets/page-governance-vote.jpg.asset.json";
+import iPartners from "@/assets/page-partnership-handshake.jpg.asset.json";
 import iCabbage from "@/assets/cooperative-greenhouse-growers.jpg.asset.json";
-import iData from "@/assets/page-data-review.jpg";
+import iData from "@/assets/page-data-review.jpg.asset.json";
 import iNewsField from "@/assets/news-field.png.asset.json";
 import iNewsTrainers from "@/assets/news-trainers.png.asset.json";
 import iNewsStrategy from "@/assets/news-strategy.png.asset.json";
-import iDiscussion from "@/assets/page-group-discussion.jpg";
-import iClassroom from "@/assets/page-training-classroom.jpg";
-import iLibrary from "@/assets/page-resource-library.jpg";
-import iNetworking from "@/assets/page-networking-event.jpg";
-import iConference from "@/assets/page-conference-hall.jpg";
-import iFieldvisit from "@/assets/page-field-visit.jpg";
-import iPress from "@/assets/page-press-microphone.jpg";
-import iNewsletter from "@/assets/page-newsletter-reading.jpg";
-import iVacancy from "@/assets/page-vacancy-board.jpg";
-import iScholarship from "@/assets/page-scholarship-graduate.jpg";
-import iCertificate from "@/assets/page-certificate-handover.jpg";
+import iDiscussion from "@/assets/page-group-discussion.jpg.asset.json";
+import iClassroom from "@/assets/page-training-classroom.jpg.asset.json";
+import iLibrary from "@/assets/page-resource-library.jpg.asset.json";
+import iNetworking from "@/assets/page-networking-event.jpg.asset.json";
+import iConference from "@/assets/page-conference-hall.jpg.asset.json";
+import iFieldvisit from "@/assets/page-field-visit.jpg.asset.json";
+import iPress from "@/assets/page-press-microphone.jpg.asset.json";
+import iNewsletter from "@/assets/page-newsletter-reading.jpg.asset.json";
+import iVacancy from "@/assets/page-vacancy-board.jpg.asset.json";
+import iScholarship from "@/assets/page-scholarship-graduate.jpg.asset.json";
+import iCertificate from "@/assets/page-certificate-handover.jpg.asset.json";
 import iAgronomist from "@/assets/farmers-soil-tablet.jpg.asset.json";
 import iGreens from "@/assets/farmer-field-tablet.jpg.asset.json";
-import iLeadership from "@/assets/page-leadership-meeting.jpg";
+import iLeadership from "@/assets/page-leadership-meeting.jpg.asset.json";
 import iSeedlings from "@/assets/adult-man-planting-seedlings-in-the-field.jpg.asset.json";
 import iLettuceHands from "@/assets/hands-planting-young-lettuce-in-fertile-soil.jpg.asset.json";
-import iFish from "@/assets/page-fish-ponds.jpg";
-import iContract from "@/assets/page-contract-farming.jpg";
+import iFish from "@/assets/page-fish-ponds.jpg.asset.json";
+import iContract from "@/assets/page-contract-farming.jpg.asset.json";
 import iCornField from "@/assets/lush-green-corn-plants-growing-in-a-field.jpg.asset.json";
-import cCocoa from "@/assets/crop-cocoa.jpg";
-import cCoffee from "@/assets/crop-coffee.jpg";
-import cMaize from "@/assets/crop-maize.jpg";
-import cRice from "@/assets/crop-rice.jpg";
-import cDairy from "@/assets/crop-dairy.jpg";
-import cOnion from "@/assets/crop-onion.jpg";
-import cCashew from "@/assets/crop-cashew.jpg";
-import cSoybean from "@/assets/crop-soybean.jpg";
-import cRiceFish from "@/assets/crop-rice-fish.jpg";
-import cPeanut from "@/assets/crop-peanut.jpg";
+import cCocoa from "@/assets/crop-cocoa.jpg.asset.json";
+import cCoffee from "@/assets/crop-coffee.jpg.asset.json";
+import cMaize from "@/assets/crop-maize.jpg.asset.json";
+import cRice from "@/assets/crop-rice.jpg.asset.json";
+import cDairy from "@/assets/crop-dairy.jpg.asset.json";
+import cOnion from "@/assets/crop-onion.jpg.asset.json";
+import cCashew from "@/assets/crop-cashew.jpg.asset.json";
+import cSoybean from "@/assets/crop-soybean.jpg.asset.json";
+import cRiceFish from "@/assets/crop-rice-fish.jpg.asset.json";
+import cPeanut from "@/assets/crop-peanut.jpg.asset.json";
 
 const TRAINING_PHOTOS: Record<string, string> = {
   "happy-farmer": pFarmer.url,
@@ -78,47 +78,47 @@ const TRAINING_PHOTOS: Record<string, string> = {
   "corn-tablet": pCorn.url,
 };
 const CROPS: Record<string, string> = {
-  Cocoa: cCocoa,
-  Coffee: cCoffee,
-  Maize: cMaize,
-  Rice: cRice,
-  Dairy: cDairy,
-  Onion: cOnion,
-  Cashew: cCashew,
-  Soybean: cSoybean,
-  "Rice-fish": cRiceFish,
-  Peanut: cPeanut,
+  Cocoa: cCocoa.url,
+  Coffee: cCoffee.url,
+  Maize: cMaize.url,
+  Rice: cRice.url,
+  Dairy: cDairy.url,
+  Onion: cOnion.url,
+  Cashew: cCashew.url,
+  Soybean: cSoybean.url,
+  "Rice-fish": cRiceFish.url,
+  Peanut: cPeanut.url,
 };
 const QUAD_ICONS = [Lightbulb, Users, GraduationCap, Presentation];
 
 const IMGS: Record<Img, string> = {
-  hero,
-  coop,
-  processor,
-  training,
+  hero: hero.url,
+  coop: coop.url,
+  processor: processor.url,
+  training: training.url,
   planting: planting.url,
-  board: iBoard,
-  governance: iGovernance,
-  partners: iPartners,
+  board: iBoard.url,
+  governance: iGovernance.url,
+  partners: iPartners.url,
   cabbage: iCabbage.url,
-  data: iData,
+  data: iData.url,
   newsField: iNewsField.url,
   newsTrainers: iNewsTrainers.url,
   newsStrategy: iNewsStrategy.url,
-  discussion: iDiscussion,
-  classroom: iClassroom,
-  library: iLibrary,
-  networking: iNetworking,
-  conference: iConference,
-  fieldvisit: iFieldvisit,
-  press: iPress,
-  newsletter: iNewsletter,
-  vacancy: iVacancy,
-  scholarship: iScholarship,
-  certificate: iCertificate,
+  discussion: iDiscussion.url,
+  classroom: iClassroom.url,
+  library: iLibrary.url,
+  networking: iNetworking.url,
+  conference: iConference.url,
+  fieldvisit: iFieldvisit.url,
+  press: iPress.url,
+  newsletter: iNewsletter.url,
+  vacancy: iVacancy.url,
+  scholarship: iScholarship.url,
+  certificate: iCertificate.url,
   agronomist: iAgronomist.url,
   greens: iGreens.url,
-  leadership: iLeadership,
+  leadership: iLeadership.url,
   "happy-farmer": pFarmer.url,
   "coop-cabbages": pCabbages.url,
   "lettuce-crate": pCrate.url,
@@ -127,8 +127,8 @@ const IMGS: Record<Img, string> = {
   "corn-tablet": pCorn.url,
   seedlings: iSeedlings.url,
   lettuceHands: iLettuceHands.url,
-  fish: iFish,
-  contract: iContract,
+  fish: iFish.url,
+  contract: iContract.url,
   cornField: iCornField.url,
 };
 

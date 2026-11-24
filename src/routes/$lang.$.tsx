@@ -154,13 +154,13 @@ function ContentPage() {
           ) : s.feature && s.p ? (
             <div key={s.h.en} className="mx-auto max-w-7xl px-4 lg:px-6">
               <section className="grid gap-6 rounded-xl bg-mint p-8 md:grid-cols-[1fr_2fr] md:gap-12 md:p-12">
-                <p className="text-sm font-medium text-night">{s.h[lang]}</p>
+                <p className="section-heading text-3xl text-primary md:text-4xl">{s.h[lang]}</p>
                 <div>
                   {(() => {
                     const t = s.p[lang];
                     const i = t.indexOf(",") + 1;
                     return (
-                      <p className="text-3xl font-bold leading-snug text-forest-deep md:text-4xl lg:text-5xl">
+                      <p className="text-2xl font-bold leading-snug text-forest-deep md:text-3xl">
                         {t.slice(0, i)}
                         <span className="text-muted-foreground/70">{t.slice(i)}</span>
                       </p>

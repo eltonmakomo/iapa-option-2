@@ -266,7 +266,6 @@ function ContentPage() {
             </p>
           )}
           <Breadcrumbs lang={lang} slug={_splat ?? ""} current={p.eyebrow[lang]} />
-          <p className="section-label">{p.eyebrow[lang]}</p>
           <h1
             className={`mt-3 whitespace-pre-line text-4xl md:text-5xl ${p.narrowIntro ? "max-w-5xl" : "max-w-3xl"}`}
           >

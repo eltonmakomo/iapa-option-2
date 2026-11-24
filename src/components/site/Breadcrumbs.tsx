@@ -21,7 +21,7 @@ export function Breadcrumbs({ lang, slug, current, tone = "light" }: { lang: Lan
   const items = trailFor(slug, lang, current);
   return (
     <nav aria-label={lang === "fr" ? "Fil d'Ariane" : "Breadcrumb"} className="mb-5">
-      <ol className={`inline-flex flex-wrap items-center gap-1.5 rounded-md px-3 py-1.5 text-sm ${tone === "light" ? "bg-cream/90 text-night" : "bg-savanna/25 text-night"}`}>
+      <ol className={`inline-flex flex-wrap items-center gap-1.5 text-sm ${tone === "light" ? "text-forest-foreground" : "text-night"}`}>
         {items.map((c, i) => {
           const last = i === items.length - 1;
           return (
@@ -29,9 +29,9 @@ export function Breadcrumbs({ lang, slug, current, tone = "light" }: { lang: Lan
               {last ? (
                 <span aria-current="page" className="font-semibold text-arid-orange">{c.label}</span>
               ) : c.slug === "" ? (
-                <Link to="/$lang" params={{ lang }} className="hover:text-primary">{c.label}</Link>
+                <Link to="/$lang" params={{ lang }} className="hover:text-arid-orange">{c.label}</Link>
               ) : (
-                <Link to="/$lang/$" params={{ lang, _splat: c.slug! }} className="hover:text-primary">{c.label}</Link>
+                <Link to="/$lang/$" params={{ lang, _splat: c.slug! }} className="hover:text-arid-orange">{c.label}</Link>
               )}
               {!last && <ChevronRight className="h-3.5 w-3.5 opacity-50" aria-hidden />}
             </li>

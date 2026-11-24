@@ -107,7 +107,6 @@ export function ContactPage({ lang }: { lang: Lang }) {
       <header className="relative -mt-28 overflow-hidden bg-savanna/20 pb-16 pt-36 md:pb-20 md:pt-44">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <Breadcrumbs lang={lang} slug="contact" current="Contact" tone="dark" />
-          <p className="section-label">IAPA · {l("Contact", "Contact")}</p>
           <h1 className="mt-4 text-4xl text-forest-deep md:text-5xl">
             {l("Contact us", "Contactez-nous")}
           </h1>

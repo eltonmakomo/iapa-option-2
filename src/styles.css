@@ -138,7 +138,7 @@
     width: 1cap;
     height: 1cap;
     background: var(--color-primary);
-    clip-path: polygon(0 0, 0 100%, 100% 100%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
   }
 }
 

@@ -147,7 +147,7 @@
 @media (prefers-reduced-motion: reduce) {
   .what-move-in { animation: none; }
 }
-.section-content { margin-top: 3.5rem; }
+.section-content { margin-top: 3rem; }
 .section-heading { max-width: 28ch; text-wrap: balance; letter-spacing: 0; }
 .region-card { aspect-ratio: auto; }
 .region-map { min-height: 0; transition: transform 500ms ease; }
@@ -177,7 +177,6 @@
 .ambition-heading { max-width: none; font-size: 1.375rem; }
 @media (min-width: 48rem) { .ambition-heading { text-wrap: initial; font-size: 2.25rem; } }
 @media (min-width: 48rem) { .approach-heading { font-size: 2.25rem; } }
-@media (min-width: 48rem) { .section-content { margin-top: 4rem; } }
 
 /* Approach pills: a cream fill inside a thin ring (like the hero CTAs); the green
    circle grows leftward to fill the pill on hover. */

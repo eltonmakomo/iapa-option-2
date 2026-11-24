@@ -313,8 +313,8 @@
   position: absolute;
   left: 50%;
   bottom: -2px;
-  width: 6px;
-  height: 6px;
+  width: 18px;
+  height: 5px;
   border-radius: 9999px;
   background: var(--color-arid-orange);
   transform: translateX(-50%);

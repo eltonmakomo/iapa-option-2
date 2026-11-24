@@ -14,6 +14,7 @@ export type Section = {
   feature?: Img;
   icons?: boolean;
   regions?: boolean;
+  logoGrid?: boolean;
 };
 export type BlockKind =
   | "team"
@@ -245,9 +246,10 @@ export const PAGES: Record<string, Page> = {
     sections: [
       {
         h: l("Our partners", "Nos partenaires"),
+        logoGrid: true,
         items: [
           [
-            l("ABF-GIZ", "ABF-GIZ"),
+            l("Founding partner", "Partenaire fondateur"),
             l(
               "Agri-Business Facility for Africa, where IAPA was initiated.",
               "Agri-Business Facility for Africa, où l'AIPA a été initiée.",
@@ -255,20 +257,28 @@ export const PAGES: Record<string, Page> = {
             ["abf"],
           ],
           [
-            l("GIZ / BMZ", "GIZ / BMZ"),
+            l("Development cooperation", "Coopération au développement"),
             l("German development cooperation.", "Coopération allemande au développement."),
             ["giz"],
           ],
           [
-            l("European Union & OACPS", "Union européenne et OEACP"),
+            l("Co-funder", "Cofinanceur"),
             l(
-              "Co-funders of agribusiness programmes.",
-              "Cofinanceurs de programmes d'agribusiness.",
+              "Co-funder of agribusiness programmes.",
+              "Cofinanceur de programmes d'agribusiness.",
             ),
-            ["european-union", "oacps"],
+            ["european-union"],
           ],
           [
-            l("ACBF", "ACBF"),
+            l("Co-funder", "Cofinanceur"),
+            l(
+              "Co-funder of agribusiness programmes.",
+              "Cofinanceur de programmes d'agribusiness.",
+            ),
+            ["oacps"],
+          ],
+          [
+            l("Institutional support", "Appui institutionnel"),
             l(
               "Support on institutional strategy and resource mobilisation.",
               "Appui à la stratégie institutionnelle et à la mobilisation des ressources.",
@@ -276,12 +286,14 @@ export const PAGES: Record<string, Page> = {
             ["acbf"],
           ],
           [
-            l(
-              "MOVE / ComCashew & Africa Agribusiness Academy",
-              "MOVE / ComCashew et Africa Agribusiness Academy",
-            ),
-            l("Programme and training partners.", "Partenaires de programmes et de formation."),
-            ["comcashew", "africa-agribusiness-academy"],
+            l("Programme partner", "Partenaire de programme"),
+            l("Programme and training partner.", "Partenaire de programmes et de formation."),
+            ["comcashew"],
+          ],
+          [
+            l("Training partner", "Partenaire de formation"),
+            l("Programme and training partner.", "Partenaire de programmes et de formation."),
+            ["africa-agribusiness-academy"],
           ],
         ],
       },

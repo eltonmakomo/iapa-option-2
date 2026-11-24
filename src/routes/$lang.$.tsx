@@ -228,7 +228,40 @@ function ContentPage() {
                     </tbody>
                   </table>
                 )}
-                {s.items && (
+                {s.items && s.logoGrid && (
+                  <div
+                    className={`${s.p ? "mt-8" : "section-content"} grid grid-cols-2 gap-px overflow-hidden border border-forest-deep/20 bg-forest-deep/20 md:grid-cols-3 lg:grid-cols-4`}
+                  >
+                    {s.items.map(([h, b, keys]) => (
+                      <div
+                        key={h.en + (keys?.[0] ?? "")}
+                        className="group relative flex aspect-[4/3] flex-col items-center justify-center gap-3 bg-card p-6 transition-colors duration-300 hover:bg-rainforest"
+                      >
+                        {keys?.map((k) => {
+                          const p = logoOf(k);
+                          return (
+                            <img
+                              key={k}
+                              src={p.url}
+                              alt={p.name[lang]}
+                              loading="lazy"
+                              className="h-12 w-auto max-w-[70%] object-contain transition-transform duration-300 group-hover:-translate-y-10 group-hover:scale-75"
+                            />
+                          );
+                        })}
+                        <p className="text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground transition-opacity duration-200 group-hover:opacity-0">
+                          {h[lang]}
+                        </p>
+                        <span className="pointer-events-none absolute inset-0 flex items-center justify-center p-6 pt-24">
+                          <p className="translate-y-2 text-center text-sm font-medium leading-snug text-forest-foreground opacity-0 transition-all duration-300 delay-100 group-hover:translate-y-0 group-hover:opacity-100">
+                            {b[lang]}
+                          </p>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {s.items && !s.logoGrid && (
                   <div
                     className={`${s.p ? "mt-8" : "section-content"} grid gap-4 md:grid-cols-2 lg:grid-cols-3`}
                   >

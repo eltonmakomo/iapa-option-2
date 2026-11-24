@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Clock, Mic, Play } from "lucide-react";
 import type { Lang } from "@/lib/i18n";
 import listener from "@/assets/man-listening-headphones-grass.jpg.asset.json";
+import viewer from "@/assets/woman-agronomist-works-with-tablet-in-greenhouse.jpg.asset.json";
 
 type L = Record<Lang, string>;
 type Episode = { no: number; host: string; length: string; title: L; body: L };
@@ -89,7 +90,7 @@ export function EpisodeShowcase({ kind, lang }: { kind: "podcast" | "webinar"; l
           ))}
         </div>
         <article className="relative isolate flex min-h-[480px] flex-col justify-between overflow-hidden rounded-2xl bg-night p-6">
-          <img src={listener.url} alt={lang === "fr" ? "Un homme écoute avec un casque, allongé dans l'herbe" : "A man listening on headphones, lying on the grass"} loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover object-[45%_30%]" />
+          <img src={kind === "podcast" ? listener.url : viewer.url} alt={kind === "podcast" ? (lang === "fr" ? "Un homme écoute avec un casque, allongé dans l'herbe" : "A man listening on headphones, lying on the grass") : lang === "fr" ? "Une agronome suit une formation sur sa tablette en serre" : "An agronomist following a session on her tablet in a greenhouse"} loading="lazy" className={`absolute inset-0 -z-10 h-full w-full object-cover ${kind === "podcast" ? "object-[45%_30%]" : "object-[50%_20%]"}`} />
           <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/90 via-night/30 to-night/20" />
           <Meta e={d.featured} lang={lang} light />
           <div>
